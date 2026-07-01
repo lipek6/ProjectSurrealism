@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dr7ks3lx07q50"]
+
+[ext_resource type="Script" uid="uid://c5u5ggumqebem" path="res://Entities/Player/player.gd" id="1_mv1ah"]
+[ext_resource type="PackedScene" uid="uid://de0l42sra1016" path="res://Entities/Player/disguise-glasses.glb" id="2_3uyv8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bcbww"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bcbww"]
+
+[node name="Player" type="CharacterBody3D" unique_id=1866164659]
+script = ExtResource("1_mv1ah")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=74638354]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_bcbww")
+
+[node name="WorldModel" type="Node3D" parent="." unique_id=469966230]
+unique_name_in_owner = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldModel" unique_id=439848558]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+layers = 2
+mesh = SubResource("CapsuleMesh_bcbww")
+
+[node name="DisguiseGlasses" parent="WorldModel/MeshInstance3D" unique_id=19505829 instance=ExtResource("2_3uyv8")]
+transform = Transform3D(-2.1007051, 0, 1.8364946e-07, 0, 2.1007051, 0, -1.8364946e-07, 0, -2.1007051, 0.002098714, 0.40025938, -0.08663574)
+
+[node name="Head" type="Node3D" parent="." unique_id=1961007866]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.79, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=122657194]
+unique_name_in_owner = true
+cull_mask = 1048573
