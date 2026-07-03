@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://88kt2h8ajanr"]
+
+[ext_resource type="Texture2D" uid="uid://b28c62e3f23vb" path="res://Levels/Starter/textures/kenney-orange-checkerboard-cc0.png" id="1_x8ds4"]
+
+[resource]
+albedo_texture = ExtResource("1_x8ds4")
+uv1_scale = Vector3(3, 3, 3)
