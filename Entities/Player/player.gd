@@ -10,7 +10,7 @@ var current_state : PlayerState = PlayerState.IDLE
 
 # ==========================================
 # NODE REFERENCES
-# ==========================================
+# ==========================t================
 # Caching nodes here prevents expensive tree lookups every frame.
 @onready var world_model : Node3D   = %WorldModel
 @onready var head        : Node3D   = %Head
@@ -96,18 +96,24 @@ func _physics_process(delta: float) -> void:
 	var input_direction : Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_backward").normalized()
 	wished_direction = self.global_basis * Vector3(input_direction.x, 0, input_direction.y)
 	
-	# Update State & Sprint Toggle
-	if Input.is_action_just_pressed("toggle_sprint"): # PUT IN _update_player_state
+	if Input.is_action_just_pressed("toggle_sprint"):
 		auto_sprint = !auto_sprint
 	
+	var is_trying_to_jump : bool = Input.is_action_just_pressed("jump") or (auto_bhop and Input.is_action_pressed("jump"))
+	
+	# Update State 
 	_update_player_state(input_direction)
 	
-	if self.is_on_floor():
-		if Input.is_action_just_pressed("jump") or (auto_bhop and Input.is_action_pressed("jump")):
-			velocity.y = jump_velocity       
-		_handle_ground_physics(delta)
-	else:
-		_handle_air_physics(delta)	
+	# Execute Physics based on State
+	match current_state:
+		PlayerState.IDLE, PlayerState.WALKING, PlayerState.SPRINTING:
+			if is_trying_to_jump:
+				velocity.y = jump_velocity       
+			_handle_ground_physics(delta)
+		
+		PlayerState.IN_AIR, PlayerState.SURFING:
+			_handle_air_physics(delta)
+		
 	
 	move_and_slide()
 #endregion
