@@ -162,7 +162,7 @@ albedo_texture = ExtResource("6_7b0n1")
 [node name="World" type="Node3D" unique_id=723093090]
 
 [node name="Player" parent="." unique_id=1866164659 instance=ExtResource("1_34vv4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5227046, -0.97952336, -64.18813)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -45.477295, -0.97952336, -21.188133)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1741360362]
 environment = SubResource("Environment_dpqee")

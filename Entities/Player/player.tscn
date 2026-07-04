@@ -9,8 +9,10 @@
 
 [node name="Player" type="CharacterBody3D" unique_id=1866164659]
 script = ExtResource("1_mv1ah")
+can_noclip = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=74638354]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_bcbww")
 
@@ -23,15 +25,27 @@ layers = 2
 mesh = SubResource("CapsuleMesh_bcbww")
 
 [node name="DisguiseGlasses" parent="WorldModel/MeshInstance3D" unique_id=19505829 instance=ExtResource("2_3uyv8")]
-transform = Transform3D(-2.1007051, 0, 1.8364946e-07, 0, 2.1007051, 0, -1.8364946e-07, 0, -2.1007051, 0.002098714, 0.40025938, -0.08663574)
+transform = Transform3D(-2.1007051, 0, 1.8364946e-07, 0, 2.1007051, 0, -1.8364946e-07, 0, -2.1007051, 0.002098714, 0.20025933, -0.08663574)
 
 [node name="Head" type="Node3D" parent="." unique_id=1961007866]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.79, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Head" unique_id=122657194]
+[node name="CameraSmoothPoint" type="Node3D" parent="Head" unique_id=1812588030]
+unique_name_in_owner = true
+
+[node name="Camera3D" type="Camera3D" parent="Head/CameraSmoothPoint" unique_id=122657194]
 unique_name_in_owner = true
 cull_mask = 1048573
+
+[node name="StairsAheadRayCast3D" type="RayCast3D" parent="." unique_id=1425612240]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.67200005, -1)
+target_position = Vector3(0, -0.55, 0)
+
+[node name="StairsBelowRayCast3D" type="RayCast3D" parent="." unique_id=1644372398]
+unique_name_in_owner = true
+target_position = Vector3(0, -0.75, 0)
 
 [node name="FPS" type="Label" parent="." unique_id=1571528720]
 unique_name_in_owner = true
