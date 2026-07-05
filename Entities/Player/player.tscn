@@ -1,11 +1,21 @@
 [gd_scene format=3 uid="uid://dr7ks3lx07q50"]
 
 [ext_resource type="Script" uid="uid://c5u5ggumqebem" path="res://Entities/Player/player.gd" id="1_mv1ah"]
-[ext_resource type="PackedScene" uid="uid://de0l42sra1016" path="res://Entities/Player/disguise-glasses.glb" id="2_3uyv8"]
+[ext_resource type="Texture2D" uid="uid://f3wj126c5das" path="res://Levels/Starter/textures/kenney-grey-checkerboard-cc0.png" id="2_lu8i8"]
+[ext_resource type="PackedScene" uid="uid://dmjo4iv6u3erj" path="res://Entities/Player/disguise_glasses.tscn" id="3_lu8i8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bcbww"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tekja"]
+albedo_color = Color(0.79225945, 0.25269866, 0.6862081, 1)
+albedo_texture = ExtResource("2_lu8i8")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_bcbww"]
+lightmap_size_hint = Vector2i(17, 14)
+material = SubResource("StandardMaterial3D_tekja")
+add_uv2 = true
 
 [node name="Player" type="CharacterBody3D" unique_id=1866164659]
 script = ExtResource("1_mv1ah")
@@ -24,17 +34,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 layers = 2
 mesh = SubResource("CapsuleMesh_bcbww")
 
-[node name="DisguiseGlasses" parent="WorldModel/MeshInstance3D" unique_id=19505829 instance=ExtResource("2_3uyv8")]
-transform = Transform3D(-2.1007051, 0, 1.8364946e-07, 0, 2.1007051, 0, -1.8364946e-07, 0, -2.1007051, 0.002098714, 0.20025933, -0.08663574)
+[node name="DisguiseGlasses" parent="WorldModel/MeshInstance3D" unique_id=1776090741 instance=ExtResource("3_lu8i8")]
+transform = Transform3D(-2.1007051, 0, -1.8364948e-07, 0, 2.1007051, 0, 1.8364948e-07, 0, -2.1007051, 0.002098714, 0.20025933, -0.08663574)
 
-[node name="Head" type="Node3D" parent="." unique_id=1961007866]
+[node name="HeadOriginalPosition" type="Node3D" parent="." unique_id=1961007866]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.79, 0)
 
-[node name="CameraSmoothPoint" type="Node3D" parent="Head" unique_id=1812588030]
+[node name="Head" type="Node3D" parent="HeadOriginalPosition" unique_id=202485167]
 unique_name_in_owner = true
 
-[node name="Camera3D" type="Camera3D" parent="Head/CameraSmoothPoint" unique_id=122657194]
+[node name="CameraSmoothPoint" type="Node3D" parent="HeadOriginalPosition/Head" unique_id=1812588030]
+unique_name_in_owner = true
+
+[node name="Camera3D" type="Camera3D" parent="HeadOriginalPosition/Head/CameraSmoothPoint" unique_id=122657194]
 unique_name_in_owner = true
 cull_mask = 1048573
 

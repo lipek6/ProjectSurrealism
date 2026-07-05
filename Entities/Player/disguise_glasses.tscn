@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dmjo4iv6u3erj"]
+
+[ext_resource type="PackedScene" uid="uid://de0l42sra1016" path="res://Entities/Player/disguise-glasses.glb" id="1_dhkam"]
+
+[node name="disguise-glasses" unique_id=1776090741 instance=ExtResource("1_dhkam")]
+
+[node name="Cube_003" parent="." index="0" unique_id=1259492673]
+layers = 2
+
+[node name="Cube_002" parent="." index="1" unique_id=1679637736]
+layers = 2
+
+[node name="Cube_001" parent="." index="2" unique_id=10973967]
+layers = 2
+
+[node name="Cube" parent="." index="3" unique_id=1945577696]
+layers = 2

@@ -1,9 +1,11 @@
 extends CharacterBody3D
+#TODO: Jumping into stairs makes the player go to the SURFING state. This makes the player unable to go up the stairs without moving around a little bit.
+
 
 # ==========================================
 # ENUMS & STATES
 # ==========================================
-enum PlayerState { IDLE, WALKING, SPRINTING, IN_AIR, SURFING, NOCLIPING }
+enum PlayerState { IDLE, WALKING, SPRINTING, CROUCHING_IDLE, CROUCHING, CROUCHING_SPRINTING, IN_AIR, IN_AIR_CROUCHING, SURFING, NOCLIPING, NOCLIPING_SPRINTING }
 var current_state  : PlayerState = PlayerState.IDLE
 var previous_state : PlayerState = PlayerState.IDLE
 
@@ -20,7 +22,9 @@ class PlayerInput:
 	var camera_aligned_wished_direction : Vector3 = Vector3.ZERO
 	var controller_look                 : Vector2 = Vector2.ZERO
 	var jump_pressed                    : bool    = false
-	var jump_held                       : bool    = false       
+	var jump_held                       : bool    = false
+	var sprint_held                     : bool    = false
+	var crouch_held                     : bool    = false
 	
 	# Settings & Toggles
 	var toggle_sprint_pressed           : bool    = false
@@ -35,15 +39,16 @@ class PlayerInput:
 # ==========================================
 # Caching nodes here prevents expensive tree lookups every frame.
 #region Node References
-@onready var collision           : CollisionShape3D = %CollisionShape3D
-@onready var world_model         : Node3D           = %WorldModel
-@onready var head                : Node3D           = %Head
-@onready var camera_smooth_point : Node3D           = %CameraSmoothPoint
-@onready var camera              : Camera3D         = %Camera3D 
-@onready var stairs_ahead_ray    : RayCast3D        = %StairsAheadRayCast3D
-@onready var stairs_below_ray    : RayCast3D        = %StairsBelowRayCast3D
-@onready var fps_label           : Label            = %FPS
-@onready var player_input        : PlayerInput      = PlayerInput.new()
+@onready var collision               : CollisionShape3D = %CollisionShape3D
+@onready var world_model             : Node3D           = %WorldModel
+@onready var head                    : Node3D           = %Head
+@onready var camera_smooth_point     : Node3D           = %CameraSmoothPoint
+@onready var camera                  : Camera3D         = %Camera3D 
+@onready var stairs_ahead_ray        : RayCast3D        = %StairsAheadRayCast3D
+@onready var stairs_below_ray        : RayCast3D        = %StairsBelowRayCast3D
+@onready var fps_label               : Label            = %FPS
+@onready var player_input            : PlayerInput      = PlayerInput.new()
+@onready var _origina_capsule_height : float            = collision.shape.height
 #endregion
 
 
@@ -67,14 +72,18 @@ var _saved_camera_global_position : Vector3 = Vector3.INF
 
 #region Ground Movement
 @export_group("Ground Movement")
-@export var auto_bhop       : bool  = true
-@export var auto_sprint     : bool  = true
-@export var walk_speed      : float = 7.0
-@export var sprint_speed    : float = 8.5
-@export var ground_accel    : float = 14.0
-@export var ground_decel    : float = 10.0
-@export var ground_friction : float = 6.0
-@export var max_step_height : float = 0.5          # NEW CODE
+@export var auto_bhop               : bool  = false
+@export var auto_sprint             : bool  = true
+@export var walk_speed              : float = 7.0
+@export var sprint_speed            : float = 8.5
+@export var ground_accel            : float = 14.0
+@export var ground_decel            : float = 10.0
+@export var ground_friction         : float = 6.0
+@export var max_step_height         : float = 0.5
+@export var crouch_translate        : float = 0.7
+@export var crouch_jump_add         : float = 0.7 * 0.9   # Always set as crouch_translate * something. In this case crouch_jump_add = crouch_translate * 0.9
+@export var crouch_speed_multiplier : float = 0.8
+
 var _snapped_to_stairs_last_frame : bool  = false
 var _last_frame_was_on_floor      : float = -INF
 #endregion
@@ -114,6 +123,7 @@ func _ready() -> void:
 	for child : VisualInstance3D in world_model.find_children("*", "VisualInstance3D"):
 		child.set_layer_mask_value(1, false) 
 		child.set_layer_mask_value(2, true)
+		
 
 
 ## Listens for hardware events that aren't tied to the physics tick (like mouse movement).
@@ -141,9 +151,10 @@ func _process(delta: float) -> void:
 
 ## The rigid physics loop. Orchestrates the input gathering, state evaluation, and physics execution pipeline.
 func _physics_process(delta: float) -> void:
-	print(_last_frame_was_on_floor)
-	_gather_inputs()                # Update the player_input data structure
-	_handle_toggles_and_settings()  # Process non-state settings (noclip speed multipliers/UI toggles)
+	print(PlayerState.keys()[current_state]) #DEBUG
+	
+	_gather_inputs()                         # Update the player_input data structure
+	_handle_toggles_and_settings()           # Process non-state settings (noclip speed multipliers/UI toggles)
 	
 	# Process State Machine and Transitions
 	previous_state = current_state
@@ -153,30 +164,33 @@ func _physics_process(delta: float) -> void:
 		_on_state_transition(previous_state, current_state)
 	
 	
-	# Execute Physics 
+	# Execute Physics based strictly on FSM
 	match current_state: 
-		PlayerState.IDLE, PlayerState.WALKING, PlayerState.SPRINTING: # should have a "or _snapped_to_stairs_last_frame" here
+		PlayerState.IDLE, PlayerState.WALKING, PlayerState.SPRINTING, PlayerState.CROUCHING_IDLE, PlayerState.CROUCHING, PlayerState.CROUCHING_SPRINTING:
 			if player_input.jump_pressed or (auto_bhop and player_input.jump_held):
-				velocity.y = jump_velocity       
+				velocity.y = jump_velocity
+				_snapped_to_stairs_last_frame = false                           # Jumping breaks stair logic
+			
 			_handle_ground_physics(delta)
+			
+			if not _snap_up_stairs_check(delta):
+				move_and_slide()
+				_snap_down_to_stairs_check()
 		
-		PlayerState.IN_AIR, PlayerState.SURFING:
+		PlayerState.IN_AIR, PlayerState.SURFING, PlayerState.IN_AIR_CROUCHING:
 			_handle_air_physics(delta)
-			
-		PlayerState.NOCLIPING:
+			move_and_slide()
+		
+		PlayerState.NOCLIPING, PlayerState.NOCLIPING_SPRINTING:
 			_handle_noclip()
-	if _snapped_to_stairs_last_frame:
-		if player_input.jump_pressed or (auto_bhop and player_input.jump_held):
-			velocity.y = jump_velocity       
-		_handle_ground_physics(delta)
-
+			move_and_slide()
 			
-			
-	if not _snap_up_stairs_check(delta):
-		move_and_slide()
-		_snap_down_to_stairs_check()
-	
 	_slide_camera_smooth_back_to_origin(delta)
+	_handle_crouch_camera_smoothing(delta) 
+	
+	# Update frame tracking for the downward stair raycast
+	if is_on_floor():
+		_last_frame_was_on_floor = Engine.get_physics_frames()
 #endregion
 
 
@@ -192,6 +206,8 @@ func _gather_inputs() -> void:
 	player_input.move_direction          = Input.get_vector("move_left", "move_right", "move_forward", "move_backward").normalized()
 	player_input.jump_pressed            = Input.is_action_just_pressed("jump")
 	player_input.jump_held               = Input.is_action_pressed("jump")
+	player_input.sprint_held             = Input.is_action_pressed("sprint")
+	player_input.crouch_held             = Input.is_action_pressed("crouch")
 	player_input.toggle_sprint_pressed   = Input.is_action_just_pressed("toggle_sprint")
 	player_input.toggle_noclip_pressed   = Input.is_action_just_pressed("_noclip")
 	player_input.noclip_increase_pressed = Input.is_action_just_pressed("_increase_noclip_speed")
@@ -224,28 +240,46 @@ func _handle_toggles_and_settings() -> void:
 ## Pure logic tree that determines what the player *is doing* based on physics flags and input intent.
 ## Modifies `current_state` but does not execute movement.
 func _update_player_state() -> void:
-	if can_noclip and noclip:
-		current_state = PlayerState.NOCLIPING
-	elif is_on_wall() and is_surface_too_steep(get_wall_normal()):
-		current_state = PlayerState.SURFING
-	elif not is_on_floor():
-		current_state = PlayerState.IN_AIR
-	elif player_input.move_direction == Vector2.ZERO:
-		current_state = PlayerState.IDLE
-	else:
-		var is_sprinting : bool = Input.is_action_pressed("sprint") if not auto_sprint else not Input.is_action_pressed("sprint")
-		current_state = PlayerState.SPRINTING if is_sprinting else PlayerState.WALKING
+	var is_grounded   : bool = is_on_floor() or _snapped_to_stairs_last_frame
+	var is_sprinting  : bool = (player_input.sprint_held and not auto_sprint) or (auto_sprint and not player_input.sprint_held)
+	var was_crouching : bool = current_state in [PlayerState.CROUCHING_IDLE, PlayerState.CROUCHING, PlayerState.CROUCHING_SPRINTING, PlayerState.IN_AIR_CROUCHING]
+	var is_crouching  : bool = player_input.crouch_held or (was_crouching and not _can_exit_crouch())
 	
-	#print(PlayerState.keys()[current_state]) # DEBUG
+	if can_noclip and noclip:
+		current_state = PlayerState.NOCLIPING_SPRINTING if is_sprinting else PlayerState.NOCLIPING
+	
+	elif not is_grounded:
+		if is_crouching:
+			current_state = PlayerState.IN_AIR_CROUCHING
+		elif is_on_wall() and is_surface_too_steep(get_wall_normal()):
+			current_state = PlayerState.SURFING
+		else:
+			current_state = PlayerState.IN_AIR
+		
+	elif player_input.move_direction == Vector2.ZERO:
+		current_state = PlayerState.CROUCHING_IDLE if is_crouching else PlayerState.IDLE
+	
+	else:
+		if is_crouching and is_sprinting:
+			current_state = PlayerState.CROUCHING_SPRINTING
+		elif is_crouching:
+			current_state = PlayerState.CROUCHING
+		elif is_sprinting:
+			current_state = PlayerState.SPRINTING
+		else:
+			current_state = PlayerState.WALKING
 
 
 ## Triggered exactly once per state change. 
 ## Used to safely toggle environmental properties (like hitboxes or motion modes) without spamming the engine.
 func _on_state_transition(old_state: PlayerState, new_state: PlayerState) -> void:
 	# Noclip hitboxes
-	if new_state == PlayerState.NOCLIPING:
+	var was_nocliping : bool = old_state in [PlayerState.NOCLIPING, PlayerState.NOCLIPING_SPRINTING]
+	var is_nocliping  : bool = new_state in [PlayerState.NOCLIPING, PlayerState.NOCLIPING_SPRINTING]
+	
+	if is_nocliping:
 		collision.set_deferred("disabled", true)
-	elif old_state == PlayerState.NOCLIPING:
+	elif was_nocliping:
 		collision.set_deferred("disabled", false)
 	
 	# Surf gravity anchor overrides
@@ -254,6 +288,17 @@ func _on_state_transition(old_state: PlayerState, new_state: PlayerState) -> voi
 	elif old_state == PlayerState.SURFING:
 		self.motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
 	
+	# Crouching
+	var was_crouching : bool = old_state in [PlayerState.CROUCHING_IDLE, PlayerState.CROUCHING, PlayerState.CROUCHING_SPRINTING, PlayerState.IN_AIR_CROUCHING]
+	var is_crouching  : bool = new_state in [PlayerState.CROUCHING_IDLE, PlayerState.CROUCHING, PlayerState.CROUCHING_SPRINTING, PlayerState.IN_AIR_CROUCHING]
+	var is_grounded   : bool = is_on_floor() or _snapped_to_stairs_last_frame
+	
+	if is_crouching and not was_crouching:
+		if not is_grounded: _enter_air_crouch()
+		else: _enter_crouch()                                           
+	elif was_crouching and not is_crouching:
+		if not is_grounded: _exir_air_crouch()
+		else: _exit_crouch()
 #endregion
 
 
@@ -264,10 +309,23 @@ func _on_state_transition(old_state: PlayerState, new_state: PlayerState) -> voi
 #region Physics Handlers
 ## Helper to fetch the current scalar speed limit based on state.
 func get_move_speed() -> float:
-	if current_state == PlayerState.SPRINTING:
-		return sprint_speed
-	else:
-		return walk_speed
+	match current_state:
+		PlayerState.WALKING:
+			return walk_speed
+		PlayerState.SPRINTING:
+			return sprint_speed
+		PlayerState.CROUCHING:
+			return walk_speed * crouch_speed_multiplier
+		PlayerState.CROUCHING_SPRINTING:
+			return sprint_speed * crouch_speed_multiplier
+		PlayerState.NOCLIPING:
+			return walk_speed * noclip_speed_multiplier
+		PlayerState.NOCLIPING_SPRINTING:
+			return walk_speed * noclip_speed_multiplier
+		_:
+			#print("WARNING: There is no mapped speed for the current state")
+			#print("Should " + PlayerState.keys()[current_state] + " be using get_move_speed()?")
+			return walk_speed
 
 
 ## Handles friction and vector-projected acceleration while the player is on solid geometry.
@@ -290,10 +348,9 @@ func _handle_ground_physics(delta: float) -> void:
 		new_speed /= self.velocity.length() # new_speed is now the ratio new_speed/old_speed
 	self.velocity *= new_speed
 	
-	if headbob: _headbob_effect(delta) #TODO
-	
-	_last_frame_was_on_floor = Engine.get_physics_frames() # Is this suppoused to be here in this function? I think it's better than putting it on _physics_process
-	
+	if headbob: _headbob_effect(delta) 
+
+
 ## Handles gravity and high-maneuverability air-strafing acceleration.
 func _handle_air_physics(delta: float) -> void:
 	# Apply gravity
@@ -313,6 +370,52 @@ func _handle_air_physics(delta: float) -> void:
 		clip_velocity(get_wall_normal(), 1.0)
 
 
+func _enter_crouch() -> void:
+	# Shrink the capsule and shift it downward so the bottom stays on the floor
+	collision.shape.height = _origina_capsule_height - crouch_translate
+	collision.position.y   = collision.shape.height / 2.0  #TODO: Magic number
+
+
+func _exit_crouch() -> void:
+	# Restore the capsule and shift it upward
+	collision.shape.height = _origina_capsule_height
+	collision.position.y   = collision.shape.height / 2.0 #TODO: Magic number
+
+
+func _enter_air_crouch() -> void:
+	var collision_result : KinematicCollision3D = KinematicCollision3D.new()
+	self.test_move(self.transform, Vector3(0.0, +crouch_jump_add, 0.0), collision_result)
+	
+	self.position.y += collision_result.get_travel().y   # Avoids going through the ceil/ground
+	head.position.y -= collision_result.get_travel().y
+	head.position.y = clampf(head.position.y, -crouch_translate, 0) 
+	_enter_crouch()
+
+
+func _exir_air_crouch() -> void:
+	var collision_result : KinematicCollision3D = KinematicCollision3D.new()
+	self.test_move(self.transform, Vector3(0.0, -crouch_jump_add, 0.0), collision_result)
+	
+	self.position.y += collision_result.get_travel().y   # Avoids going through the ceil/ground
+	head.position.y -= collision_result.get_travel().y
+	head.position.y = clampf(head.position.y, -crouch_translate, 0)
+	_exit_crouch()
+
+func _can_exit_crouch() -> bool:
+	return not self.test_move(self.transform, Vector3(0.0, crouch_translate, 0.0))
+
+
+## Applies unhindered, camera-aligned freecam movement for debugging.
+func _handle_noclip() -> void:
+	self.velocity = player_input.camera_aligned_wished_direction * get_move_speed()
+#endregion
+
+
+
+# ==========================================
+# KINEMATIC STAIR LOGIC
+# ==========================================
+#region Stair Handling
 func _snap_down_to_stairs_check() -> void:
 	var did_snap                : bool  = false
 	var floor_below             : bool  = stairs_below_ray.is_colliding() and not is_surface_too_steep(stairs_below_ray.get_collision_normal())
@@ -327,6 +430,7 @@ func _snap_down_to_stairs_check() -> void:
 			apply_floor_snap()
 			did_snap = true
 	_snapped_to_stairs_last_frame = did_snap
+
 
 func _snap_up_stairs_check(delta : float) -> bool:
 	if not is_on_floor() and not _snapped_to_stairs_last_frame: return false
@@ -355,16 +459,6 @@ func _snap_up_stairs_check(delta : float) -> bool:
 			_snapped_to_stairs_last_frame = true
 			return true
 	return false
-
-
-
-
-
-## Applies unhindered, camera-aligned freecam movement for debugging.
-func _handle_noclip() -> void:
-	collision.disabled = true
-	var noclip_speed : float = get_move_speed() * noclip_speed_multiplier
-	self.velocity = player_input.camera_aligned_wished_direction * noclip_speed
 #endregion
 
 
@@ -390,6 +484,7 @@ func clip_velocity(normal : Vector3, overbounce : float) -> void:
 ## Evaluates if a given geometric normal is too steep for the CharacterBody to stand on.
 func is_surface_too_steep(normal : Vector3) -> bool:
 	return normal.angle_to(Vector3.UP) > self.floor_max_angle
+
 
 # Checks if we are going to collide with the next step
 func _run_body_test_motion(from : Transform3D, motion : Vector3, result : PhysicsTestMotionResult3D = null) -> bool:
@@ -424,7 +519,6 @@ func _headbob_effect(delta : float) -> void:
 		sin(headbob_time * HEADBOB_FREQUNCY) * HEADBOB_MOVE_AMOUNT,             # Y axis
 		0                                                                       # Z axis
 	) 
-#endregion
 
 
 func _save_camera_position_for_smoothing() -> void:
@@ -442,3 +536,10 @@ func _slide_camera_smooth_back_to_origin(delta : float) -> void:
 	
 	if camera_smooth_point.position.y == 0:
 		_saved_camera_global_position = Vector3.INF # Stop smoothing
+
+func _handle_crouch_camera_smoothing(delta : float) -> void:
+	var is_crouching : bool = current_state in [PlayerState.CROUCHING_IDLE, PlayerState.CROUCHING, PlayerState.CROUCHING_SPRINTING, PlayerState.IN_AIR_CROUCHING]
+	var target_y : float = -crouch_translate if is_crouching else 0.0
+	head.position.y = move_toward(head.position.y, target_y, 7.0 * delta)
+
+#endregion
