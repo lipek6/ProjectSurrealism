@@ -112,6 +112,14 @@ crouch={
 ]
 }
 
+[layer_names]
+
+3d_render/layer_1="Player first pesron body Layer"
+3d_render/layer_2="Player third person body Layer"
+3d_render/layer_3="Solids Layer"
+3d_render/layer_4="Physics props Layer"
+3d_render/layer_5="Lights Layer"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

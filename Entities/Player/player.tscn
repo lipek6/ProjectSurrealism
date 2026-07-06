@@ -19,7 +19,32 @@ add_uv2 = true
 
 [node name="Player" type="CharacterBody3D" unique_id=1866164659]
 script = ExtResource("1_mv1ah")
+look_sensitivity = null
+controller_look_sensitivity = null
+headbob = null
+auto_bhop = null
+auto_sprint = null
+walk_speed = null
+sprint_speed = null
+ground_accel = null
+ground_decel = null
+ground_friction = null
+max_step_height = null
+crouch_translate = null
+crouch_jump_add = null
+crouch_speed_multiplier = null
+weight = null
+jump_velocity = null
+air_cap = null
+air_accel = null
+air_move_speed = null
 can_noclip = true
+noclip = null
+noclip_max_speed = null
+noclip_min_speed = null
+noclip_speed_multiplier = null
+noclip_speed_increase_multiplier = null
+noclip_speed_decrease_multiplier = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=74638354]
 unique_name_in_owner = true
@@ -64,3 +89,8 @@ target_position = Vector3(0, -0.75, 0)
 unique_name_in_owner = true
 offset_right = 233.0
 offset_bottom = 110.0
+
+[node name="VelocityVectorRay" type="RayCast3D" parent="." unique_id=230423297]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, 0, -2)

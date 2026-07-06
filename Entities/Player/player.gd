@@ -39,7 +39,7 @@ class PlayerInput:
 # ==========================================
 # Caching nodes here prevents expensive tree lookups every frame.
 #region Node References
-@onready var collision               : CollisionShape3D = %CollisionShape3D
+@onready var collision_shape         : CollisionShape3D = %CollisionShape3D
 @onready var world_model             : Node3D           = %WorldModel
 @onready var head                    : Node3D           = %Head
 @onready var camera_smooth_point     : Node3D           = %CameraSmoothPoint
@@ -48,7 +48,7 @@ class PlayerInput:
 @onready var stairs_below_ray        : RayCast3D        = %StairsBelowRayCast3D
 @onready var fps_label               : Label            = %FPS
 @onready var player_input            : PlayerInput      = PlayerInput.new()
-@onready var _origina_capsule_height : float            = collision.shape.height
+@onready var _origina_capsule_height : float            = collision_shape.shape.height
 #endregion
 
 
@@ -83,7 +83,7 @@ var _saved_camera_global_position : Vector3 = Vector3.INF
 @export var crouch_translate        : float = 0.7
 @export var crouch_jump_add         : float = 0.7 * 0.9   # Always set as crouch_translate * something. In this case crouch_jump_add = crouch_translate * 0.9
 @export var crouch_speed_multiplier : float = 0.8
-
+@export var weight                  : float = 80.0 # For physics interaction
 var _snapped_to_stairs_last_frame : bool  = false
 var _last_frame_was_on_floor      : float = -INF
 #endregion
@@ -151,7 +151,7 @@ func _process(delta: float) -> void:
 
 ## The rigid physics loop. Orchestrates the input gathering, state evaluation, and physics execution pipeline.
 func _physics_process(delta: float) -> void:
-	print(PlayerState.keys()[current_state]) #DEBUG
+	#print(PlayerState.keys()[current_state]) #DEBUG
 	
 	_gather_inputs()                         # Update the player_input data structure
 	_handle_toggles_and_settings()           # Process non-state settings (noclip speed multipliers/UI toggles)
@@ -163,7 +163,6 @@ func _physics_process(delta: float) -> void:
 	if previous_state != current_state: 
 		_on_state_transition(previous_state, current_state)
 	
-	
 	# Execute Physics based strictly on FSM
 	match current_state: 
 		PlayerState.IDLE, PlayerState.WALKING, PlayerState.SPRINTING, PlayerState.CROUCHING_IDLE, PlayerState.CROUCHING, PlayerState.CROUCHING_SPRINTING:
@@ -174,11 +173,13 @@ func _physics_process(delta: float) -> void:
 			_handle_ground_physics(delta)
 			
 			if not _snap_up_stairs_check(delta):
+				_push_away_rigid_bodies() # Call before move_and_slide()
 				move_and_slide()
 				_snap_down_to_stairs_check()
 		
 		PlayerState.IN_AIR, PlayerState.SURFING, PlayerState.IN_AIR_CROUCHING:
 			_handle_air_physics(delta)
+			_push_away_rigid_bodies() # Call before move_and_slide()
 			move_and_slide()
 		
 		PlayerState.NOCLIPING, PlayerState.NOCLIPING_SPRINTING:
@@ -187,6 +188,10 @@ func _physics_process(delta: float) -> void:
 			
 	_slide_camera_smooth_back_to_origin(delta)
 	_handle_crouch_camera_smoothing(delta) 
+	
+
+	%VelocityVectorRay.target_position = Vector3(player_input.move_direction.x, 0, player_input.move_direction.y) 
+	
 	
 	# Update frame tracking for the downward stair raycast
 	if is_on_floor():
@@ -278,9 +283,9 @@ func _on_state_transition(old_state: PlayerState, new_state: PlayerState) -> voi
 	var is_nocliping  : bool = new_state in [PlayerState.NOCLIPING, PlayerState.NOCLIPING_SPRINTING]
 	
 	if is_nocliping:
-		collision.set_deferred("disabled", true)
+		collision_shape.set_deferred("disabled", true)
 	elif was_nocliping:
-		collision.set_deferred("disabled", false)
+		collision_shape.set_deferred("disabled", false)
 	
 	# Surf gravity anchor overrides
 	if new_state == PlayerState.SURFING:
@@ -370,16 +375,38 @@ func _handle_air_physics(delta: float) -> void:
 		clip_velocity(get_wall_normal(), 1.0)
 
 
+## Applies unhindered, camera-aligned freecam movement for debugging.
+func _handle_noclip() -> void:
+	self.velocity = player_input.camera_aligned_wished_direction * get_move_speed()
+
+
+## Call before move_and_slide()
+func _push_away_rigid_bodies() -> void:
+	for i : int in get_slide_collision_count():
+		var collision : KinematicCollision3D = get_slide_collision(i)
+		var collider  : RigidBody3D = collision.get_collider() if collision.get_collider() is RigidBody3D else null
+		if collider != null:
+			var push_direction : Vector3 = -collision.get_normal(i)
+			var velocity_push_direction_diff : float = self.velocity.dot(push_direction) - collider.linear_velocity.dot(push_direction)
+			velocity_push_direction_diff = max(0.0, velocity_push_direction_diff)
+			
+			var mass_ratio : float = min(2.0, self.weight / collider.mass)
+			var push_force : float = mass_ratio * 10.0
+			push_direction.y = 0.0
+			
+			collider.apply_impulse(push_direction * velocity_push_direction_diff * push_force, collision.get_position(i) - collider.global_position)
+
+#region Crouch Handlers
 func _enter_crouch() -> void:
 	# Shrink the capsule and shift it downward so the bottom stays on the floor
-	collision.shape.height = _origina_capsule_height - crouch_translate
-	collision.position.y   = collision.shape.height / 2.0  #TODO: Magic number
+	collision_shape.shape.height = _origina_capsule_height - crouch_translate
+	collision_shape.position.y   = collision_shape.shape.height / 2.0  #TODO: Magic number
 
 
 func _exit_crouch() -> void:
 	# Restore the capsule and shift it upward
-	collision.shape.height = _origina_capsule_height
-	collision.position.y   = collision.shape.height / 2.0 #TODO: Magic number
+	collision_shape.shape.height = _origina_capsule_height
+	collision_shape.position.y   = collision_shape.shape.height / 2.0 #TODO: Magic number
 
 
 func _enter_air_crouch() -> void:
@@ -401,14 +428,12 @@ func _exir_air_crouch() -> void:
 	head.position.y = clampf(head.position.y, -crouch_translate, 0)
 	_exit_crouch()
 
+
 func _can_exit_crouch() -> bool:
 	return not self.test_move(self.transform, Vector3(0.0, crouch_translate, 0.0))
-
-
-## Applies unhindered, camera-aligned freecam movement for debugging.
-func _handle_noclip() -> void:
-	self.velocity = player_input.camera_aligned_wished_direction * get_move_speed()
 #endregion
+#endregion
+
 
 
 
