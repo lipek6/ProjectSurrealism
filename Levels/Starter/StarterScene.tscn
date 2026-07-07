@@ -10,6 +10,7 @@
 [ext_resource type="Material" uid="uid://88kt2h8ajanr" path="res://Levels/Starter/materials/ball_material.tres" id="7_hwb5a"]
 [ext_resource type="PackedScene" uid="uid://clmv7rish1e8g" path="res://crate_pyramid.tscn" id="8_lqehj"]
 [ext_resource type="PackedScene" uid="uid://dtke2htvs0sch" path="res://crate.tscn" id="9_77ybh"]
+[ext_resource type="PackedScene" uid="uid://d2tij7futfjqc" path="res://crate_big.tscn" id="11_kh6sj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bwjpn"]
 
@@ -164,13 +165,13 @@ albedo_texture = ExtResource("6_7b0n1")
 [node name="World" type="Node3D" unique_id=723093090]
 
 [node name="Player" parent="." unique_id=1866164659 instance=ExtResource("1_34vv4")]
-transform = Transform3D(-0.98480785, 0, -0.17364798, 0, 1, 0, 0.17364798, 0, -0.98480785, -45.388462, -0.97800064, -23.951147)
+transform = Transform3D(-0.98480785, 0, -0.17364798, 0, 1, 0, 0.17364798, 0, -0.98480785, -45.388462, 0.0005179122, -23.951147)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1741360362]
 environment = SubResource("Environment_dpqee")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=570034242]
-transform = Transform3D(-0.8660237, -0.43301547, 0.2500009, -0.35355487, 0.88388187, 0.3061892, -0.3535559, 0.17677811, -0.91855747, 0, 5, 0)
+transform = Transform3D(-0.8660238, -0.4330155, 0.2500009, -0.3535549, 0.88388187, 0.3061892, -0.35355592, 0.1767781, -0.91855747, 0, 5.9785185, 0)
 layers = 16
 light_energy = 0.4
 shadow_enabled = true
@@ -179,7 +180,7 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, -1.478, -28)
 
 [node name="Floor" type="CSGBox3D" parent="Level" unique_id=1445845531]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.5214815, 0)
 layers = 4
 use_collision = true
 size = Vector3(100, 12, 100)
@@ -219,56 +220,56 @@ size = Vector3(42, 5, 14)
 [node name="HeigthProps" type="Node3D" parent="Level" unique_id=769178283]
 
 [node name="CSGBox3D14" type="CSGBox3D" parent="Level/HeigthProps" unique_id=959182027]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0.49950004, -41)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 1.4780186, -41)
 layers = 4
 use_collision = true
 size = Vector3(14, 0.001, 14)
 material = SubResource("StandardMaterial3D_a88vr")
 
 [node name="CSGBox3D15" type="CSGBox3D" parent="Level/HeigthProps" unique_id=898805817]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -25, 0.2995, -41)
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -25, 1.2780185, -41)
 layers = 4
 use_collision = true
 size = Vector3(14, 0.001, 14)
 material = SubResource("StandardMaterial3D_f06cq")
 
 [node name="CSGStairMaker3D" parent="Level/HeigthProps" unique_id=1042484332 instance=ExtResource("3_ydgef")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11, 3, 15)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11, 3.9785185, 15)
 layers = 4
 use_collision = true
 size = Vector3(5, 5, 5)
 num_stairs = 12
 
 [node name="CSGStairMaker3D10" parent="Level/HeigthProps" unique_id=1253911185 instance=ExtResource("3_ydgef")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -11, 3, 31.5)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -11, 3.9785185, 31.5)
 layers = 4
 use_collision = true
 size = Vector3(2, 5, 5)
 num_stairs = 12
 
 [node name="CSGStairMaker3D7" parent="Level/HeigthProps" unique_id=693094962 instance=ExtResource("3_ydgef")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -33, 8, 24.5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -33, 8.9785185, 24.5)
 layers = 4
 use_collision = true
 size = Vector3(12, 15, 5)
 num_stairs = 9
 
 [node name="CSGStairMaker3D2" parent="Level/HeigthProps" unique_id=1979434589 instance=ExtResource("3_ydgef")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 3, 15)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 3.9785185, 15)
 layers = 4
 use_collision = true
 size = Vector3(5, 5, 5)
 num_stairs = 0
 
 [node name="CSGStairMaker3D8" parent="Level/HeigthProps" unique_id=785201013 instance=ExtResource("3_ydgef")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -1, 3, 32)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -1, 3.9785185, 32)
 layers = 4
 use_collision = true
 size = Vector3(3, 5, 5)
 num_stairs = 0
 
 [node name="CSGStairMaker3D3" type="CSGBox3D" parent="Level/HeigthProps" unique_id=655017586]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 3, 20)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 3.9785185, 20)
 layers = 4
 use_collision = true
 size = Vector3(5, 5, 5)
@@ -280,7 +281,7 @@ use_collision = true
 size = Vector3(4, 4.5, 5)
 
 [node name="CSGStairMaker3D4" type="CSGBox3D" parent="Level/HeigthProps" unique_id=2078677516]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11, 3, 20)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11, 3.9785185, 20)
 layers = 4
 use_collision = true
 size = Vector3(5, 5, 5)
@@ -293,19 +294,19 @@ use_collision = true
 size = Vector3(4, 4.5, 5)
 
 [node name="CSGStairMaker3D5" type="CSGBox3D" parent="Level/HeigthProps" unique_id=861763222]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11, 3, 28)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11, 3.9785185, 28)
 layers = 4
 use_collision = true
 size = Vector3(5, 5, 5)
 
 [node name="CSGStairMaker3D6" type="CSGBox3D" parent="Level/HeigthProps" unique_id=225119933]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 3, 28)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 3.9785185, 28)
 layers = 4
 use_collision = true
 size = Vector3(5, 5, 5)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Level/HeigthProps" unique_id=1185617177]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5, 3, 24.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5, 3.9785185, 24.5)
 layers = 4
 use_collision = true
 size = Vector3(6, 5, 12)
@@ -335,55 +336,55 @@ operation = 2
 size = Vector3(5, 1, 1)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Level/HeigthProps" unique_id=1940696129]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 1.5, 31.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 2.4785185, 31.5)
 layers = 4
 use_collision = true
 size = Vector3(5, 2, 5)
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="Level/HeigthProps" unique_id=1321586460]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 1, 24.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 1.9785185, 24.5)
 layers = 4
 use_collision = true
 size = Vector3(5, 1, 5)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="Level/HeigthProps" unique_id=128314454]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 2.5, 24.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 3.4785185, 24.5)
 layers = 4
 use_collision = true
 size = Vector3(5, 4, 5)
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="Level/HeigthProps" unique_id=1170776870]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 2.5, 20.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 3.4785185, 20.5)
 layers = 4
 use_collision = true
 size = Vector3(1, 4, 1)
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="Level/HeigthProps" unique_id=1102072230]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 2.85, 23.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 3.8285184, 23.5)
 layers = 4
 use_collision = true
 size = Vector3(1, 4.7, 1)
 
 [node name="CSGBox3D11" type="CSGBox3D" parent="Level/HeigthProps" unique_id=2041128629]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 2, 32.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 2.9785185, 32.5)
 layers = 4
 use_collision = true
 size = Vector3(1, 3, 1)
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="Level/HeigthProps" unique_id=511137094]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.200001, 2.8, 23.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.200001, 3.7785187, 23.5)
 layers = 4
 use_collision = true
 size = Vector3(1, 4.6, 1)
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="Level/HeigthProps" unique_id=1979548826]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 2.1, 31.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 3.0785184, 31.5)
 layers = 4
 use_collision = true
 size = Vector3(5, 3.2, 5)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Level/HeigthProps" unique_id=172608590]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 0.98, 28)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 1.9585185, 28)
 layers = 4
 use_collision = true
 radius = 3.598
@@ -391,7 +392,7 @@ height = 1.0
 material = SubResource("StandardMaterial3D_ixirg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level" unique_id=2013270390]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.992298, 0.519853, -48.02034)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.992298, 1.4983716, -48.02034)
 layers = 4
 mesh = ExtResource("4_h2ppu")
 
@@ -408,10 +409,12 @@ mass = 7.0
 physics_material_override = SubResource("PhysicsMaterial_r1ksy")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Props/RigidBody3D" unique_id=693105069]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9785186, 0)
 layers = 8
 mesh = SubResource("SphereMesh_kr4i6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Props/RigidBody3D" unique_id=612714473]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9785186, 0)
 shape = SubResource("SphereShape3D_gct4v")
 
 [node name="RigidBody3D5" type="RigidBody3D" parent="Level/Props" unique_id=1394407803]
@@ -419,10 +422,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 1, -39.6)
 mass = 7.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Props/RigidBody3D5" unique_id=1853616044]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.97851855, 0)
 layers = 8
 mesh = SubResource("BoxMesh_t0n1a")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Props/RigidBody3D5" unique_id=2099861200]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.97851855, 0)
 shape = SubResource("BoxShape3D_l3p35")
 
 [node name="RigidBody3D8" type="RigidBody3D" parent="Level/Props" unique_id=674416448]
@@ -430,20 +435,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 1, -39.6)
 mass = 7.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Props/RigidBody3D8" unique_id=1659925574]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.97851855, 0)
 layers = 8
 mesh = SubResource("BoxMesh_t0n1a")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Props/RigidBody3D8" unique_id=23362045]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.97851855, 0)
 shape = SubResource("BoxShape3D_l3p35")
 
 [node name="RigidBody3D7" type="RigidBody3D" parent="Level/Props" unique_id=1662979917]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.7582, 2.75931, -40.6)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Props/RigidBody3D7" unique_id=1382297225]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9785186, 0)
 layers = 8
 mesh = SubResource("BoxMesh_dk6jp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Props/RigidBody3D7" unique_id=1558248388]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9785186, 0)
 shape = SubResource("BoxShape3D_uchwa")
 
 [node name="RigidBody3D6" type="RigidBody3D" parent="Level/Props" unique_id=897202640]
@@ -451,10 +460,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.3, 1.5, -41.1)
 mass = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Props/RigidBody3D6" unique_id=522833829]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9785186, 0)
 layers = 8
 mesh = SubResource("BoxMesh_uao6m")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Props/RigidBody3D6" unique_id=405108010]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9785186, 0)
 shape = SubResource("BoxShape3D_hyueo")
 
 [node name="RigidBody3D4" type="RigidBody3D" parent="Level/Props" unique_id=138815915]
@@ -462,11 +473,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.6, 3.75, -38.9)
 mass = 5.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Props/RigidBody3D4" unique_id=109267868]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.9785185, 0)
 layers = 8
 mesh = SubResource("SphereMesh_03w5n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Props/RigidBody3D4" unique_id=1323058935]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9785185, 0)
 shape = SubResource("SphereShape3D_35c67")
 
 [node name="RigidBody3D3" type="RigidBody3D" parent="Level/Props" unique_id=938681400]
@@ -474,10 +486,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.6, 3, -38.9)
 mass = 5.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Props/RigidBody3D3" unique_id=1351826578]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.97851837, 0)
 layers = 8
 mesh = SubResource("SphereMesh_03w5n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Props/RigidBody3D3" unique_id=1989599886]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.97851837, 0)
 shape = SubResource("SphereShape3D_vroro")
 
 [node name="RigidBody3D2" type="RigidBody3D" parent="Level/Props" unique_id=987914140]
@@ -485,39 +499,40 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.6, 1.5, -38.9)
 mass = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Props/RigidBody3D2" unique_id=1277458052]
-transform = Transform3D(1.9998996, 0.02003539, 0, -0.02003539, 1.9998996, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(1.9998996, 0.02003539, 0, -0.02003539, 1.9998996, 0, 0, 0, 2, 0, 0.9785186, 0)
 layers = 8
 mesh = SubResource("SphereMesh_kmjqf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Props/RigidBody3D2" unique_id=73038154]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9785186, 0)
 shape = SubResource("SphereShape3D_x0mhp")
 
 [node name="CratePyramid" parent="Level/Props" unique_id=98450002 instance=ExtResource("8_lqehj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0.47800004, -24)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 1.4565187, -24)
 
 [node name="RigidBody3D9" parent="Level/Props" unique_id=798135748 instance=ExtResource("9_77ybh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.829674, 6.0000005, 19.487015)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.829674, 6.978519, 19.487015)
 
 [node name="RigidBody3D12" parent="Level/Props" unique_id=117580048 instance=ExtResource("9_77ybh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.774948, 6.0000014, 17.247925)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.774948, 6.97852, 17.247925)
 
 [node name="RigidBody3D13" parent="Level/Props" unique_id=1587609985 instance=ExtResource("9_77ybh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.720722, 6.0000005, 17.757767)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.720722, 6.978519, 17.757767)
 
 [node name="RigidBody3D14" parent="Level/Props" unique_id=1093186410 instance=ExtResource("9_77ybh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.48106384, 6.0000005, 17.822157)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.48106384, 6.978519, 17.822157)
 
 [node name="RigidBody3D15" parent="Level/Props" unique_id=1008607026 instance=ExtResource("9_77ybh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3773537, 5.9999995, 17.768482)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3773537, 6.978518, 17.768482)
 
 [node name="RigidBody3D10" parent="Level/Props" unique_id=215597821 instance=ExtResource("9_77ybh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.514587, 6.0000005, 19.454792)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.514587, 6.978519, 19.454792)
 
 [node name="RigidBody3D11" parent="Level/Props" unique_id=883201486 instance=ExtResource("9_77ybh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.148369, 5.5833325, 17.053108)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.148369, 6.561851, 17.053108)
 
 [node name="MirrorFrame" type="CSGBox3D" parent="Level" unique_id=1494600192]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.5, 2.5, -39)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.5, 3.4785185, -39)
 use_collision = true
 size = Vector3(3, 4, 1)
 material = SubResource("StandardMaterial3D_ry70p")
@@ -538,7 +553,7 @@ render_target_update_mode = 0
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.5, 0.622, -66.445)
 
 [node name="Path3D" type="Path3D" parent="." unique_id=339477326]
-transform = Transform3D(11.6275, 0, 0, 0, 11.6275, 0, 0, 0, 11.6275, 15.221, -0.960711, -23.0994)
+transform = Transform3D(11.6275, 0, 0, 0, 11.6275, 0, 0, 0, 11.6275, 15.221, 0.01780755, -23.0994)
 curve = SubResource("Curve3D_idcd7")
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="Path3D" unique_id=1487213817]
@@ -558,3 +573,6 @@ path_local = true
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
+
+[node name="CrateBig" parent="." unique_id=1206935407 instance=ExtResource("11_kh6sj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.702934, 0.0005182624, -33.23604)
