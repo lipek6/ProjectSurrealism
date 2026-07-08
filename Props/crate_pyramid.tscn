@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://clmv7rish1e8g"]
 
-[ext_resource type="PackedScene" uid="uid://dtke2htvs0sch" path="res://crate.tscn" id="1_avv68"]
+[ext_resource type="PackedScene" uid="uid://dtke2htvs0sch" path="res://Props/crate.tscn" id="1_avv68"]
 
 [node name="CratePyramid" type="Node3D" unique_id=98450002]
 

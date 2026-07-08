@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dtke2htvs0sch"]
+
+[ext_resource type="Script" uid="uid://drptuaq5ncbw3" path="res://Props/physics_prop.gd" id="1_dfqgi"]
+[ext_resource type="Material" uid="uid://88kt2h8ajanr" path="res://Levels/Starter/materials/ball_material.tres" id="2_dnee6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_866jk"]
+material = ExtResource("2_dnee6")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o17h6"]
+
+[node name="Crate" type="RigidBody3D" unique_id=798135748 node_paths=PackedStringArray("model", "collision")]
+script = ExtResource("1_dfqgi")
+model = NodePath("Model")
+collision = NodePath("CollisionShape3D")
+
+[node name="Model" type="Node3D" parent="." unique_id=297241818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model" unique_id=293114421]
+layers = 8
+mesh = SubResource("BoxMesh_866jk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1182266355]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_o17h6")

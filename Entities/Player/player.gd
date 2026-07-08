@@ -2,7 +2,7 @@ extends CharacterBody3D
 #TODO: Jumping into stairs makes the player go to the SURFING state. This makes the player unable to go up the stairs without moving around a little bit.
 #TODO: Maybe I should remove the surfing thing... I don't really pretend on using it as a mechanic. Or I could turn its functionality everytime the player is in air by calling the clip_velocity function, because having SURFING as a state is kinda being a pain in the ass.
 #TODO: Add something like a PlayerGround enum to know where the player is walking on.
-
+#TODO: PATCH ON LEAVE!!!!!! CAUTION CAUTION CAUTION WARNING
 # ==========================================
 # ENUMS & STATES
 # ==========================================
@@ -57,6 +57,14 @@ class PlayerInput:
 # ==========================================
 # EXPORTED PARAMETERS
 # ==========================================
+#region General
+@export_group("General")
+@export var is_active : bool = true                                             ## Actives the controll of the character
+@export var weight    : float = 80.0                                            ## For physics interaction. Define in editor
+@export var apply_impulse_at_center : bool = false                              ## If true, applies impulse only at the center of Physics Props. If false, apply at the exact point of collision.
+#endregion
+
+
 #region Camera Settings
 @export_group("Camera")
 @export var look_sensitivity            : float = 0.006
@@ -84,9 +92,9 @@ var _saved_camera_global_position : Vector3 = Vector3.INF
 @export var crouch_translate        : float = 0.7
 @export var crouch_jump_add         : float = 0.7 * 0.9                         ## Always set as crouch_translate * something. In this case crouch_jump_add = crouch_translate * 0.9
 @export var crouch_speed_multiplier : float = 0.8
-@export var weight                  : float = 80.0                              ## For physics interaction. Define in editor
 var _snapped_to_stairs_last_frame : bool  = false
 var _last_frame_was_on_floor      : float = -INF
+var _current_floor_prop           : Node3D = null                               ## Tracks the physics object we are currently standing on
 #endregion
 
 
@@ -119,13 +127,17 @@ var _last_frame_was_on_floor      : float = -INF
 # ==========================================
 #region Core Engine Functions
 ## Called when the node enters the scene tree for the first time.
-## Sets up visual masking so the player doesn't see their own 3D model clipping through the camera.
-## Forces self.safe_margin = 0.0001 to prevent jittering when pushing objects.
+## - Sets up visual masking so the player doesn't see their own 3D model clipping through the camera.
+## - By default, Godot adds the extreme rotational velocity of tumbling boxes to the player when they slip off.
+##   We disable this entirely by setting self.platform_on_leave = CharacterBody3D.PLATFORM_ON_LEAVE_DO_NOTHING.
+## - Forces self.safe_margin = 0.0001 to prevent jittering when pushing objects.
 func _ready() -> void:
+	self.platform_on_leave = CharacterBody3D.PLATFORM_ON_LEAVE_DO_NOTHING
 	self.safe_margin = 0.0001
 	for child : VisualInstance3D in world_model.find_children("*", "VisualInstance3D"):
 		child.set_layer_mask_value(1, false) 
 		child.set_layer_mask_value(2, true)
+		# Should I care about setting the rest of the layers to false?
 
 
 ## Listens for hardware events that aren't tied to the physics tick (like mouse movement).
@@ -153,10 +165,12 @@ func _process(delta: float) -> void:
 	debug_label.text += "VELOCITY: " + str(("%.2f" % self.velocity.length()))   + "\n"              # For DEBUG purpouses.
 	debug_label.text += "POSITION: (" + str("%.2f" % self.global_position.x) + "," + str("%.2f" % self.global_position.y) + "," + str("%.2f" % self.global_position.z) + ")\n"              # For DEBUG purpouses.
 
+
 ## The rigid physics loop. Orchestrates the input gathering, state evaluation, and physics execution pipeline.
 func _physics_process(delta: float) -> void:
-	_gather_inputs()                                                            # Updates the player_input data structure
-	_handle_toggles_and_settings()                                              # Process non-state settings (noclip speed multipliers/UI toggles)
+	if is_active:
+		_gather_inputs()                                                        # Updates the player_input data structure
+		_handle_toggles_and_settings()                                          # Process non-state settings (noclip speed multipliers/UI toggles)
 	
 	# Process State Machine and Transitions
 	previous_state = current_state
@@ -174,9 +188,10 @@ func _physics_process(delta: float) -> void:
 		PlayerState.NOCLIPING, PlayerState.NOCLIPING_SPRINTING:
 			_handle_noclip()
 			move_and_slide()
-			
+	
 	_slide_camera_smooth_back_to_origin(delta)
 	_handle_crouch_camera_smoothing(delta) 
+	_update_floor_prop_notification()
 	
 	# Update frame tracking for the downward stair raycast
 	if is_on_floor():
@@ -314,7 +329,7 @@ func _on_state_transition(old_state: PlayerState, new_state: PlayerState) -> voi
 	
 	if is_crouching and not was_crouching:
 		if not is_grounded: _enter_air_crouch()
-		else: _enter_crouch()                                           
+		else: _enter_crouch()
 	elif was_crouching and not is_crouching:
 		if not is_grounded: _exir_air_crouch()
 		else: _exit_crouch()
@@ -396,9 +411,27 @@ func _handle_noclip() -> void:
 	self.velocity = player_input.camera_aligned_wished_direction * get_move_speed()
 
 
+## Checks what the player is standing on and notifies the object so it can stabilize itself.
+func _update_floor_prop_notification() -> void:
+	# DETECT FLOOR PHYSICS PROPS
+	var detected_floor_prop : Node3D = null
+	if is_on_floor():
+		stairs_below_ray.force_raycast_update()                                 # get_slide_collision often misses the floor when moving perfectly parallel to it. using the stairs_below_ray is safer.
+		if stairs_below_ray.is_colliding():
+			detected_floor_prop = stairs_below_ray.get_collider()
+	
+	# NOTIFY PHYSICS PROPS
+	if detected_floor_prop != null:
+		# If the floor beneath us changed since last frame, notify the props
+		if detected_floor_prop != _current_floor_prop:
+			if _current_floor_prop is PhysicsProp:                              # Tell the old prop we stepped off
+				_current_floor_prop.notify_stepped_off(self)
+			if detected_floor_prop is PhysicsProp:                              # Tell the new prop we stepped on
+				detected_floor_prop.notify_stepped_on(self)
+			_current_floor_prop = detected_floor_prop
 
-# TODO: If the player runs in circles on top of a box, it will start spinning because the players friction is applied on the box.
-# We will need a custom code in the props so that they can handle these kind of edge cases.
+
+
 ## Call after move_and_slide() so get_slide_collision is populated.
 func _push_away_rigid_bodies(pre_slide_velocity : Vector3) -> void:
 	for i : int in get_slide_collision_count():
@@ -407,16 +440,22 @@ func _push_away_rigid_bodies(pre_slide_velocity : Vector3) -> void:
 		
 		if collider == null: continue
 		
-		# HEIGHT THRESHOLD CHECK
+		# FLOOR GUARD
+		if collider == _current_floor_prop: continue                                                # Never laterally push the object we are currently using as a floor!
+		
+		# HEIGHT THRESHOLD CHECK (WARNING: If you remove this, things go a little crazy)
 		var contact_height_from_feet : float = collision.get_position().y - self.global_position.y  # Check where the collision happened on the Y axis relative to our feet.
 		if contact_height_from_feet < 0.25: continue                                                # If the contact point is less than 25cm from feet, we are stepping on the collider. Completely ignore lateral pushes for feet, preventing the capsule from kicking boxes out from under itself when walking near the edge.
-		
+
 		# DIRECTIONAL CALCULATION
 		var push_direction : Vector3 = -collision.get_normal()
 		push_direction.y = 0.0                                                                      # Zero out Y, because pushing objects downward into the floor causes physics glitches.
+		
+		# SAFE NORMALIZATION
+		if push_direction.length_squared() < 0.001: continue                                        # If normal is perfectly vertical, push_direction == Vector3.ZERO, which when normalized returns NaN. We need this safe check
 		push_direction = push_direction.normalized()
 		
-		# VELOCITY DIFFERENTIAL
+		# VELOCITY DIFFERENTIAL (No need for capping pre_slide_velocity)
 		var player_velocity_into_object : float = pre_slide_velocity.dot(push_direction)
 		var object_velocity_into_player : float = collider.linear_velocity.dot(push_direction)      
 		var velocity_difference : float = player_velocity_into_object - object_velocity_into_player
@@ -429,9 +468,11 @@ func _push_away_rigid_bodies(pre_slide_velocity : Vector3) -> void:
 		
 		var push_force : Vector3 = push_direction * applied_impulse
 		
-		collider.apply_central_impulse(push_force)
-		#collider.apply_impulse(push_force, collision.get_position() - collider.global_position)    # DEPRECATED: Incocsiten as fuck
-
+		if apply_impulse_at_center:
+			collider.apply_central_impulse(push_force)
+		else:
+			collider.apply_impulse(push_force, collision.get_position() - collider.global_position)
+		
 #region Crouch Handlers
 func _enter_crouch() -> void:
 	# Shrink the capsule and shift it downward so the bottom stays on the floor
@@ -469,7 +510,6 @@ func _can_exit_crouch() -> bool:
 	return not self.test_move(self.transform, Vector3(0.0, crouch_translate, 0.0))
 #endregion
 #endregion
-
 
 
 
@@ -602,5 +642,21 @@ func _handle_crouch_camera_smoothing(delta : float) -> void:
 	var is_crouching : bool = current_state in [PlayerState.CROUCHING_IDLE, PlayerState.CROUCHING, PlayerState.CROUCHING_SPRINTING, PlayerState.IN_AIR_CROUCHING]
 	var target_y : float = -crouch_translate if is_crouching else 0.0
 	head.position.y = move_toward(head.position.y, target_y, 7.0 * delta)
-
 #endregion
+
+
+
+## CAUTION: BEING USED ONLY FOR DEBUGGING 
+## NOTICE: Might be close to a function structure to support local coop
+func set_activity(active_mode: bool) -> void:
+	self.is_active = active_mode
+	self.set_process_input(active_mode)
+	self.set_process_unhandled_input(active_mode)
+	self.set_process_unhandled_key_input(active_mode)
+	self.set_process(active_mode)
+	debug_label.text = ""
+	camera.current = active_mode
+	
+	for child : VisualInstance3D in world_model.find_children("*", "VisualInstance3D"):
+		child.set_layer_mask_value(1, not active_mode) 
+		child.set_layer_mask_value(2, active_mode)

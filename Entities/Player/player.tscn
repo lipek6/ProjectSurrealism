@@ -17,7 +17,8 @@ lightmap_size_hint = Vector2i(17, 14)
 material = SubResource("StandardMaterial3D_tekja")
 add_uv2 = true
 
-[node name="Player" type="CharacterBody3D" unique_id=1866164659]
+[node name="Player" type="CharacterBody3D" unique_id=1866164659 groups=["Entity", "Player"]]
+platform_on_leave = 2
 script = ExtResource("1_mv1ah")
 can_noclip = true
 
