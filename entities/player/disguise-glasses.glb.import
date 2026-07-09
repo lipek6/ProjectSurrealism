@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://de0l42sra1016"
-path="res://.godot/imported/disguise-glasses.glb-a59802e1321363980cc6405030477a34.scn"
+path="res://.godot/imported/disguise-glasses.glb-b14e79660a35bc95d7c82895b4a5a8a3.scn"
 
 [deps]
 
-source_file="res://Entities/Player/disguise-glasses.glb"
-dest_files=["res://.godot/imported/disguise-glasses.glb-a59802e1321363980cc6405030477a34.scn"]
+source_file="res://entities/player/disguise-glasses.glb"
+dest_files=["res://.godot/imported/disguise-glasses.glb-b14e79660a35bc95d7c82895b4a5a8a3.scn"]
 
 [params]
 

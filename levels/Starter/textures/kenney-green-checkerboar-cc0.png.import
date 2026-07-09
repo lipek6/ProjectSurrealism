@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1uelfks0ip1w"
-path.s3tc="res://.godot/imported/grid_image.png-332295ada2dce2e095fd91d7762ba3b7.s3tc.ctex"
+uid="uid://lp2pt8mtj7ty"
+path.s3tc="res://.godot/imported/kenney-green-checkerboar-cc0.png-fe2a199d70dd2ad9268a08792180987a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Levels/Starter/textures/grid_image.png"
-dest_files=["res://.godot/imported/grid_image.png-332295ada2dce2e095fd91d7762ba3b7.s3tc.ctex"]
+source_file="res://levels/Starter/textures/kenney-green-checkerboar-cc0.png"
+dest_files=["res://.godot/imported/kenney-green-checkerboar-cc0.png-fe2a199d70dd2ad9268a08792180987a.s3tc.ctex"]
 
 [params]
 

@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://dr7ks3lx07q50"]
 
-[ext_resource type="Script" uid="uid://c5u5ggumqebem" path="res://Entities/Player/player.gd" id="1_mv1ah"]
-[ext_resource type="Texture2D" uid="uid://f3wj126c5das" path="res://Levels/Starter/textures/kenney-grey-checkerboard-cc0.png" id="2_lu8i8"]
-[ext_resource type="PackedScene" uid="uid://dmjo4iv6u3erj" path="res://Entities/Player/disguise_glasses.tscn" id="3_lu8i8"]
+[ext_resource type="Script" uid="uid://c5u5ggumqebem" path="res://entities/player/player.gd" id="1_mv1ah"]
+[ext_resource type="Texture2D" uid="uid://f3wj126c5das" path="res://levels/Starter/textures/kenney-grey-checkerboard-cc0.png" id="2_lu8i8"]
+[ext_resource type="PackedScene" uid="uid://dmjo4iv6u3erj" path="res://entities/player/disguise_glasses.tscn" id="3_lu8i8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bcbww"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1pkhx"]
+size = Vector3(0.7, 0.1, 0.7)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tekja"]
 albedo_color = Color(0.79225945, 0.25269866, 0.6862081, 1)
@@ -18,6 +21,7 @@ material = SubResource("StandardMaterial3D_tekja")
 add_uv2 = true
 
 [node name="Player" type="CharacterBody3D" unique_id=1866164659 groups=["Entity", "Player"]]
+collision_mask = 15
 platform_on_leave = 2
 script = ExtResource("1_mv1ah")
 can_noclip = true
@@ -26,6 +30,13 @@ can_noclip = true
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_bcbww")
+
+[node name="CollisionFeetForProps" type="CollisionShape3D" parent="." unique_id=439668064]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.050000012, 0)
+shape = SubResource("BoxShape3D_1pkhx")
+disabled = true
+debug_color = Color(1, 0, 0, 1)
 
 [node name="WorldModel" type="Node3D" parent="." unique_id=469966230]
 unique_name_in_owner = true

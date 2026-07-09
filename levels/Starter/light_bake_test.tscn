@@ -1,14 +1,14 @@
 [gd_scene format=4 uid="uid://013q7aywua1y"]
 
-[ext_resource type="PackedScene" uid="uid://dr7ks3lx07q50" path="res://Entities/Player/player.tscn" id="1_3frtp"]
-[ext_resource type="LightmapGIData" uid="uid://dmcl36pvtivt6" path="res://Levels/Starter/light_bake_test.lmbake" id="1_bcrqp"]
-[ext_resource type="Material" uid="uid://bk7nbd8td4gb1" path="res://Levels/Starter/textures/grey_checkerboard_mat.tres" id="2_bcrqp"]
-[ext_resource type="Texture2D" uid="uid://c7yth5opetwes" path="res://Levels/Starter/textures/kenney-dark-grey-checkerboard.png" id="3_h0b7a"]
-[ext_resource type="Texture2D" uid="uid://d1uelfks0ip1w" path="res://Levels/Starter/textures/grid_image.png" id="4_71iti"]
-[ext_resource type="PackedScene" uid="uid://bak8ltrhbmlv5" path="res://Levels/Starter/utils/CSGStairMaker3D.tscn" id="5_vndmg"]
-[ext_resource type="Texture2D" uid="uid://b28c62e3f23vb" path="res://Levels/Starter/textures/kenney-orange-checkerboard-cc0.png" id="6_vb8hc"]
-[ext_resource type="Texture2D" uid="uid://lp2pt8mtj7ty" path="res://Levels/Starter/textures/kenney-green-checkerboar-cc0.png" id="7_gyola"]
-[ext_resource type="Material" uid="uid://88kt2h8ajanr" path="res://Levels/Starter/materials/ball_material.tres" id="8_lotqd"]
+[ext_resource type="PackedScene" uid="uid://dr7ks3lx07q50" path="res://entities/player/player.tscn" id="1_3frtp"]
+[ext_resource type="LightmapGIData" uid="uid://dmcl36pvtivt6" path="res://levels/Starter/light_bake_test.lmbake" id="1_bcrqp"]
+[ext_resource type="Material" uid="uid://bk7nbd8td4gb1" path="res://levels/Starter/textures/grey_checkerboard_mat.tres" id="2_bcrqp"]
+[ext_resource type="Texture2D" uid="uid://c7yth5opetwes" path="res://levels/Starter/textures/kenney-dark-grey-checkerboard.png" id="3_h0b7a"]
+[ext_resource type="Texture2D" uid="uid://d1uelfks0ip1w" path="res://levels/Starter/textures/grid_image.png" id="4_71iti"]
+[ext_resource type="PackedScene" uid="uid://bak8ltrhbmlv5" path="res://levels/Starter/utils/CSGStairMaker3D.tscn" id="5_vndmg"]
+[ext_resource type="Texture2D" uid="uid://b28c62e3f23vb" path="res://levels/Starter/textures/kenney-orange-checkerboard-cc0.png" id="6_vb8hc"]
+[ext_resource type="Texture2D" uid="uid://lp2pt8mtj7ty" path="res://levels/Starter/textures/kenney-green-checkerboar-cc0.png" id="7_gyola"]
+[ext_resource type="Material" uid="uid://88kt2h8ajanr" path="res://levels/Starter/materials/ball_material.tres" id="8_lotqd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bwjpn"]
 

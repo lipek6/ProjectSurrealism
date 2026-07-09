@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dtke2htvs0sch"]
 
-[ext_resource type="Script" uid="uid://drptuaq5ncbw3" path="res://Props/physics_prop.gd" id="1_dfqgi"]
-[ext_resource type="Material" uid="uid://88kt2h8ajanr" path="res://Levels/Starter/materials/ball_material.tres" id="2_dnee6"]
+[ext_resource type="Script" uid="uid://drptuaq5ncbw3" path="res://props/physics_prop.gd" id="1_dfqgi"]
+[ext_resource type="Material" uid="uid://88kt2h8ajanr" path="res://levels/Starter/materials/ball_material.tres" id="2_dnee6"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_866jk"]
 material = ExtResource("2_dnee6")
@@ -9,6 +9,9 @@ material = ExtResource("2_dnee6")
 [sub_resource type="BoxShape3D" id="BoxShape3D_o17h6"]
 
 [node name="Crate" type="RigidBody3D" unique_id=798135748 node_paths=PackedStringArray("model", "collision")]
+collision_layer = 8
+collision_mask = 15
+mass = 10.0
 script = ExtResource("1_dfqgi")
 model = NodePath("Model")
 collision = NodePath("CollisionShape3D")

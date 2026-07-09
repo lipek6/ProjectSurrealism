@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dmjo4iv6u3erj"]
 
-[ext_resource type="PackedScene" uid="uid://de0l42sra1016" path="res://Entities/Player/disguise-glasses.glb" id="1_dhkam"]
+[ext_resource type="PackedScene" uid="uid://de0l42sra1016" path="res://entities/player/disguise-glasses.glb" id="1_dhkam"]
 
 [node name="disguise-glasses" unique_id=1776090741 instance=ExtResource("1_dhkam")]
 

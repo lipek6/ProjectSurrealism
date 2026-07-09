@@ -3,7 +3,7 @@
 importer="2d_array_texture"
 type="CompressedTexture2DArray"
 uid="uid://brrd7nifuw6go"
-path.bptc="res://.godot/imported/light_bake_test.exr-b1d9cc6942d2196a8c95cc6e038331a2.bptc.ctexarray"
+path.bptc="res://.godot/imported/light_bake_test.exr-24214bdcd06d1f8f7a43718e287225ed.bptc.ctexarray"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Levels/Starter/light_bake_test.exr"
-dest_files=["res://.godot/imported/light_bake_test.exr-b1d9cc6942d2196a8c95cc6e038331a2.bptc.ctexarray"]
+source_file="res://levels/Starter/light_bake_test.exr"
+dest_files=["res://.godot/imported/light_bake_test.exr-24214bdcd06d1f8f7a43718e287225ed.bptc.ctexarray"]
 
 [params]
 

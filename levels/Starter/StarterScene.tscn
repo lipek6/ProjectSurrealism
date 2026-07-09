@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://cumlkudt7n44b"]
 
-[ext_resource type="PackedScene" uid="uid://dr7ks3lx07q50" path="res://Entities/Player/player.tscn" id="1_34vv4"]
-[ext_resource type="Material" uid="uid://bk7nbd8td4gb1" path="res://Levels/Starter/textures/grey_checkerboard_mat.tres" id="1_h2ppu"]
-[ext_resource type="Script" uid="uid://ca5ww5a42y6r3" path="res://Entities/characters.gd" id="1_lqehj"]
-[ext_resource type="Texture2D" uid="uid://d1uelfks0ip1w" path="res://Levels/Starter/textures/grid_image.png" id="2_7cqoh"]
-[ext_resource type="PackedScene" uid="uid://bak8ltrhbmlv5" path="res://Levels/Starter/utils/CSGStairMaker3D.tscn" id="3_ydgef"]
-[ext_resource type="ArrayMesh" uid="uid://dry23jeo6prdo" path="res://Levels/Starter/terrain_mesh.mesh" id="4_h2ppu"]
-[ext_resource type="Texture2D" uid="uid://c7yth5opetwes" path="res://Levels/Starter/textures/kenney-dark-grey-checkerboard.png" id="5_bkb2o"]
-[ext_resource type="Texture2D" uid="uid://b28c62e3f23vb" path="res://Levels/Starter/textures/kenney-orange-checkerboard-cc0.png" id="6_7b0n1"]
-[ext_resource type="PackedScene" uid="uid://dtke2htvs0sch" path="res://Props/crate.tscn" id="9_77ybh"]
+[ext_resource type="PackedScene" uid="uid://dr7ks3lx07q50" path="res://entities/player/player.tscn" id="1_34vv4"]
+[ext_resource type="Material" uid="uid://bk7nbd8td4gb1" path="res://levels/Starter/textures/grey_checkerboard_mat.tres" id="1_h2ppu"]
+[ext_resource type="Script" uid="uid://ca5ww5a42y6r3" path="res://entities/commons/characters.gd" id="1_lqehj"]
+[ext_resource type="Texture2D" uid="uid://d1uelfks0ip1w" path="res://levels/Starter/textures/grid_image.png" id="2_7cqoh"]
+[ext_resource type="PackedScene" uid="uid://bak8ltrhbmlv5" path="res://levels/Starter/utils/CSGStairMaker3D.tscn" id="3_ydgef"]
+[ext_resource type="ArrayMesh" uid="uid://dry23jeo6prdo" path="res://levels/Starter/terrain_mesh.mesh" id="4_h2ppu"]
+[ext_resource type="Texture2D" uid="uid://c7yth5opetwes" path="res://levels/Starter/textures/kenney-dark-grey-checkerboard.png" id="5_bkb2o"]
+[ext_resource type="Texture2D" uid="uid://b28c62e3f23vb" path="res://levels/Starter/textures/kenney-orange-checkerboard-cc0.png" id="6_7b0n1"]
+[ext_resource type="PackedScene" uid="uid://dtke2htvs0sch" path="res://props/crate.tscn" id="9_77ybh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bwjpn"]
 
@@ -128,7 +128,7 @@ character_1 = NodePath("Player")
 character_2 = NodePath("Player2")
 
 [node name="Player" parent="Characters" unique_id=1866164659 instance=ExtResource("1_34vv4")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -56.116974, 0, -25.000738)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -60.022816, 0, -38.379562)
 
 [node name="Player2" parent="Characters" unique_id=1815439415 instance=ExtResource("1_34vv4")]
 transform = Transform3D(-0.49999988, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, -0.49999988, -61.89809, 0.0005185604, -29.023735)
@@ -151,9 +151,11 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, -1.478, -28)
 
 [node name="Floor" type="CSGBox3D" parent="Level" unique_id=1445845531]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.5214815, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0478096, -4.5417166, 0.07608032)
 layers = 4
 use_collision = true
+collision_layer = 4
+collision_mask = 15
 size = Vector3(100, 12, 100)
 material = ExtResource("1_h2ppu")
 
@@ -395,11 +397,11 @@ render_target_update_mode = 0
 [node name="Camera3D" type="Camera3D" parent="Level/MirrorFrame/Mirror/SubViewport" unique_id=1057422763]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.5, 0.622, -66.445)
 
-[node name="Path3D" type="Path3D" parent="." unique_id=339477326]
-transform = Transform3D(11.6275, 0, 0, 0, 11.6275, 0, 0, 0, 11.6275, 15.221, 0.01780755, -23.0994)
+[node name="Path3D" type="Path3D" parent="Level" unique_id=339477326]
+transform = Transform3D(11.6275, 0, 0, 0, 11.6275, 0, 0, 0, 11.6275, 50.221, 1.4958076, 4.9006004)
 curve = SubResource("Curve3D_idcd7")
 
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Path3D" unique_id=1487213817]
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Level/Path3D" unique_id=1487213817]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.928218)
 layers = 4
 material_override = SubResource("StandardMaterial3D_t5onx")
@@ -417,24 +419,21 @@ path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
 
-[node name="Crate" parent="." unique_id=116373791 instance=ExtResource("9_77ybh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.35957, 0.25051785, -29.390793)
-mass = 400.0
+[node name="Crate" parent="." unique_id=798135748 instance=ExtResource("9_77ybh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.235462, 0.5005188, -33.354507)
+mass = 16000.0
+prop_scale = Vector3(2, 2, 2)
+base_mass = 2000.0
+
+[node name="Crate2" parent="." unique_id=1523950991 instance=ExtResource("9_77ybh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.789436, 0.25051832, -35.964157)
+mass = 33.75
 prop_scale = Vector3(1.5, 1.5, 1.5)
+on_top_linear_damp = 0.0
+on_top_angular_damp = 0.0
 
-[node name="Crate3" parent="." unique_id=798135748 instance=ExtResource("9_77ybh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.27535, 0.25051785, -26.458815)
-mass = 100.0
-lock_rotation_when_stood_on = false
-prop_scale = Vector3(1.5, 1.5, 1.5)
-
-[node name="Crate2" parent="." unique_id=2115178966 instance=ExtResource("9_77ybh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.12502, 1.0005183, -29.390793)
-mass = 10000.0
-prop_scale = Vector3(3, 3, 3)
-
-[node name="Crate4" parent="." unique_id=2100120501 instance=ExtResource("9_77ybh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.12502, 1.0005183, -35.76493)
-mass = 10000.0
-lock_rotation_when_stood_on = false
-prop_scale = Vector3(3, 3, 3)
+[node name="Crate3" parent="." unique_id=831000743 instance=ExtResource("9_77ybh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.325615, 2.0005183, -33.384247)
+mass = 0.125
+prop_scale = Vector3(0.5, 0.5, 0.5)
+base_mass = 1.0

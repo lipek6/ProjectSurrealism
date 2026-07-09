@@ -1,8 +1,8 @@
 extends CharacterBody3D
 #TODO: Jumping into stairs makes the player go to the SURFING state. This makes the player unable to go up the stairs without moving around a little bit.
 #TODO: Maybe I should remove the surfing thing... I don't really pretend on using it as a mechanic. Or I could turn its functionality everytime the player is in air by calling the clip_velocity function, because having SURFING as a state is kinda being a pain in the ass.
-#TODO: Add something like a PlayerGround enum to know where the player is walking on.
-#TODO: PATCH ON LEAVE!!!!!! CAUTION CAUTION CAUTION WARNING
+#TODO: Add something like a PlayerGround enum to know where the player is walking on. (That doesn't look right... it is simpler for the floor to handle it... Whatever, why did I think that? lol)
+
 # ==========================================
 # ENUMS & STATES
 # ==========================================
@@ -40,16 +40,17 @@ class PlayerInput:
 # ==========================================
 # Caching nodes here prevents expensive tree lookups every frame.
 #region Node References
-@onready var collision_shape         : CollisionShape3D = %CollisionShape3D
-@onready var world_model             : Node3D           = %WorldModel
-@onready var head                    : Node3D           = %Head
-@onready var camera_smooth_point     : Node3D           = %CameraSmoothPoint
-@onready var camera                  : Camera3D         = %Camera3D 
-@onready var stairs_ahead_ray        : RayCast3D        = %StairsAheadRayCast3D
-@onready var stairs_below_ray        : RayCast3D        = %StairsBelowRayCast3D
-@onready var debug_label             : Label            = %DebugLabel           #DEBUG
-@onready var player_input            : PlayerInput      = PlayerInput.new()
-@onready var _origina_capsule_height : float            = collision_shape.shape.height
+@onready var collision_shape          : CollisionShape3D = %CollisionShape3D
+@onready var collision_feet_for_props : CollisionShape3D = %CollisionFeetForProps
+@onready var world_model              : Node3D           = %WorldModel
+@onready var head                     : Node3D           = %Head
+@onready var camera_smooth_point      : Node3D           = %CameraSmoothPoint
+@onready var camera                   : Camera3D         = %Camera3D 
+@onready var stairs_ahead_ray         : RayCast3D        = %StairsAheadRayCast3D
+@onready var stairs_below_ray         : RayCast3D        = %StairsBelowRayCast3D
+@onready var debug_label              : Label            = %DebugLabel          #DEBUG
+@onready var player_input             : PlayerInput      = PlayerInput.new()
+@onready var _origina_capsule_height  : float            = collision_shape.shape.height
 #endregion
 
 
@@ -59,17 +60,17 @@ class PlayerInput:
 # ==========================================
 #region General
 @export_group("General")
-@export var is_active : bool = true                                             ## Actives the controll of the character
-@export var weight    : float = 80.0                                            ## For physics interaction. Define in editor
-@export var apply_impulse_at_center : bool = false                              ## If true, applies impulse only at the center of Physics Props. If false, apply at the exact point of collision.
+@export var is_active : bool = true                                             ## [color=green]Toggles player control.[/color] [br]If false, ignores all inputs and physics processing. Highly useful for cutscenes or swapping characters.
+@export var weight    : float = 80.0                                            ## [color=orange]Player's physical mass (kg).[/color] [br]Defines how hard the player can push dynamic PhysicsProps. [br]Standard: [code]80.0[/code].
+@export var apply_impulse_at_center : bool = false                              ## [color=cyan]Push mechanics mode.[/color] [br]If true, pushes props from their center of mass (Source Engine style, avoids wild spinning). If false, applies force at the exact knee/foot contact point.
 #endregion
 
 
 #region Camera Settings
 @export_group("Camera")
-@export var look_sensitivity            : float = 0.006
-@export var controller_look_sensitivity : float = 0.075
-@export var headbob                     : bool  = true
+@export var look_sensitivity            : float = 0.006                         ## [color=yellow]Mouse aim speed.[/color] [br]Multiplier for raw mouse input. [br]Common range: [code]0.002[/code] to [code]0.01[/code].
+@export var controller_look_sensitivity : float = 0.075                         ## [color=yellow]Gamepad aim speed.[/color] [br]Multiplier for right-stick analog input.
+@export var headbob                     : bool  = true                          ## [color=cyan]Enables camera bobbing.[/color] [br]Simulates realistic footsteps visually when walking/sprinting on the ground.
 
 const HEADBOB_MOVE_AMOUNT : float = 0.06
 const HEADBOB_FREQUNCY    : float = 2.4
@@ -81,17 +82,18 @@ var _saved_camera_global_position : Vector3 = Vector3.INF
 
 #region Ground Movement
 @export_group("Ground Movement")
-@export var auto_bhop               : bool  = false
-@export var auto_sprint             : bool  = true
-@export var walk_speed              : float = 7.0
-@export var sprint_speed            : float = 8.5
-@export var ground_accel            : float = 14.0
-@export var ground_decel            : float = 10.0
-@export var ground_friction         : float = 6.0
-@export var max_step_height         : float = 0.5
-@export var crouch_translate        : float = 0.7
-@export var crouch_jump_add         : float = 0.7 * 0.9                         ## Always set as crouch_translate * something. In this case crouch_jump_add = crouch_translate * 0.9
-@export var crouch_speed_multiplier : float = 0.8
+@export var auto_bhop               : bool  = false                             ## [color=green]Hold jump to continuously bounce.[/color] [br]If true, holding the jump button automatically triggers a jump on the exact frame the player lands.
+@export var auto_sprint             : bool  = true                              ## [color=cyan]Inverts sprint key logic.[/color] [br]If true, the player sprints by default and walks only when holding the sprint key.
+@export var walk_speed              : float = 7.0                               ## [color=yellow]Base walking velocity (m/s).[/color] [br]Standard speed for normal ground traversal.
+@export var sprint_speed            : float = 8.5                               ## [color=orange]Maximum running velocity (m/s).[/color] [br]Achieved when sprinting.
+@export var ground_accel            : float = 14.0                              ## [color=cyan]Acceleration rate.[/color] [br]How quickly the player reaches max speed from a standstill. Higher values = snappier movement.
+@export var ground_decel            : float = 10.0                              ## [color=cyan]Deceleration rate.[/color] [br]How quickly the player comes to a halt when releasing the movement keys.
+@export var ground_friction         : float = 6.0                               ## [color=orange]Friction multiplier.[/color] [br]Applied against deceleration. Lower values make the floor feel like ice.
+@export var max_step_height         : float = 0.5                               ## [color=pink]Stair snap height (m).[/color] [br]Maximum height of a ledge/stair the player will automatically step onto without jumping.
+@export var crouch_translate        : float = 0.7                               ## [color=pink]Crouch depth (m).[/color] [br]How much the physical collision capsule shrinks and the camera lowers when crouching.
+@export var crouch_jump_add         : float = 0.7 * 0.9                         ## [color=pink]Crouch-jump clearance (m).[/color] [br]Usually [code]crouch_translate * 0.9[/code]. Extra height gained by pulling legs up mid-air.
+@export var crouch_speed_multiplier : float = 0.8                               ## [color=yellow]Crouch speed penalty.[/color] [br]Multiplies base speed. [code]0.8[/code] means moving at 80% speed while crouching.
+
 var _snapped_to_stairs_last_frame : bool  = false
 var _last_frame_was_on_floor      : float = -INF
 var _current_floor_prop           : Node3D = null                               ## Tracks the physics object we are currently standing on
@@ -100,22 +102,22 @@ var _current_floor_prop           : Node3D = null                               
 
 #region Air movement
 @export_group("Air Movement")
-@export var jump_velocity  : float = 6.0
-@export var air_cap        : float = 0.85
-@export var air_accel      : float = 800.0
-@export var air_move_speed : float = 500.0
+@export var jump_velocity  : float = 6.0                                        ## [color=green]Initial jump burst (m/s).[/color] [br]Upward impulse instantly applied when jumping.
+@export var air_cap        : float = 0.85                                       ## [color=yellow]Air strafe speed limit.[/color] [br]Caps how fast you can accelerate purely from air strafing vectors.
+@export var air_accel      : float = 800.0                                      ## [color=orange]Air acceleration force.[/color] [br]Source-engine style high air accel for crisp mid-air directional changes and surfing.
+@export var air_move_speed : float = 500.0                                      ## [color=orange]Base air move speed.[/color] [br]Used in conjunction with [code]air_accel[/code] to define the air-strafing handling curve.
 #endregion
 
 
 #region Degub
 @export_group("Debug")
-@export var can_noclip                       : bool  = false
-@export var noclip                           : bool  = false
-@export var noclip_max_speed                 : float = 100.0
-@export var noclip_min_speed                 : float = 0.1
-@export var noclip_speed_multiplier          : float = 3.0
-@export var noclip_speed_increase_multiplier : float = 1.1
-@export var noclip_speed_decrease_multiplier : float = 0.9
+@export var can_noclip                       : bool  = false                    ## [color=red][DEBUG][/color] [color=cyan]Enables noclip toggle.[/color] [br]If true, allows the player to enter a flying ghost-cam mode.
+@export var noclip                           : bool  = false                    ## [color=red][DEBUG][/color] [color=red]Current Noclip state.[/color] [br]If true, player flies and ignores all collisions.
+@export var noclip_max_speed                 : float = 100.0                    ## [color=red][DEBUG][/color] [color=gray]Max fly speed.[/color] [br]Absolute limit for scroll-wheel speed increases in noclip.
+@export var noclip_min_speed                 : float = 0.1                      ## [color=red][DEBUG][/color] [color=gray]Min fly speed.[/color] [br]Absolute limit for scroll-wheel speed decreases in noclip.
+@export var noclip_speed_multiplier          : float = 3.0                      ## [color=red][DEBUG][/color] [color=yellow]Current fly speed multiplier.[/color] [br]Modifies base walk speed when flying.
+@export var noclip_speed_increase_multiplier : float = 1.1                      ## [color=red][DEBUG][/color] [color=gray]Scroll-up scale.[/color] [br]How much speed increases per mouse scroll tick.
+@export var noclip_speed_decrease_multiplier : float = 0.9                      ## [color=red][DEBUG][/color] [color=gray]Scroll-down scale.[/color] [br]How much speed decreases per mouse scroll tick.
 
 @onready var noclip_reset_speed_multiplier   : float = noclip_speed_multiplier 
 #endregion
@@ -134,10 +136,10 @@ var _current_floor_prop           : Node3D = null                               
 func _ready() -> void:
 	self.platform_on_leave = CharacterBody3D.PLATFORM_ON_LEAVE_DO_NOTHING
 	self.safe_margin = 0.0001
+	
 	for child : VisualInstance3D in world_model.find_children("*", "VisualInstance3D"):
 		child.set_layer_mask_value(1, false) 
 		child.set_layer_mask_value(2, true)
-		# Should I care about setting the rest of the layers to false?
 
 
 ## Listens for hardware events that aren't tied to the physics tick (like mouse movement).
@@ -168,6 +170,7 @@ func _process(delta: float) -> void:
 
 ## The rigid physics loop. Orchestrates the input gathering, state evaluation, and physics execution pipeline.
 func _physics_process(delta: float) -> void:
+
 	if is_active:
 		_gather_inputs()                                                        # Updates the player_input data structure
 		_handle_toggles_and_settings()                                          # Process non-state settings (noclip speed multipliers/UI toggles)
@@ -192,6 +195,7 @@ func _physics_process(delta: float) -> void:
 	_slide_camera_smooth_back_to_origin(delta)
 	_handle_crouch_camera_smoothing(delta) 
 	_update_floor_prop_notification()
+	_apply_weight_to_floor_prop()
 	
 	# Update frame tracking for the downward stair raycast
 	if is_on_floor():
@@ -341,7 +345,7 @@ func _on_state_transition(old_state: PlayerState, new_state: PlayerState) -> voi
 # ==========================================
 # MOVEMENT LOGIC
 # ==========================================
-#region Physics Handlers
+#region General Physics Handlers
 ## Helper to fetch the current scalar speed limit based on state.
 func get_move_speed() -> float:
 	match current_state:
@@ -409,6 +413,19 @@ func _handle_air_physics(delta: float) -> void:
 ## Applies unhindered, camera-aligned freecam movement for debugging.
 func _handle_noclip() -> void:
 	self.velocity = player_input.camera_aligned_wished_direction * get_move_speed()
+#endregion
+
+
+#region Props Physics Handlers
+func _apply_weight_to_floor_prop() -> void:
+	if _current_floor_prop is PhysicsProp and is_on_floor():
+		var downward_force : Vector3 = get_gravity() * self.weight
+		if stairs_below_ray.is_colliding():
+			var collision_point : Vector3 = stairs_below_ray.get_collision_point()
+			_current_floor_prop.apply_resting_weight(downward_force, collision_point)
+		else:
+			# Fallback: Apply weight directly under our center if the raycast missed for some reason.
+			_current_floor_prop.apply_resting_weight(downward_force, self.global_position)
 
 
 ## Checks what the player is standing on and notifies the object so it can stabilize itself.
@@ -419,7 +436,13 @@ func _update_floor_prop_notification() -> void:
 		stairs_below_ray.force_raycast_update()                                 # get_slide_collision often misses the floor when moving perfectly parallel to it. using the stairs_below_ray is safer.
 		if stairs_below_ray.is_colliding():
 			detected_floor_prop = stairs_below_ray.get_collider()
-	
+		else:                                                                   # FALLBACK CHECK: Slide Collisions
+			for i : int in self.get_slide_collision_count():
+				var collision : KinematicCollision3D = get_slide_collision(i)
+				if not is_surface_too_steep(collision.get_normal()):
+					detected_floor_prop = collision.get_collider()
+					break
+			
 	# NOTIFY PHYSICS PROPS
 	if detected_floor_prop != null:
 		# If the floor beneath us changed since last frame, notify the props
@@ -430,6 +453,15 @@ func _update_floor_prop_notification() -> void:
 				detected_floor_prop.notify_stepped_on(self)
 			_current_floor_prop = detected_floor_prop
 
+
+## Dynamically activates flat feet to prevent the capsule curve from shooting out props (called by the PhysicsProp)
+func activate_collision_feet_for_props() -> void:
+	collision_feet_for_props.set_deferred("disabled", false)
+
+
+## Dynamically restores the standard round capsule bottom for smooth stairs/slope movement (called by the PhysicsProp)
+func deactivate_collision_feet_for_props() -> void:
+	collision_feet_for_props.set_deferred("disabled", true)
 
 
 ## Call after move_and_slide() so get_slide_collision is populated.
@@ -443,9 +475,10 @@ func _push_away_rigid_bodies(pre_slide_velocity : Vector3) -> void:
 		# FLOOR GUARD
 		if collider == _current_floor_prop: continue                                                # Never laterally push the object we are currently using as a floor!
 		
+		# ATTENTION: THIS CHECK IS NOW UNECESSARY
 		# HEIGHT THRESHOLD CHECK (WARNING: If you remove this, things go a little crazy)
-		var contact_height_from_feet : float = collision.get_position().y - self.global_position.y  # Check where the collision happened on the Y axis relative to our feet.
-		if contact_height_from_feet < 0.25: continue                                                # If the contact point is less than 25cm from feet, we are stepping on the collider. Completely ignore lateral pushes for feet, preventing the capsule from kicking boxes out from under itself when walking near the edge.
+		# var contact_height_from_feet : float = collision.get_position().y - self.global_position.y  # Check where the collision happened on the Y axis relative to our feet.
+		# if contact_height_from_feet < 0.25: continue                                                # If the contact point is less than 25cm from feet, we are stepping on the collider. Completely ignore lateral pushes for feet, preventing the capsule from kicking boxes out from under itself when walking near the edge.
 
 		# DIRECTIONAL CALCULATION
 		var push_direction : Vector3 = -collision.get_normal()
@@ -472,7 +505,9 @@ func _push_away_rigid_bodies(pre_slide_velocity : Vector3) -> void:
 			collider.apply_central_impulse(push_force)
 		else:
 			collider.apply_impulse(push_force, collision.get_position() - collider.global_position)
-		
+#endregion
+
+
 #region Crouch Handlers
 func _enter_crouch() -> void:
 	# Shrink the capsule and shift it downward so the bottom stays on the floor
@@ -508,7 +543,6 @@ func _exir_air_crouch() -> void:
 
 func _can_exit_crouch() -> bool:
 	return not self.test_move(self.transform, Vector3(0.0, crouch_translate, 0.0))
-#endregion
 #endregion
 
 
