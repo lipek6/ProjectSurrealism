@@ -2,9 +2,9 @@
 class_name PhysicsProp extends RigidBody3D
 # ==============================================================================
 # PHYSICS PROP CLASS
-# Provides a standardized, scalable architecture for all dynamic world objects 
-# (crates, barrels, cans). Handles safe scaling, automatic mass calculation, 
-# and stable player-riding mechanics without relying on fragile node structures.
+## Provides a standardized, scalable architecture for all dynamic world objects 
+## (crates, barrels, cans). Handles safe scaling, automatic mass calculation, 
+## and stable player-riding mechanics without relying on fragile node structures.
 #
 # NOTICE: To make a great physics prop, you will need to tweak it in the editor
 # until you find the neat spot for it. Don't fear messing around the values! 
@@ -103,9 +103,9 @@ func _update_scale_and_mass() -> void:
 
 
 # ==========================================
-# INTERACTION HANDLERS
+# STAND ON TOP HANDLERS
 # ==========================================
-#region Interaction Logic
+#region Stand On Top Logic
 ## Called by the Player script when it detects its floor raycast is hitting this prop.
 func notify_stepped_on(body : Node3D) -> void:
 	# Ignore non-entities, and completely ignore SMALL_DEBRIS (like soda cans)
@@ -145,13 +145,16 @@ func notify_stepped_off(body : Node3D) -> void:
 		if damp_when_on_top:
 			self.angular_damp = _original_angular_damp
 			self.linear_damp  = _original_linear_damp
-#endregion
-
-
 
 ## Allows the player to inject artificial gravity into the prop, allowing it to realistically teeter off edges.[br]
 ## - `force`: The continuous downward Vector3 (gravity * player weight).[br]
 ## - `point`: The global 3D coordinate where the player's foot is touching the box.
 func apply_resting_weight(force : Vector3, point: Vector3) -> void:
-	# maybe we should use point - self.center_of_mass
 	apply_force(force, point - self.global_position)                            # NOTE: apply_force is a continuous, time-dependent function meant to be called every physics frame.
+#endregion
+
+
+
+# ==========================================
+# PICKUP HANDLERS
+# ==========================================

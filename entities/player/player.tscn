@@ -1,13 +1,17 @@
 [gd_scene format=3 uid="uid://dr7ks3lx07q50"]
 
-[ext_resource type="Script" uid="uid://c5u5ggumqebem" path="res://entities/player/player.gd" id="1_mv1ah"]
+[ext_resource type="Script" uid="uid://c5u5ggumqebem" path="res://entities/player/scripts/player.gd" id="1_mv1ah"]
+[ext_resource type="Script" uid="uid://c5xwnln3f5tqj" path="res://entities/player/scripts/player_input.gd" id="2_bls4j"]
 [ext_resource type="Texture2D" uid="uid://f3wj126c5das" path="res://levels/Starter/textures/kenney-grey-checkerboard-cc0.png" id="2_lu8i8"]
-[ext_resource type="PackedScene" uid="uid://dmjo4iv6u3erj" path="res://entities/player/disguise_glasses.tscn" id="3_lu8i8"]
+[ext_resource type="PackedScene" uid="uid://dmjo4iv6u3erj" path="res://entities/player/arts/disguise_glasses.tscn" id="3_lu8i8"]
+[ext_resource type="Script" uid="uid://dfmvx404pe1p4" path="res://entities/player/scripts/camera_controller.gd" id="3_qiwj3"]
+[ext_resource type="Script" uid="uid://hke8mqofw208" path="res://entities/player/scripts/movement_controller.gd" id="4_26q78"]
+[ext_resource type="Script" uid="uid://ibcgwefks3mb" path="res://entities/player/scripts/physics_interactor.gd" id="5_bectd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bcbww"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1pkhx"]
-size = Vector3(0.7, 0.1, 0.7)
+size = Vector3(1, 0.1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tekja"]
 albedo_color = Color(0.79225945, 0.25269866, 0.6862081, 1)
@@ -20,11 +24,29 @@ lightmap_size_hint = Vector2i(17, 14)
 material = SubResource("StandardMaterial3D_tekja")
 add_uv2 = true
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_sglur"]
+
 [node name="Player" type="CharacterBody3D" unique_id=1866164659 groups=["Entity", "Player"]]
 collision_mask = 15
 platform_on_leave = 2
 script = ExtResource("1_mv1ah")
+
+[node name="PlayerInput" type="Node" parent="." unique_id=1277437082]
+unique_name_in_owner = true
+script = ExtResource("2_bls4j")
+
+[node name="CameraController" type="Node" parent="." unique_id=1606047111]
+unique_name_in_owner = true
+script = ExtResource("3_qiwj3")
+
+[node name="MovementController" type="Node" parent="." unique_id=1840412878]
+unique_name_in_owner = true
+script = ExtResource("4_26q78")
 can_noclip = true
+
+[node name="PhysicsInteractor" type="Node" parent="." unique_id=688488064]
+unique_name_in_owner = true
+script = ExtResource("5_bectd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=74638354]
 unique_name_in_owner = true
@@ -53,6 +75,18 @@ transform = Transform3D(-2.1007051, 0, -1.8364948e-07, 0, 2.1007051, 0, 1.836494
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.79, 0)
 
+[node name="ThirdPersonOrbitCamYaw" type="Node3D" parent="HeadOriginalPosition" unique_id=678642245]
+unique_name_in_owner = true
+
+[node name="ThirdPersonOrbitCamPitch" type="Node3D" parent="HeadOriginalPosition/ThirdPersonOrbitCamYaw" unique_id=1135936620]
+unique_name_in_owner = true
+
+[node name="ThirdPersonOrbitCamSpringArm3D" type="SpringArm3D" parent="HeadOriginalPosition/ThirdPersonOrbitCamYaw/ThirdPersonOrbitCamPitch" unique_id=187429939]
+unique_name_in_owner = true
+collision_mask = 4
+shape = SubResource("SphereShape3D_sglur")
+spring_length = 5.0
+
 [node name="Head" type="Node3D" parent="HeadOriginalPosition" unique_id=202485167]
 unique_name_in_owner = true
 
@@ -67,10 +101,12 @@ cull_mask = 1048573
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.67200005, -1)
 target_position = Vector3(0, -0.55, 0)
+collision_mask = 15
 
 [node name="StairsBelowRayCast3D" type="RayCast3D" parent="." unique_id=1644372398]
 unique_name_in_owner = true
 target_position = Vector3(0, -0.75, 0)
+collision_mask = 15
 
 [node name="DebugLabel" type="Label" parent="." unique_id=1571528720]
 unique_name_in_owner = true

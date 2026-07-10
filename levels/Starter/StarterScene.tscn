@@ -155,7 +155,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0478096, -4.5417166, 0.076
 layers = 4
 use_collision = true
 collision_layer = 4
-collision_mask = 15
+collision_mask = 0
 size = Vector3(100, 12, 100)
 material = ExtResource("1_h2ppu")
 
@@ -196,6 +196,8 @@ size = Vector3(42, 5, 14)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 1.4780186, -41)
 layers = 4
 use_collision = true
+collision_layer = 4
+collision_mask = 0
 size = Vector3(14, 0.001, 14)
 material = SubResource("StandardMaterial3D_a88vr")
 
@@ -203,6 +205,8 @@ material = SubResource("StandardMaterial3D_a88vr")
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -25, 1.2780185, -41)
 layers = 4
 use_collision = true
+collision_layer = 4
+collision_mask = 0
 size = Vector3(14, 0.001, 14)
 material = SubResource("StandardMaterial3D_f06cq")
 
@@ -210,6 +214,8 @@ material = SubResource("StandardMaterial3D_f06cq")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11, 3.9785185, 15)
 layers = 4
 use_collision = true
+collision_layer = 4
+collision_mask = 0
 size = Vector3(5, 5, 5)
 num_stairs = 12
 
@@ -217,6 +223,8 @@ num_stairs = 12
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -11, 3.9785185, 31.5)
 layers = 4
 use_collision = true
+collision_layer = 4
+collision_mask = 0
 size = Vector3(2, 5, 5)
 num_stairs = 12
 
@@ -224,6 +232,8 @@ num_stairs = 12
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -33, 8.9785185, 24.5)
 layers = 4
 use_collision = true
+collision_layer = 4
+collision_mask = 0
 size = Vector3(12, 15, 5)
 num_stairs = 9
 
@@ -231,6 +241,8 @@ num_stairs = 9
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 3.9785185, 15)
 layers = 4
 use_collision = true
+collision_layer = 4
+collision_mask = 0
 size = Vector3(5, 5, 5)
 num_stairs = 0
 
@@ -238,6 +250,8 @@ num_stairs = 0
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -1, 3.9785185, 32)
 layers = 4
 use_collision = true
+collision_layer = 4
+collision_mask = 0
 size = Vector3(3, 5, 5)
 num_stairs = 0
 
@@ -245,6 +259,8 @@ num_stairs = 0
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 3.9785185, 20)
 layers = 4
 use_collision = true
+collision_layer = 4
+collision_mask = 0
 size = Vector3(5, 5, 5)
 
 [node name="CSGStairMaker3D7" type="CSGBox3D" parent="Level/HeigthProps/CSGStairMaker3D3" unique_id=264838403]
@@ -257,6 +273,8 @@ size = Vector3(4, 4.5, 5)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11, 3.9785185, 20)
 layers = 4
 use_collision = true
+collision_layer = 4
+collision_mask = 0
 size = Vector3(5, 5, 5)
 
 [node name="CSGStairMaker3D7" type="CSGBox3D" parent="Level/HeigthProps/CSGStairMaker3D4" unique_id=928970567]
@@ -270,18 +288,24 @@ size = Vector3(4, 4.5, 5)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11, 3.9785185, 28)
 layers = 4
 use_collision = true
+collision_layer = 4
+collision_mask = 0
 size = Vector3(5, 5, 5)
 
 [node name="CSGStairMaker3D6" type="CSGBox3D" parent="Level/HeigthProps" unique_id=225119933]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 3.9785185, 28)
 layers = 4
 use_collision = true
+collision_layer = 4
+collision_mask = 0
 size = Vector3(5, 5, 5)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Level/HeigthProps" unique_id=1185617177]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5, 3.9785185, 24.5)
 layers = 4
 use_collision = true
+collision_layer = 4
+collision_mask = 0
 size = Vector3(6, 5, 12)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Level/HeigthProps/CSGBox3D2" unique_id=20072788]
@@ -312,54 +336,72 @@ size = Vector3(5, 1, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 2.4785185, 31.5)
 layers = 4
 use_collision = true
+collision_layer = 4
+collision_mask = 0
 size = Vector3(5, 2, 5)
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="Level/HeigthProps" unique_id=1321586460]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 1.9785185, 24.5)
 layers = 4
 use_collision = true
+collision_layer = 4
+collision_mask = 0
 size = Vector3(5, 1, 5)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="Level/HeigthProps" unique_id=128314454]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 3.4785185, 24.5)
 layers = 4
 use_collision = true
+collision_layer = 4
+collision_mask = 0
 size = Vector3(5, 4, 5)
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="Level/HeigthProps" unique_id=1170776870]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 3.4785185, 20.5)
 layers = 4
 use_collision = true
+collision_layer = 4
+collision_mask = 0
 size = Vector3(1, 4, 1)
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="Level/HeigthProps" unique_id=1102072230]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 3.8285184, 23.5)
 layers = 4
 use_collision = true
+collision_layer = 4
+collision_mask = 0
 size = Vector3(1, 4.7, 1)
 
 [node name="CSGBox3D11" type="CSGBox3D" parent="Level/HeigthProps" unique_id=2041128629]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 2.9785185, 32.5)
 layers = 4
 use_collision = true
+collision_layer = 4
+collision_mask = 0
 size = Vector3(1, 3, 1)
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="Level/HeigthProps" unique_id=511137094]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.200001, 3.7785187, 23.5)
 layers = 4
 use_collision = true
+collision_layer = 4
+collision_mask = 0
 size = Vector3(1, 4.6, 1)
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="Level/HeigthProps" unique_id=1979548826]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 3.0785184, 31.5)
 layers = 4
 use_collision = true
+collision_layer = 4
+collision_mask = 0
 size = Vector3(5, 3.2, 5)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Level/HeigthProps" unique_id=172608590]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 1.9585185, 28)
 layers = 4
 use_collision = true
+collision_layer = 4
+collision_mask = 0
 radius = 3.598
 height = 1.0
 material = SubResource("StandardMaterial3D_ixirg")
@@ -379,6 +421,8 @@ shape = SubResource("ConcavePolygonShape3D_8v3vd")
 [node name="MirrorFrame" type="CSGBox3D" parent="Level" unique_id=1494600192]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.5, 3.4785185, -39)
 use_collision = true
+collision_layer = 4
+collision_mask = 0
 size = Vector3(3, 4, 1)
 material = SubResource("StandardMaterial3D_ry70p")
 
@@ -395,7 +439,7 @@ size = Vector2i(512, 716)
 render_target_update_mode = 0
 
 [node name="Camera3D" type="Camera3D" parent="Level/MirrorFrame/Mirror/SubViewport" unique_id=1057422763]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.5, 0.622, -66.445)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.5, 1.501823, -66.445)
 
 [node name="Path3D" type="Path3D" parent="Level" unique_id=339477326]
 transform = Transform3D(11.6275, 0, 0, 0, 11.6275, 0, 0, 0, 11.6275, 50.221, 1.4958076, 4.9006004)
@@ -406,6 +450,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.928218)
 layers = 4
 material_override = SubResource("StandardMaterial3D_t5onx")
 use_collision = true
+collision_layer = 4
+collision_mask = 0
 polygon = PackedVector2Array(0, 0, 0.5, 1, 1, 0)
 mode = 2
 path_node = NodePath("..")
@@ -421,9 +467,10 @@ path_joined = false
 
 [node name="Crate" parent="." unique_id=798135748 instance=ExtResource("9_77ybh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.235462, 0.5005188, -33.354507)
-mass = 16000.0
+mass = 80.0
+linear_damp = 20.0
+angular_damp = 10.0
 prop_scale = Vector3(2, 2, 2)
-base_mass = 2000.0
 
 [node name="Crate2" parent="." unique_id=1523950991 instance=ExtResource("9_77ybh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.789436, 0.25051832, -35.964157)
@@ -431,6 +478,12 @@ mass = 33.75
 prop_scale = Vector3(1.5, 1.5, 1.5)
 on_top_linear_damp = 0.0
 on_top_angular_damp = 0.0
+
+[node name="Crate4" parent="." unique_id=1713720740 instance=ExtResource("9_77ybh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.771336, 0.25051832, -33.14086)
+mass = 6.75
+prop_scale = Vector3(1.5, 1.5, 1.5)
+base_mass = 2.0
 
 [node name="Crate3" parent="." unique_id=831000743 instance=ExtResource("9_77ybh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.325615, 2.0005183, -33.384247)
