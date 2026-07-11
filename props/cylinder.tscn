@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://csq2wl75k2gbo"]
+
+[ext_resource type="Script" uid="uid://drptuaq5ncbw3" path="res://props/physics_prop.gd" id="1_ulb01"]
+[ext_resource type="Material" uid="uid://88kt2h8ajanr" path="res://levels/Starter/materials/ball_material.tres" id="2_plwc2"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1pkhx"]
+material = ExtResource("2_plwc2")
+top_radius = 0.55
+bottom_radius = 0.55
+height = 1.5
+radial_segments = 8
+rings = 1
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ulb01"]
+points = PackedVector3Array(0.4811604, 0.7195912, 0.16618074, -0.5349342, -0.7250369, -0.03636929, -0.5071907, -0.7179048, -0.10334291, 0.5276873, -0.72165376, 0.053863548, 0.031628057, 0.72771084, -0.53689826, -0.3761941, 0.72512585, 0.39416334, 0.053962942, -0.72159773, 0.5276461, 0.031628057, -0.72771084, -0.53689826, -0.39546987, 0.7188072, -0.3730401, 0.39416334, 0.72512585, -0.3761941, 0.3729157, 0.7278006, 0.3955214, -0.3761941, -0.72512585, 0.39416334, 0.39416334, -0.72512585, -0.3761941, -0.536856, 0.7276533, 0.031730007, -0.058524027, 0.71902543, 0.5257567, -0.37296578, -0.7188635, -0.39550066, 0.39558196, -0.72771996, 0.37276947, 0.5257977, 0.7190813, -0.058424987, -0.03636929, 0.7250369, -0.5349342, 0.053962942, 0.72159773, 0.5276461, -0.058524027, -0.71902543, 0.5257567, 0.5257977, -0.7190813, -0.058424987, -0.536856, -0.7276533, 0.031730007, -0.5349342, 0.7250369, -0.03636929, -0.03636929, -0.7250369, -0.5349342, 0.36968613, 0.7215376, -0.39685923, -0.39688838, 0.72140115, 0.36961576, 0.5276873, 0.72165376, 0.053863548, 0.3729157, -0.7278006, 0.3955214, -0.37296578, 0.7188635, -0.39550066, -0.39546987, -0.7188072, -0.3730401, 0.36968613, -0.7215376, -0.39685923)
+
+[node name="Cylinder" type="RigidBody3D" unique_id=379870813 node_paths=PackedStringArray("model", "collision")]
+collision_layer = 8
+collision_mask = 15
+mass = 10.0
+script = ExtResource("1_ulb01")
+model = NodePath("Model/MeshInstance3D")
+collision = NodePath("CollisionShape3D")
+metadata/_custom_type_script = "uid://drptuaq5ncbw3"
+
+[node name="Model" type="Node3D" parent="." unique_id=1405589232]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model" unique_id=1467742213]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+layers = 4
+mesh = SubResource("CylinderMesh_1pkhx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1607726099]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("ConvexPolygonShape3D_ulb01")

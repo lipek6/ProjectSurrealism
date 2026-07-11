@@ -127,3 +127,8 @@ func push_away_rigid_bodies(pre_slide_velocity : Vector3) -> void:
 		else:
 			collider.apply_impulse(push_force, collision.get_position() - collider.global_position)
 #endregion
+
+
+#region Pick-up
+
+#endregion

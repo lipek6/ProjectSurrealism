@@ -1,14 +1,15 @@
 [gd_scene format=3 uid="uid://cumlkudt7n44b"]
 
-[ext_resource type="PackedScene" uid="uid://dr7ks3lx07q50" path="res://entities/player/player.tscn" id="1_34vv4"]
+[ext_resource type="PackedScene" uid="uid://dr7ks3lx07q50" path="res://entities/player/scenes/player.tscn" id="1_34vv4"]
 [ext_resource type="Material" uid="uid://bk7nbd8td4gb1" path="res://levels/Starter/textures/grey_checkerboard_mat.tres" id="1_h2ppu"]
-[ext_resource type="Script" uid="uid://ca5ww5a42y6r3" path="res://entities/commons/characters.gd" id="1_lqehj"]
+[ext_resource type="Script" uid="uid://ca5ww5a42y6r3" path="res://entities/commons/scripts/characters.gd" id="1_lqehj"]
 [ext_resource type="Texture2D" uid="uid://d1uelfks0ip1w" path="res://levels/Starter/textures/grid_image.png" id="2_7cqoh"]
 [ext_resource type="PackedScene" uid="uid://bak8ltrhbmlv5" path="res://levels/Starter/utils/CSGStairMaker3D.tscn" id="3_ydgef"]
 [ext_resource type="ArrayMesh" uid="uid://dry23jeo6prdo" path="res://levels/Starter/terrain_mesh.mesh" id="4_h2ppu"]
 [ext_resource type="Texture2D" uid="uid://c7yth5opetwes" path="res://levels/Starter/textures/kenney-dark-grey-checkerboard.png" id="5_bkb2o"]
 [ext_resource type="Texture2D" uid="uid://b28c62e3f23vb" path="res://levels/Starter/textures/kenney-orange-checkerboard-cc0.png" id="6_7b0n1"]
 [ext_resource type="PackedScene" uid="uid://dtke2htvs0sch" path="res://props/crate.tscn" id="9_77ybh"]
+[ext_resource type="PackedScene" uid="uid://csq2wl75k2gbo" path="res://props/cylinder.tscn" id="10_yv1ad"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bwjpn"]
 
@@ -127,16 +128,16 @@ is_active = true
 character_1 = NodePath("Player")
 character_2 = NodePath("Player2")
 
-[node name="Player" parent="Characters" unique_id=1866164659 instance=ExtResource("1_34vv4")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -60.022816, 0, -38.379562)
-
-[node name="Player2" parent="Characters" unique_id=1815439415 instance=ExtResource("1_34vv4")]
-transform = Transform3D(-0.49999988, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, -0.49999988, -61.89809, 0.0005185604, -29.023735)
-
 [node name="Label" type="Label" parent="Characters" unique_id=2127927766]
 offset_top = 532.0
 offset_right = 364.0
 offset_bottom = 660.0
+
+[node name="Player" parent="Characters" unique_id=603512766 instance=ExtResource("1_34vv4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.430233, 0, -25.53616)
+
+[node name="Player2" parent="Characters" unique_id=1866164659 instance=ExtResource("1_34vv4")]
+transform = Transform3D(-0.50000006, 0, -0.8660254, 0, 1, 0, 0.8660254, 0, -0.50000006, -60.146107, 0, -37.155235)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1741360362]
 environment = SubResource("Environment_dpqee")
@@ -597,3 +598,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.325615, 2.0005183, -33.38
 mass = 0.125
 prop_scale = Vector3(0.5, 0.5, 0.5)
 base_mass = 1.0
+
+[node name="Cylinder" parent="." unique_id=379870813 instance=ExtResource("10_yv1ad")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.043118, 4.651602, -41.381115)

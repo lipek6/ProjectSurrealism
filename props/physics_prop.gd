@@ -88,6 +88,14 @@ func _ready() -> void:
 	# Apply Safe Scaling (NOTICE: We scale the children instead of the RigidBody3D itself to avoid physics engine glitches)
 	if model:      model.scale = prop_scale
 	if collision:  collision.scale = prop_scale
+	
+	# Guarantee the correct layer setup
+	self.set_collision_layer_value(4, true)
+	self.set_collision_mask_value(1, true)
+	self.set_collision_mask_value(2, true)
+	self.set_collision_mask_value(3, true)
+	self.set_collision_mask_value(4, true)
+
 
 
 ## Safely applies scale to children and dynamically calculates real-world mass.

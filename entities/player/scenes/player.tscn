@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://dr7ks3lx07q50"]
+
+[ext_resource type="Script" uid="uid://c5u5ggumqebem" path="res://entities/player/scripts/player.gd" id="1_mv1ah"]
+[ext_resource type="Script" uid="uid://c5xwnln3f5tqj" path="res://entities/player/scripts/player_input.gd" id="2_bls4j"]
+[ext_resource type="Script" uid="uid://dfmvx404pe1p4" path="res://entities/player/scripts/camera_controller.gd" id="3_qiwj3"]
+[ext_resource type="Script" uid="uid://hke8mqofw208" path="res://entities/player/scripts/movement_controller.gd" id="4_26q78"]
+[ext_resource type="Script" uid="uid://ibcgwefks3mb" path="res://entities/player/scripts/physics_interactor.gd" id="5_bectd"]
+[ext_resource type="Script" uid="uid://dpj7vkdogpfk7" path="res://entities/player/scripts/animation_controller.gd" id="6_8fjmc"]
+[ext_resource type="PackedScene" uid="uid://cx5oy8kj2p361" path="res://entities/commons/scenes/universal_character_model.tscn" id="7_qiwj3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bcbww"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1pkhx"]
+size = Vector3(0.7, 0.1, 0.7)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sglur"]
+
+[node name="Player" type="CharacterBody3D" unique_id=1866164659 groups=["Entity", "Player"]]
+collision_mask = 15
+platform_on_leave = 2
+script = ExtResource("1_mv1ah")
+
+[node name="PlayerInput" type="Node" parent="." unique_id=1277437082]
+unique_name_in_owner = true
+script = ExtResource("2_bls4j")
+
+[node name="CameraController" type="Node" parent="." unique_id=1606047111]
+unique_name_in_owner = true
+script = ExtResource("3_qiwj3")
+
+[node name="MovementController" type="Node" parent="." unique_id=1840412878]
+unique_name_in_owner = true
+script = ExtResource("4_26q78")
+can_noclip = true
+
+[node name="PhysicsInteractor" type="Node" parent="." unique_id=688488064]
+unique_name_in_owner = true
+script = ExtResource("5_bectd")
+
+[node name="AnimationController" type="Node" parent="." unique_id=65092068]
+unique_name_in_owner = true
+script = ExtResource("6_8fjmc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=74638354]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_bcbww")
+
+[node name="CollisionFeetForProps" type="CollisionShape3D" parent="." unique_id=439668064]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.050000012, 0)
+shape = SubResource("BoxShape3D_1pkhx")
+disabled = true
+debug_color = Color(1, 0, 0, 1)
+
+[node name="WorldModel" type="Node3D" parent="." unique_id=469966230]
+unique_name_in_owner = true
+
+[node name="UniversalCharacterModel" parent="WorldModel" unique_id=308895306 instance=ExtResource("7_qiwj3")]
+
+[node name="HeadOriginalPosition" type="Node3D" parent="." unique_id=1961007866]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.79, 0)
+
+[node name="ThirdPersonOrbitCamYaw" type="Node3D" parent="HeadOriginalPosition" unique_id=678642245]
+unique_name_in_owner = true
+
+[node name="ThirdPersonOrbitCamPitch" type="Node3D" parent="HeadOriginalPosition/ThirdPersonOrbitCamYaw" unique_id=1135936620]
+unique_name_in_owner = true
+
+[node name="ThirdPersonOrbitCamSpringArm3D" type="SpringArm3D" parent="HeadOriginalPosition/ThirdPersonOrbitCamYaw/ThirdPersonOrbitCamPitch" unique_id=187429939]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.20000005, 0)
+collision_mask = 4
+shape = SubResource("SphereShape3D_sglur")
+spring_length = 3.5
+
+[node name="ThirdPersonCamera3D" type="Camera3D" parent="HeadOriginalPosition/ThirdPersonOrbitCamYaw/ThirdPersonOrbitCamPitch/ThirdPersonOrbitCamSpringArm3D" unique_id=446595775]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="Head" type="Node3D" parent="HeadOriginalPosition" unique_id=202485167]
+unique_name_in_owner = true
+
+[node name="CameraSmoothPoint" type="Node3D" parent="HeadOriginalPosition/Head" unique_id=1812588030]
+unique_name_in_owner = true
+
+[node name="FirstPersonCamera3D" type="Camera3D" parent="HeadOriginalPosition/Head/CameraSmoothPoint" unique_id=122657194]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.20000005, 0)
+cull_mask = 1048573
+
+[node name="StairsAheadRayCast3D" type="RayCast3D" parent="." unique_id=1425612240]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.67200005, -1)
+target_position = Vector3(0, -0.55, 0)
+collision_mask = 15
+
+[node name="StairsBelowRayCast3D" type="RayCast3D" parent="." unique_id=1644372398]
+unique_name_in_owner = true
+target_position = Vector3(0, -0.75, 0)
+collision_mask = 15
+
+[node name="DebugLabel" type="Label" parent="." unique_id=1571528720]
+unique_name_in_owner = true
+offset_right = 368.0
+offset_bottom = 23.0

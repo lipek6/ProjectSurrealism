@@ -12,10 +12,11 @@ class_name PlayerInput extends Node
 # ATTRIBUTES
 # ==============================================================================
 #region Movement Data
-var move_direction                  : Vector2 = Vector2.ZERO                    ## [color=cyan]Raw Input Vector.[/color] [br]The normalized 2D direction from WASD or left joystick.
-var wished_direction                : Vector3 = Vector3.ZERO                    ## [color=orange]Player-Aligned Wished Velocity.[/color] [br]The movement intent rotated to match the player body's forward direction.
-var camera_aligned_wished_direction : Vector3 = Vector3.ZERO                    ## [color=yellow]Camera-Aligned Wished Velocity.[/color] [br]The movement intent rotated to match where the camera is currently looking (useful for noclip).
-var controller_look                 : Vector2 = Vector2.ZERO                    ## [color=pink]Analog Look Vector.[/color] [br]Smoothed raw input from the right stick for gamepad aiming.
+var move_direction                       : Vector2 = Vector2.ZERO                    ## [color=cyan]Raw Input Vector.[/color] [br]The normalized 2D direction from WASD or left joystick.
+var wished_direction                     : Vector3 = Vector3.ZERO                    ## [color=orange]Player-Aligned Wished Velocity.[/color] [br]The movement intent rotated to match the player body's forward direction.
+var camera_aligned_wished_direction      : Vector3 = Vector3.ZERO                    ## [color=yellow]Camera-Aligned Wished Velocity.[/color] [br]The movement intent rotated to match where the camera is currently looking (useful for noclip).
+var flat_camera_aligned_wished_direction : Vector3 = Vector3.ZERO               ## [color=yellow]Flat Camera-Aligned Wished Velocity.[/color] [br]Perfectly horizontal camera-relative vector for traversal.
+var controller_look                      : Vector2 = Vector2.ZERO                    ## [color=pink]Analog Look Vector.[/color] [br]Smoothed raw input from the right stick for gamepad aiming.
 #endregion
 
 
@@ -59,5 +60,18 @@ func gather_inputs(player_basis: Basis, camera_basis: Basis) -> void:
 	#region Vector Translations
 	wished_direction                   = player_basis * Vector3(move_direction.x, 0, move_direction.y)
 	camera_aligned_wished_direction    = camera_basis * Vector3(move_direction.x, 0, move_direction.y)
+	
+	var camera_forward : Vector3 = -camera_basis.z
+	camera_forward.y = 0.0
+	camera_forward = camera_forward.normalized()
+	
+	var camera_right : Vector3 = camera_basis.x
+	camera_right.y = 0.0
+	camera_right = camera_right.normalized()
+	
+	if move_direction.length_squared() > 0.01:
+		flat_camera_aligned_wished_direction = (camera_right * move_direction.x - camera_forward * move_direction.y).normalized()
+	else:
+		flat_camera_aligned_wished_direction = Vector3.ZERO
 	#endregion
 #endregion

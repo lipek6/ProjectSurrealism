@@ -245,13 +245,13 @@ func get_move_speed() -> float:
 ## Handles friction and vector-projected acceleration while the player is on solid geometry.
 func _handle_ground_physics(delta: float) -> void:
 	# Quake-style dot product projection to calculate acceleration room
-	var current_speed_in_wished_direction : float = player.velocity.dot(input.wished_direction)
+	var current_speed_in_wished_direction : float = player.velocity.dot(input.flat_camera_aligned_wished_direction)
 	var add_speed_till_cap : float = get_move_speed() - current_speed_in_wished_direction  
 	
 	if add_speed_till_cap > 0:
 		var accelerated_speed : float = ground_accel * get_move_speed() * delta
 		accelerated_speed = minf(accelerated_speed, add_speed_till_cap)
-		player.velocity += accelerated_speed * input.wished_direction
+		player.velocity += accelerated_speed * input.flat_camera_aligned_wished_direction
 	
 	# Apply friction
 	var control   : float = max(player.velocity.length(), ground_decel)
@@ -267,14 +267,14 @@ func _handle_ground_physics(delta: float) -> void:
 func _handle_air_physics(delta: float) -> void:
 	player.velocity.y += player.get_gravity().y * delta                                  
 	
-	var current_speed_in_wished_direction : float = player.velocity.dot(input.wished_direction)
-	var capped_speed : float = minf((air_move_speed * input.wished_direction).length(), air_cap)
+	var current_speed_in_wished_direction : float = player.velocity.dot(input.flat_camera_aligned_wished_direction)
+	var capped_speed : float = minf((air_move_speed * input.flat_camera_aligned_wished_direction).length(), air_cap)
 	var add_speed_till_cap : float = capped_speed - current_speed_in_wished_direction
 	
 	if add_speed_till_cap > 0:
 		var accelerated_speed : float = air_accel * air_move_speed * delta
 		accelerated_speed = minf(accelerated_speed, add_speed_till_cap)
-		player.velocity += accelerated_speed * input.wished_direction
+		player.velocity += accelerated_speed * input.flat_camera_aligned_wished_direction
 	
 	# Allows Surf execution WARNING: Surf is causing some headaches. Caution with it
 	if current_state == State.SURFING:

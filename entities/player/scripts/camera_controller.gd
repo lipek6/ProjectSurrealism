@@ -48,7 +48,7 @@ var current_camera : Camera3D
 @export var controller_fp_look_sensitivity : float = 0.075                      ## [color=yellow]FP Gamepad aim speed.[/color] [br]Multiplier for right-stick analog input.
 @export var controller_tp_look_sensitivity : float = 0.075                      ## [color=yellow]TP Gamepad aim speed.[/color] [br]Multiplier for right-stick analog input.
 @export var headbob                        : bool  = true                       ## [color=cyan]Enables fp_camera bobbing.[/color] [br]Simulates realistic footsteps visually when walking/sprinting on the ground.
-@export var smooth_headbob                 : bool  = true
+@export var smooth_headbob                 : bool  = false
 #endregion
 
 
@@ -114,7 +114,7 @@ func handle_controller_look_input(delta: float) -> void:
 	# TODO: Update handle_controller_look_input.
 	player.rotate_y(-input.controller_look.x * controller_fp_look_sensitivity)
 	fp_camera.rotate_x(input.controller_look.y * controller_fp_look_sensitivity)
-	fp_camera.rotation_degrees.x = clampf(fp_camera.rotation_degrees.x, -90, +90)
+	fp_camera.rotation_degrees.x = clampf(fp_camera.rotation_degrees.x, -89, +89)
 #endregion
 
 
@@ -139,7 +139,7 @@ func _update_camera_style() -> void:
 
 func _on_camera_style_transition(old_style : Style, new_style : Style) -> void:
 	if new_style in [Style.THIRD_PERSON, Style.THIRD_PERSON_FREE_LOOK] and old_style == Style.FIRST_PERSON:
-		current_camera = tp_camera 
+		current_camera = tp_camera
 		tp_camera.make_current()
 	elif new_style == Style.FIRST_PERSON and old_style in [Style.THIRD_PERSON, Style.THIRD_PERSON_FREE_LOOK]:
 		current_camera = fp_camera
@@ -151,20 +151,20 @@ func _on_camera_style_transition(old_style : Style, new_style : Style) -> void:
 func _execute_fp_camera_style(event : InputEventMouseMotion) -> void:
 	player.rotate_y(-event.relative.x * fp_look_sensitivity)
 	fp_camera.rotate_x(-event.relative.y * fp_look_sensitivity)
-	fp_camera.rotation_degrees.x = clampf(fp_camera.rotation_degrees.x, -90, +90)
+	fp_camera.rotation_degrees.x = clampf(fp_camera.rotation_degrees.x, -89, +89)
 
 
 func _execute_tp_camera_style(event : InputEventMouseMotion) -> void:
 	orbit_cam_yaw.rotation.y = 0.0
 	player.rotate_y(-event.relative.x * tp_look_sensitivity)
 	orbit_cam_pitch.rotate_x(-event.relative.y * tp_look_sensitivity)
-	orbit_cam_pitch.rotation_degrees.x = clampf(orbit_cam_pitch.rotation_degrees.x, -90, +90)
+	orbit_cam_pitch.rotation_degrees.x = clampf(orbit_cam_pitch.rotation_degrees.x, -89, +89)
 
 
 func _execute_tp_free_look_camera_style(event : InputEventMouseMotion) -> void:
 	orbit_cam_yaw.rotate_y(-event.relative.x * tp_look_sensitivity)
 	orbit_cam_pitch.rotate_x(-event.relative.y * tp_look_sensitivity)
-	orbit_cam_pitch.rotation_degrees.x = clampf(orbit_cam_pitch.rotation_degrees.x, -90, +90)
+	orbit_cam_pitch.rotation_degrees.x = clampf(orbit_cam_pitch.rotation_degrees.x, -89, +89)        # Don't use 90, it will make the controls work backawards when on a 90 degrees angle
 #endregion
 
 
@@ -172,9 +172,10 @@ func _execute_tp_free_look_camera_style(event : InputEventMouseMotion) -> void:
 func _handle_third_person_free_look_player_alignment(delta : float) -> void:
 	if current_style != Style.THIRD_PERSON_FREE_LOOK: return
 	
-	if input.wished_direction.length_squared() > 0.01:           # If the player is actively pressing movement keys
-		var add_rotation_y : float = (-player.global_basis.z).signed_angle_to(input.camera_aligned_wished_direction.normalized(), Vector3.UP)
+	if input.flat_camera_aligned_wished_direction.length_squared() > 0.01:           # If the player is actively pressing movement keys
+		var add_rotation_y : float = (-player.global_basis.z).signed_angle_to(input.flat_camera_aligned_wished_direction, Vector3.UP)
 		var rotate_towards : float = lerp_angle(player.global_rotation.y, player.global_rotation.y + add_rotation_y, max(0.1,  abs(add_rotation_y/TAU))) - player.global_rotation.y
+		
 		player.rotation.y += rotate_towards
 		orbit_cam_yaw.rotation.y -= rotate_towards                              # Counter-rotate the camera yaw so the camera's world-view remains completely stable
 
