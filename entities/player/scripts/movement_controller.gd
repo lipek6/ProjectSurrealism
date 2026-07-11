@@ -217,6 +217,7 @@ func _execute_air_state(delta: float) -> void:
 	var pre_slide_velocity : Vector3 = player.velocity                          # Needs to be registered in order to push away rigid bodies after move_and_slide. move_and_slide zeros out the velocity.              
 	player.move_and_slide()
 	physics_interactor.push_away_rigid_bodies(pre_slide_velocity)
+	
 
 
 ## Helper to fetch the current scalar speed limit based on state.
@@ -291,11 +292,13 @@ func _handle_noclip() -> void:
 func clip_velocity(normal : Vector3, overbounce : float) -> void:
 	var backoff : float = player.velocity.dot(normal) * overbounce
 	if backoff >= 0: return
+	
 	var change : Vector3 = normal * backoff
 	player.velocity -= change
+	
 	var adjust : float = player.velocity.dot(normal)
 	if adjust < 0.0:
-		player.velocity -= normal * adjust
+		player.velocity -= normal * adjust                                      # floor_max_angle of CharacterBody3D is what defines how steep we are able to surf
 
 
 ## Evaluates if a given geometric normal is too steep for the CharacterBody to stand on.

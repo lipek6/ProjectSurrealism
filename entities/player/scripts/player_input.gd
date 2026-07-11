@@ -57,7 +57,7 @@ func gather_inputs(player_basis: Basis, camera_basis: Basis) -> void:
 	#endregion
 	
 	#region Vector Translations
-	wished_direction                = player_basis * Vector3(move_direction.x, 0, move_direction.y)
-	camera_aligned_wished_direction = camera_basis * Vector3(move_direction.x, 0, move_direction.y)
+	wished_direction                   = player_basis * Vector3(move_direction.x, 0, move_direction.y)
+	camera_aligned_wished_direction    = camera_basis * Vector3(move_direction.x, 0, move_direction.y)
 	#endregion
 #endregion

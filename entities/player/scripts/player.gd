@@ -84,8 +84,8 @@ func _process(delta: float) -> void:
 		
 	debug_label.text  = "FPS: " + str(Engine.get_frames_per_second())                 + "\n"        # For DEBUG purpouses. TODO: Need to find a way to enable/disable these things
 	debug_label.text += "STATE: " + str(movement_controller.State.keys()[movement_controller.current_state])            + "\n"        
-	debug_label.text += "CAM_STATE: " + str(camera_controller.State.keys()[camera_controller.current_state]) + "\n"        
-	debug_label.text += "CAM_POSITION: (" + str("%.2f" % camera_controller.camera.position.x) + "," + str("%.2f" % camera_controller.camera.position.y) + "," + str("%.2f" % camera_controller.camera.position.z) + ")\n"          
+	debug_label.text += "CAM_STYLE: " + str(camera_controller.Style.keys()[camera_controller.current_style]) + "\n"        
+	debug_label.text += "CAM_POSITION: (" + str("%.2f" % camera_controller.current_camera.position.x) + "," + str("%.2f" % camera_controller.current_camera.position.y) + "," + str("%.2f" % camera_controller.current_camera.position.z) + ")\n"          
 	debug_label.text += "VELOCITY: " + str(("%.2f" % self.velocity.length()))         + "\n"        
 	debug_label.text += "POSITION: (" + str("%.2f" % self.global_position.x) + "," + str("%.2f" % self.global_position.y) + "," + str("%.2f" % self.global_position.z) + ")\n"              
 
@@ -93,7 +93,7 @@ func _process(delta: float) -> void:
 ## The rigid physics loop. Orchestrates the input gathering, state evaluation, and physics execution pipeline.
 func _physics_process(delta: float) -> void:
 	if is_active:
-		input.gather_inputs(self.global_basis, camera_controller.camera.global_basis)
+		input.gather_inputs(self.global_basis, camera_controller.current_camera.global_basis)       # Instead of current_camera maybe I should use its style state? Don't know :(
 		movement_controller.handle_toggles_and_settings()                                          
 	
 	# Delegate exact execution order to the underlying components
@@ -135,8 +135,8 @@ func set_activity(active_mode: bool) -> void:
 	debug_label.text = ""
 	
 	# We safely toggle the component camera
-	if camera_controller and camera_controller.camera:
-		camera_controller.camera.current = active_mode
+	if camera_controller and camera_controller.current_camera:
+		camera_controller.current_camera.current = active_mode
 	
 	for child : VisualInstance3D in world_model.find_children("*", "VisualInstance3D"):
 		child.set_layer_mask_value(1, not active_mode) 

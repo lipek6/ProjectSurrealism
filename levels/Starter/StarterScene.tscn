@@ -479,11 +479,118 @@ prop_scale = Vector3(1.5, 1.5, 1.5)
 on_top_linear_damp = 0.0
 on_top_angular_damp = 0.0
 
+[node name="Crate5" parent="." unique_id=1064319529 instance=ExtResource("9_77ybh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.37992, 12.980505, -35.964157)
+mass = 101.25
+prop_scale = Vector3(1.5, 1.5, 1.5)
+base_mass = 30.0
+on_top_linear_damp = 0.0
+on_top_angular_damp = 0.0
+metadata/_edit_group_ = true
+
+[node name="Crate6" parent="." unique_id=2081372714 instance=ExtResource("9_77ybh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.37992, 12.980505, -33.964157)
+mass = 101.25
+prop_scale = Vector3(1.5, 1.5, 1.5)
+base_mass = 30.0
+on_top_linear_damp = 0.0
+on_top_angular_damp = 0.0
+metadata/_edit_group_ = true
+
+[node name="Crate7" parent="." unique_id=272524589 instance=ExtResource("9_77ybh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.37992, 12.980505, -31.964157)
+mass = 101.25
+prop_scale = Vector3(1.5, 1.5, 1.5)
+base_mass = 30.0
+on_top_linear_damp = 0.0
+on_top_angular_damp = 0.0
+metadata/_edit_group_ = true
+
+[node name="Crate8" parent="." unique_id=586900975 instance=ExtResource("9_77ybh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.37992, 12.980505, -29.964157)
+mass = 101.25
+prop_scale = Vector3(1.5, 1.5, 1.5)
+base_mass = 30.0
+on_top_linear_damp = 0.0
+on_top_angular_damp = 0.0
+metadata/_edit_group_ = true
+
+[node name="Crate9" parent="." unique_id=845340369 instance=ExtResource("9_77ybh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.971123, 8.471769, -35.964157)
+mass = 101.25
+prop_scale = Vector3(1.5, 1.5, 1.5)
+base_mass = 30.0
+on_top_linear_damp = 0.0
+on_top_angular_damp = 0.0
+metadata/_edit_group_ = true
+
+[node name="Crate10" parent="." unique_id=1481018316 instance=ExtResource("9_77ybh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.971123, 8.471769, -33.964157)
+mass = 101.25
+prop_scale = Vector3(1.5, 1.5, 1.5)
+base_mass = 30.0
+on_top_linear_damp = 0.0
+on_top_angular_damp = 0.0
+metadata/_edit_group_ = true
+
+[node name="Crate11" parent="." unique_id=477151810 instance=ExtResource("9_77ybh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.971123, 8.471769, -31.964157)
+mass = 101.25
+prop_scale = Vector3(1.5, 1.5, 1.5)
+base_mass = 30.0
+on_top_linear_damp = 0.0
+on_top_angular_damp = 0.0
+metadata/_edit_group_ = true
+
+[node name="Crate12" parent="." unique_id=2008350700 instance=ExtResource("9_77ybh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.971123, 8.471769, -29.964157)
+mass = 101.25
+prop_scale = Vector3(1.5, 1.5, 1.5)
+base_mass = 30.0
+on_top_linear_damp = 0.0
+on_top_angular_damp = 0.0
+metadata/_edit_group_ = true
+
+[node name="Crate13" parent="." unique_id=1524137946 instance=ExtResource("9_77ybh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.612747, 8.471769, -35.964157)
+mass = 101.25
+prop_scale = Vector3(1.5, 1.5, 1.5)
+base_mass = 30.0
+on_top_linear_damp = 0.0
+on_top_angular_damp = 0.0
+metadata/_edit_group_ = true
+
+[node name="Crate14" parent="." unique_id=2139384410 instance=ExtResource("9_77ybh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.612747, 8.471769, -33.964157)
+mass = 101.25
+prop_scale = Vector3(1.5, 1.5, 1.5)
+base_mass = 30.0
+on_top_linear_damp = 0.0
+on_top_angular_damp = 0.0
+metadata/_edit_group_ = true
+
+[node name="Crate15" parent="." unique_id=66295343 instance=ExtResource("9_77ybh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.612747, 8.471769, -31.964157)
+mass = 101.25
+prop_scale = Vector3(1.5, 1.5, 1.5)
+base_mass = 30.0
+on_top_linear_damp = 0.0
+on_top_angular_damp = 0.0
+metadata/_edit_group_ = true
+
+[node name="Crate16" parent="." unique_id=454748713 instance=ExtResource("9_77ybh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.612747, 8.471769, -29.964157)
+mass = 101.25
+prop_scale = Vector3(1.5, 1.5, 1.5)
+base_mass = 30.0
+on_top_linear_damp = 0.0
+on_top_angular_damp = 0.0
+metadata/_edit_group_ = true
+
 [node name="Crate4" parent="." unique_id=1713720740 instance=ExtResource("9_77ybh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.771336, 0.25051832, -33.14086)
-mass = 6.75
+mass = 33.75
 prop_scale = Vector3(1.5, 1.5, 1.5)
-base_mass = 2.0
 
 [node name="Crate3" parent="." unique_id=831000743 instance=ExtResource("9_77ybh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.325615, 2.0005183, -33.384247)

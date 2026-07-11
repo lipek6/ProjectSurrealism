@@ -87,13 +87,18 @@ collision_mask = 4
 shape = SubResource("SphereShape3D_sglur")
 spring_length = 5.0
 
+[node name="ThirdPersonCamera3D" type="Camera3D" parent="HeadOriginalPosition/ThirdPersonOrbitCamYaw/ThirdPersonOrbitCamPitch/ThirdPersonOrbitCamSpringArm3D" unique_id=446595775]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+cull_mask = 1048574
+
 [node name="Head" type="Node3D" parent="HeadOriginalPosition" unique_id=202485167]
 unique_name_in_owner = true
 
 [node name="CameraSmoothPoint" type="Node3D" parent="HeadOriginalPosition/Head" unique_id=1812588030]
 unique_name_in_owner = true
 
-[node name="Camera3D" type="Camera3D" parent="HeadOriginalPosition/Head/CameraSmoothPoint" unique_id=122657194]
+[node name="FirstPersonCamera3D" type="Camera3D" parent="HeadOriginalPosition/Head/CameraSmoothPoint" unique_id=122657194]
 unique_name_in_owner = true
 cull_mask = 1048573
 
