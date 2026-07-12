@@ -1,58 +1,60 @@
-[gd_resource type="AnimationNodeBlendSpace2D" format=3 uid="uid://btpuubkd03hcm"]
+[gd_resource type="AnimationNodeBlendSpace2D" format=3 uid="uid://c5l8ng1jq3po3"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7ka7k"]
-animation = &"ua1/Jog_Fwd"
+animation = &"ua1/Crouch_Fwd"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g8bkp"]
-animation = &"ua1/Jog_Left"
+animation = &"ua1/Crouch_Left"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2svuj"]
-animation = &"ua1/Jog_Right"
+animation = &"ua1/Crouch_Right"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_drkpa"]
-animation = &"ua1/Jog_Bwd"
+animation = &"ua1/Crouch_Bwd"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bs5s3"]
-animation = &"ua1/Idle"
+animation = &"ua1/Crouch_Idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_45ri4"]
-animation = &"ua1/Jog_Bwd_R"
+animation = &"ua1/Crouch_Bwd_R"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1xh6q"]
-animation = &"ua1/Jog_Fwd_R"
+animation = &"ua1/Crouch_Fwd_R"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2wtae"]
-animation = &"ua1/Jog_Bwd_L"
+animation = &"ua1/Crouch_Bwd_L"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0f6ir"]
-animation = &"ua1/Jog_Fwd_L"
+animation = &"ua1/Crouch_Fwd_L"
 
 [resource]
-resource_name = "RunBlendSpace2D"
+resource_name = "CrouchBlendSpace2D"
+min_space = Vector2(-2, -2)
+max_space = Vector2(2, 2)
 blend_point_0/node = SubResource("AnimationNodeAnimation_7ka7k")
 blend_point_0/pos = Vector2(0, 1)
-blend_point_0/name = &"ua1_Jog_Fwd"
+blend_point_0/name = &"ua1_Crouch_Fwd"
 blend_point_1/node = SubResource("AnimationNodeAnimation_g8bkp")
 blend_point_1/pos = Vector2(-1, 0)
-blend_point_1/name = &"ua1_Jog_Left"
+blend_point_1/name = &"ua1_Crouch_Left"
 blend_point_2/node = SubResource("AnimationNodeAnimation_2svuj")
 blend_point_2/pos = Vector2(1, 0)
-blend_point_2/name = &"ua1_Jog_Right"
+blend_point_2/name = &"ua1_Crouch_R"
 blend_point_3/node = SubResource("AnimationNodeAnimation_drkpa")
 blend_point_3/pos = Vector2(0, -1)
-blend_point_3/name = &"ua1_Jog_Bwd"
+blend_point_3/name = &"ua1_Crouch_Bwd"
 blend_point_4/node = SubResource("AnimationNodeAnimation_bs5s3")
 blend_point_4/pos = Vector2(0, 0)
-blend_point_4/name = &"ua1_Idle"
+blend_point_4/name = &"ua1_Crouch_Idle"
 blend_point_5/node = SubResource("AnimationNodeAnimation_45ri4")
 blend_point_5/pos = Vector2(0.5, -0.5)
-blend_point_5/name = &"ua1_Jog_Bwd_R"
+blend_point_5/name = &"ua1_Crouch_Bwd_R"
 blend_point_6/node = SubResource("AnimationNodeAnimation_1xh6q")
 blend_point_6/pos = Vector2(0.5, 0.5)
-blend_point_6/name = &"ua1_Jog_Fwd_R"
+blend_point_6/name = &"ua1_Crouch_Fwd_R"
 blend_point_7/node = SubResource("AnimationNodeAnimation_2wtae")
 blend_point_7/pos = Vector2(-0.5, -0.5)
-blend_point_7/name = &"ua1_Jog_Bwd_L"
+blend_point_7/name = &"ua1_Crouch_Bwd_L"
 blend_point_8/node = SubResource("AnimationNodeAnimation_0f6ir")
 blend_point_8/pos = Vector2(-0.5, 0.5)
-blend_point_8/name = &"ua1_Jog_Fwd_L"
+blend_point_8/name = &"ua1_Crouch_Fwd_L"
