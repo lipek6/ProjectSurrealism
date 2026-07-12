@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://hke8mqofw208" path="res://entities/player/scripts/movement_controller.gd" id="4_26q78"]
 [ext_resource type="Script" uid="uid://ibcgwefks3mb" path="res://entities/player/scripts/physics_interactor.gd" id="5_bectd"]
 [ext_resource type="Script" uid="uid://dpj7vkdogpfk7" path="res://entities/player/scripts/animation_controller.gd" id="6_8fjmc"]
-[ext_resource type="PackedScene" uid="uid://cx5oy8kj2p361" path="res://entities/commons/scenes/universal_character_model.tscn" id="7_qiwj3"]
+[ext_resource type="PackedScene" uid="uid://cx5oy8kj2p361" path="res://entities/commons/human/scenes/universal_character_model.tscn" id="7_qiwj3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bcbww"]
 radius = 0.4

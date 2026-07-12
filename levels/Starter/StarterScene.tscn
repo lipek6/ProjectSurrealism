@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dr7ks3lx07q50" path="res://entities/player/scenes/player.tscn" id="1_34vv4"]
 [ext_resource type="Material" uid="uid://bk7nbd8td4gb1" path="res://levels/Starter/textures/grey_checkerboard_mat.tres" id="1_h2ppu"]
-[ext_resource type="Script" uid="uid://ca5ww5a42y6r3" path="res://entities/commons/scripts/characters.gd" id="1_lqehj"]
+[ext_resource type="Script" uid="uid://ca5ww5a42y6r3" path="res://entities/commons/misc/characters.gd" id="1_lqehj"]
 [ext_resource type="Texture2D" uid="uid://d1uelfks0ip1w" path="res://levels/Starter/textures/grid_image.png" id="2_7cqoh"]
 [ext_resource type="PackedScene" uid="uid://bak8ltrhbmlv5" path="res://levels/Starter/utils/CSGStairMaker3D.tscn" id="3_ydgef"]
 [ext_resource type="ArrayMesh" uid="uid://dry23jeo6prdo" path="res://levels/Starter/terrain_mesh.mesh" id="4_h2ppu"]

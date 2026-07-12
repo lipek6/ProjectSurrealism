@@ -97,6 +97,7 @@ func _physics_process(delta: float) -> void:
 		movement_controller.handle_toggles_and_settings()                                          
 	
 	# Delegate exact execution order to the underlying components
+	
 	movement_controller.process_movement(delta)
 	camera_controller.process_camera(delta)
 	physics_interactor.process_physics()
