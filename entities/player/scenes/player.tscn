@@ -39,9 +39,12 @@ can_noclip = true
 unique_name_in_owner = true
 script = ExtResource("5_bectd")
 
-[node name="AnimationController" type="Node" parent="." unique_id=65092068]
+[node name="AnimationController" type="Node" parent="." unique_id=65092068 node_paths=PackedStringArray("player", "movement_controller", "animation_tree")]
 unique_name_in_owner = true
 script = ExtResource("6_8fjmc")
+player = NodePath("..")
+movement_controller = NodePath("../MovementController")
+animation_tree = NodePath("../WorldModel/UniversalCharacterModel/AnimationTree")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=74638354]
 unique_name_in_owner = true
@@ -59,6 +62,26 @@ debug_color = Color(1, 0, 0, 1)
 unique_name_in_owner = true
 
 [node name="UniversalCharacterModel" parent="WorldModel" unique_id=308895306 instance=ExtResource("7_qiwj3")]
+
+[node name="GeneralSkeleton" parent="WorldModel/UniversalCharacterModel/Armature" parent_id_path=PackedInt32Array(308895306, 1552824315) index="0" unique_id=1271279536]
+bones/1/position = Vector3(0.00019649287, 0.8703992, -0.088089734)
+bones/1/rotation = Quaternion(-0.034990385, -0.11594245, -0.0040869983, 0.9926311)
+bones/3/rotation = Quaternion(0.09966581, 0.00011456712, 0.00025007673, 0.9950209)
+bones/4/rotation = Quaternion(0.09966599, 0.0003264235, 0.0002432753, 0.99502087)
+bones/5/rotation = Quaternion(-0.09966597, -0.00022084874, -0.00025729233, 0.9950209)
+bones/6/rotation = Quaternion(0.05390714, 0.095641114, 0.008849623, 0.9939158)
+bones/7/rotation = Quaternion(0.50033903, 0.52215207, 0.53033185, -0.44245481)
+bones/8/rotation = Quaternion(-0.021709282, 0.82419544, -0.5658062, 0.009691252)
+bones/9/rotation = Quaternion(0.17152798, -0.67994803, 0.17953226, 0.68993986)
+bones/31/rotation = Quaternion(0.5523361, -0.471573, -0.47714746, -0.49484742)
+bones/32/rotation = Quaternion(0.05978972, 0.8197848, -0.56945854, -0.00975378)
+bones/33/rotation = Quaternion(0.2871086, 0.55992794, -0.21173029, 0.74780995)
+bones/55/rotation = Quaternion(-0.00083611894, 0.15464517, 0.9807112, -0.11953972)
+bones/56/rotation = Quaternion(0.020507064, 0.97570556, -0.18825896, 0.110166416)
+bones/57/rotation = Quaternion(-0.09700506, 0.71674746, -0.69050807, 0.007864427)
+bones/60/rotation = Quaternion(0.00094703236, -0.074084625, 0.98801774, 0.13539475)
+bones/61/rotation = Quaternion(-0.05155941, 0.92330056, -0.14143895, -0.35334522)
+bones/62/rotation = Quaternion(0.16997835, 0.6213573, -0.76486236, 0.002862432)
 
 [node name="HeadOriginalPosition" type="Node3D" parent="." unique_id=1961007866]
 unique_name_in_owner = true
@@ -107,3 +130,5 @@ collision_mask = 15
 unique_name_in_owner = true
 offset_right = 368.0
 offset_bottom = 23.0
+
+[editable path="WorldModel/UniversalCharacterModel"]

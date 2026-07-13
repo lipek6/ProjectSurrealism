@@ -1,0 +1,75 @@
+[gd_resource type="AnimationNodeStateMachine" format=3 uid="uid://cvnu5qtkc632n"]
+
+[ext_resource type="AnimationNodeBlendSpace2D" uid="uid://c5l8ng1jq3po3" path="res://entities/commons/human/arts/animations/states/crouch_blend_space_2d.tres" id="1_rguw7"]
+[ext_resource type="AnimationNodeBlendSpace2D" uid="uid://h13jbhpwestu" path="res://entities/commons/human/arts/animations/states/stand_blend_space_2d.tres" id="2_oiscw"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kmw15"]
+animation = &"ua1/Crouch_Enter"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yjcfe"]
+animation = &"ua1/Crouch_Exit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qubtu"]
+animation = &"ua1/Jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kd422"]
+animation = &"ua1/Jump_Land"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w336n"]
+animation = &"ua1/Jump_Start"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yjcfe"]
+xfade_time = 0.25
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j05ir"]
+xfade_time = 0.25
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kfcw4"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iw2jf"]
+xfade_time = 0.25
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_smisx"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kmw15"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qubtu"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kd422"]
+xfade_time = 0.25
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w336n"]
+xfade_time = 0.25
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3jvdr"]
+xfade_time = 0.25
+
+[resource]
+resource_name = "BaseMovementStateMachine"
+states/CrouchBlendSpace2D/node = ExtResource("1_rguw7")
+states/CrouchBlendSpace2D/position = Vector2(813, -112)
+states/CrouchEnterAnimation/node = SubResource("AnimationNodeAnimation_kmw15")
+states/CrouchEnterAnimation/position = Vector2(813, 11)
+states/CrouchExitAnimation/node = SubResource("AnimationNodeAnimation_yjcfe")
+states/CrouchExitAnimation/position = Vector2(571, -112)
+states/End/position = Vector2(1175, 100)
+states/JumpAnimation/node = SubResource("AnimationNodeAnimation_qubtu")
+states/JumpAnimation/position = Vector2(1012, 100)
+states/JumpLandAnimation/node = SubResource("AnimationNodeAnimation_kd422")
+states/JumpLandAnimation/position = Vector2(571, 255)
+states/JumpStartAnimation/node = SubResource("AnimationNodeAnimation_w336n")
+states/JumpStartAnimation/position = Vector2(813, 100)
+states/StandBlendSpace2D/node = ExtResource("2_oiscw")
+states/StandBlendSpace2D/position = Vector2(571, 100)
+states/Start/position = Vector2(215, 100)
+transitions = ["Start", "StandBlendSpace2D", SubResource("AnimationNodeStateMachineTransition_yjcfe"), "JumpStartAnimation", "JumpAnimation", SubResource("AnimationNodeStateMachineTransition_j05ir"), "JumpAnimation", "JumpLandAnimation", SubResource("AnimationNodeStateMachineTransition_kfcw4"), "CrouchEnterAnimation", "CrouchBlendSpace2D", SubResource("AnimationNodeStateMachineTransition_iw2jf"), "CrouchBlendSpace2D", "CrouchExitAnimation", SubResource("AnimationNodeStateMachineTransition_smisx"), "StandBlendSpace2D", "CrouchEnterAnimation", SubResource("AnimationNodeStateMachineTransition_kmw15"), "StandBlendSpace2D", "JumpStartAnimation", SubResource("AnimationNodeStateMachineTransition_qubtu"), "CrouchExitAnimation", "StandBlendSpace2D", SubResource("AnimationNodeStateMachineTransition_kd422"), "JumpLandAnimation", "StandBlendSpace2D", SubResource("AnimationNodeStateMachineTransition_w336n"), "JumpAnimation", "CrouchEnterAnimation", SubResource("AnimationNodeStateMachineTransition_3jvdr")]
+graph_offset = Vector2(-9, -169)

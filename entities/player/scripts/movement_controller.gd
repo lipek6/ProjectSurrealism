@@ -4,6 +4,7 @@ class_name PlayerMovementController extends Node
 ## Responsibilities: Manages the Finite State Machine (FSM) for kinematic traversal.
 ## Handles acceleration, friction, stair-snapping, and state transitions (crouching, sprinting).
 # ==============================================================================
+# TODO: Change the @onready vars to @export so we can reuse this code in other entities
 
 
 

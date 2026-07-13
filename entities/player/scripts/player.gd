@@ -16,11 +16,11 @@ class_name Player extends CharacterBody3D
 # ATTRIBUTES
 # ==============================================================================
 #region Node References
-@onready var input               : PlayerInput              = %PlayerInput
-@onready var movement_controller : PlayerMovementController = %MovementController
-@onready var camera_controller   : PlayerCameraController   = %CameraController
-@onready var physics_interactor  : PhysicsInteractor        = %PhysicsInteractor
-
+@onready var input                : PlayerInput              = %PlayerInput
+@onready var movement_controller  : PlayerMovementController = %MovementController
+@onready var camera_controller    : PlayerCameraController   = %CameraController
+@onready var physics_interactor   : PhysicsInteractor        = %PhysicsInteractor
+@onready var animation_controller : AnimationController      = %AnimationController
 @onready var world_model : Node3D = %WorldModel
 @onready var debug_label : Label  = %DebugLabel          
 
@@ -81,6 +81,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	if is_active:
 		camera_controller.handle_controller_look_input(delta)
+		animation_controller.process_animation(delta)
 		
 	debug_label.text  = "FPS: " + str(Engine.get_frames_per_second())                 + "\n"        # For DEBUG purpouses. TODO: Need to find a way to enable/disable these things
 	debug_label.text += "STATE: " + str(movement_controller.State.keys()[movement_controller.current_state])            + "\n"        

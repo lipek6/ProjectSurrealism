@@ -5,6 +5,7 @@ class_name PhysicsInteractor extends Node
 ## This includes momentum conservation when pushing RigidBodies, the dynamic flat-feet 
 ## glitch fix, and applying artificial gravity to props for edge-teetering.
 # ==============================================================================
+# TODO: Change the @onready vars to @export so we can reuse this code in other entities
 
 
 

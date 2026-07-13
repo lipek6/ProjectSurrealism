@@ -96674,18 +96674,10 @@ _subresources={
 "slices/amount": 0
 }
 },
-"meshes": {
-"ual2_Mannequin": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 20.0,
-"save_to_file/enabled": false,
-"save_to_file/fallback_path": "res://entities/commons/arts/ual2_Mannequin.res",
-"save_to_file/path": "uid://byk3vn2g7e7ka"
-}
-},
 "nodes": {
+"PATH:AnimationPlayer": {
+"import/skip_import": true
+},
 "PATH:Armature/Skeleton3D": {
 "retarget/bone_map": Resource("uid://bypydt5qrg852", "res://entities/commons/human/utilities/human_default_bonemap.tres")
 }

@@ -5,8 +5,8 @@ class_name PlayerCameraController extends Node                                # 
 ## (FP, TP, Free Look). Handles aiming sensitivity, procedural headbob, and 
 ## dynamic crouch-smoothing independent of the physical body.
 # =============================================================================
-#TODO: ADD COMMENTS ABOVE ALL FUNCTIONS
-
+# TODO: ADD COMMENTS ABOVE ALL FUNCTIONS
+# TODO: Change the @onready vars to @export so we can reuse this code in other entities
 
 
 # ==============================================================================
