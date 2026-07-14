@@ -29,6 +29,13 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/resizable=false
 
+[editor]
+
+movie_writer/video_quality=0.5
+movie_writer/movie_file="/home/fald/Godot/Games/ProjectSurrealism/gameplay_registers/animation_test_1.avi"
+movie_writer/disable_vsync=true
+movie_writer/fps=30
+
 [editor_plugins]
 
 enabled=PackedStringArray()

@@ -6,6 +6,62 @@ animation = &"ua1/Crouch_Fwd"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g8bkp"]
 animation = &"ua1/Crouch_Left"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y1onp"]
+animation = &"ua1/Crouch_Fwd_L"
+use_custom_timeline = true
+timeline_length = 0.5
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xxfmh"]
+animation = &"ua1/Crouch_Fwd_R"
+use_custom_timeline = true
+timeline_length = 0.5
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_in1hm"]
+animation = &"ua1/Crouch_Right"
+use_custom_timeline = true
+timeline_length = 0.5
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lsa6k"]
+animation = &"ua1/Crouch_Left"
+use_custom_timeline = true
+timeline_length = 0.5
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dxyhr"]
+animation = &"ua1/Crouch_Bwd_L"
+use_custom_timeline = true
+timeline_length = 0.5
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yr48w"]
+animation = &"ua1/Crouch_Bwd_R"
+use_custom_timeline = true
+timeline_length = 0.5
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ubm58"]
+animation = &"ua1/Crouch_Bwd"
+use_custom_timeline = true
+timeline_length = 0.5
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2svuj"]
 animation = &"ua1/Crouch_Right"
 
@@ -27,6 +83,14 @@ animation = &"ua1/Crouch_Bwd_L"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0f6ir"]
 animation = &"ua1/Crouch_Fwd_L"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_30kes"]
+animation = &"ua1/Crouch_Fwd"
+use_custom_timeline = true
+timeline_length = 0.5
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
+
 [resource]
 resource_name = "CrouchBlendSpace2D"
 min_space = Vector2(-2, -2)
@@ -39,7 +103,7 @@ blend_point_1/pos = Vector2(-1, 0)
 blend_point_1/name = &"ua1_Crouch_Left"
 blend_point_2/node = SubResource("AnimationNodeAnimation_2svuj")
 blend_point_2/pos = Vector2(1, 0)
-blend_point_2/name = &"ua1_Crouch_R"
+blend_point_2/name = &"ua1_Crouch_Right"
 blend_point_3/node = SubResource("AnimationNodeAnimation_drkpa")
 blend_point_3/pos = Vector2(0, -1)
 blend_point_3/name = &"ua1_Crouch_Bwd"
@@ -58,3 +122,27 @@ blend_point_7/name = &"ua1_Crouch_Bwd_L"
 blend_point_8/node = SubResource("AnimationNodeAnimation_0f6ir")
 blend_point_8/pos = Vector2(-0.5, 0.5)
 blend_point_8/name = &"ua1_Crouch_Fwd_L"
+blend_point_9/node = SubResource("AnimationNodeAnimation_30kes")
+blend_point_9/pos = Vector2(0, 2)
+blend_point_9/name = &"ua1_Crouch_Fwd 2"
+blend_point_10/node = SubResource("AnimationNodeAnimation_y1onp")
+blend_point_10/pos = Vector2(-1, 1)
+blend_point_10/name = &"ua1_Crouch_Fwd_L 2"
+blend_point_11/node = SubResource("AnimationNodeAnimation_xxfmh")
+blend_point_11/pos = Vector2(1, 1)
+blend_point_11/name = &"ua1_Crouch_Fwd_R 2"
+blend_point_12/node = SubResource("AnimationNodeAnimation_in1hm")
+blend_point_12/pos = Vector2(2, 0)
+blend_point_12/name = &"ua1_Crouch_Right 2"
+blend_point_13/node = SubResource("AnimationNodeAnimation_lsa6k")
+blend_point_13/pos = Vector2(-2, 0)
+blend_point_13/name = &"ua1_Crouch_Left 2"
+blend_point_14/node = SubResource("AnimationNodeAnimation_dxyhr")
+blend_point_14/pos = Vector2(-1, -1)
+blend_point_14/name = &"ua1_Crouch_Bwd_L 2"
+blend_point_15/node = SubResource("AnimationNodeAnimation_yr48w")
+blend_point_15/pos = Vector2(1, -1)
+blend_point_15/name = &"ua1_Crouch_Bwd_R 2"
+blend_point_16/node = SubResource("AnimationNodeAnimation_ubm58")
+blend_point_16/pos = Vector2(0, -2)
+blend_point_16/name = &"ua1_Crouch_Bwd 2"

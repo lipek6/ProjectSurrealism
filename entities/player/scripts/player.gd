@@ -16,11 +16,11 @@ class_name Player extends CharacterBody3D
 # ATTRIBUTES
 # ==============================================================================
 #region Node References
-@onready var input                : PlayerInput              = %PlayerInput
-@onready var movement_controller  : PlayerMovementController = %MovementController
-@onready var camera_controller    : PlayerCameraController   = %CameraController
-@onready var physics_interactor   : PhysicsInteractor        = %PhysicsInteractor
-@onready var animation_controller : AnimationController      = %AnimationController
+@onready var input                : PlayerInput               = %PlayerInput
+@onready var movement_controller  : PlayerMovementController  = %MovementController
+@onready var camera_controller    : PlayerCameraController    = %CameraController
+@onready var physics_interactor   : PhysicsInteractor         = %PhysicsInteractor
+@onready var animation_controller : PlayerAnimationController = %AnimationController
 @onready var world_model : Node3D = %WorldModel
 @onready var debug_label : Label  = %DebugLabel          
 

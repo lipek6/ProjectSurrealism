@@ -49,15 +49,15 @@ var previous_state : State = State.IDLE
 @export_group("Ground Movement")
 @export var auto_bhop               : bool  = false                             ## [color=green]Hold jump to continuously bounce.[/color] [br]If true, holding the jump button automatically triggers a jump on the exact frame the player lands.
 @export var auto_sprint             : bool  = true                              ## [color=cyan]Inverts sprint key logic.[/color] [br]If true, the player sprints by default and walks only when holding the sprint key.
-@export var walk_speed              : float = 7.0                               ## [color=yellow]Base walking velocity (m/s).[/color] [br]Standard speed for normal ground traversal.
+@export var walk_speed              : float = 5.5                               ## [color=yellow]Base walking velocity (m/s).[/color] [br]Standard speed for normal ground traversal.
 @export var sprint_speed            : float = 8.5                               ## [color=orange]Maximum running velocity (m/s).[/color] [br]Achieved when sprinting.
 @export var ground_accel            : float = 14.0                              ## [color=cyan]Acceleration rate.[/color] [br]How quickly the player reaches max speed from a standstill. Higher values = snappier movement.
 @export var ground_decel            : float = 10.0                              ## [color=cyan]Deceleration rate.[/color] [br]How quickly the player comes to a halt when releasing the movement keys.
-@export var ground_friction         : float = 6.0                               ## [color=orange]Friction multiplier.[/color] [br]Applied against deceleration. Lower values make the floor feel like ice.
+@export var ground_friction         : float = 3.0                               ## [color=orange]Friction multiplier.[/color] [br]Applied against deceleration. Lower values make the floor feel like ice.
 @export var max_step_height         : float = 0.5                               ## [color=pink]Stair snap height (m).[/color] [br]Maximum height of a ledge/stair the player will automatically step onto without jumping.
 @export var crouch_translate        : float = 0.7                               ## [color=pink]Crouch depth (m).[/color] [br]How much the physical collision capsule shrinks and the camera lowers when crouching.
 @export var crouch_jump_add         : float = 0.7 * 0.9                         ## [color=pink]Crouch-jump clearance (m).[/color] [br]Usually [code]crouch_translate * 0.9[/code]. Extra height gained by pulling legs up mid-air.
-@export var crouch_speed_multiplier : float = 0.8                               ## [color=yellow]Crouch speed penalty.[/color] [br]Multiplies base speed. [code]0.8[/code] means moving at 80% speed while crouching.
+@export var crouch_speed_multiplier : float = 0.7                               ## [color=yellow]Crouch speed penalty.[/color] [br]Multiplies base speed. [code]0.8[/code] means moving at 80% speed while crouching.
 #endregion
 
 
@@ -238,6 +238,10 @@ func get_move_speed() -> float:
 			return walk_speed * noclip_speed_multiplier
 		State.NOCLIPING_SPRINTING:
 			return sprint_speed * noclip_speed_multiplier
+		State.IN_AIR, State.IN_AIR_CROUCHING:
+			return air_move_speed
+		State.SURFING:
+			return sprint_speed
 		_:
 			print("WARNING: There is no mapped speed for the current state")
 			return 0.0
