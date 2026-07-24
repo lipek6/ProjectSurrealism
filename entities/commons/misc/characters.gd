@@ -23,6 +23,8 @@ func _ready() -> void:
 	active_character = character_1
 	character_1.set_activity(true)
 	character_2.set_activity(false)
+	character_1._ready() #HACK 
+	character_2._ready() #HACK. Need to refactor set_activity!
 
 ## CAUTION: Lots of unsafe accesses here. All of this needs to be refactored later!
 func _process(delta: float) -> void:

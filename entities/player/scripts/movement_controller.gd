@@ -50,7 +50,7 @@ var previous_state : State = State.IDLE
 @export var auto_bhop               : bool  = false                             ## [color=green]Hold jump to continuously bounce.[/color] [br]If true, holding the jump button automatically triggers a jump on the exact frame the player lands.
 @export var auto_sprint             : bool  = true                              ## [color=cyan]Inverts sprint key logic.[/color] [br]If true, the player sprints by default and walks only when holding the sprint key.
 @export var walk_speed              : float = 5.5                               ## [color=yellow]Base walking velocity (m/s).[/color] [br]Standard speed for normal ground traversal.
-@export var sprint_speed            : float = 8.5                               ## [color=orange]Maximum running velocity (m/s).[/color] [br]Achieved when sprinting.
+@export var sprint_speed            : float = 7.5                               ## [color=orange]Maximum running velocity (m/s).[/color] [br]Achieved when sprinting.
 @export var ground_accel            : float = 14.0                              ## [color=cyan]Acceleration rate.[/color] [br]How quickly the player reaches max speed from a standstill. Higher values = snappier movement.
 @export var ground_decel            : float = 10.0                              ## [color=cyan]Deceleration rate.[/color] [br]How quickly the player comes to a halt when releasing the movement keys.
 @export var ground_friction         : float = 3.0                               ## [color=orange]Friction multiplier.[/color] [br]Applied against deceleration. Lower values make the floor feel like ice.

@@ -141,12 +141,9 @@ next_camera={
 
 [layer_names]
 
-3d_render/layer_1="Player first pesron body Layer"
-3d_render/layer_2="Player third person body layer"
-3d_render/layer_3="Solids Layer"
-3d_render/layer_4="Physics props Layer"
-3d_render/layer_5="Lights Layer"
-3d_render/layer_6="Entities Layer"
+3d_render/layer_1="World"
+3d_render/layer_2="Local Player FP"
+3d_render/layer_3="Local Player TP"
 3d_physics/layer_1="Player Layer"
 3d_physics/layer_2="Entity Layer"
 3d_physics/layer_3="Solid Layer"

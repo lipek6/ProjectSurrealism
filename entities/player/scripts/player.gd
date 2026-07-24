@@ -31,6 +31,10 @@ class_name Player extends CharacterBody3D
 @export_group("General")
 @export var is_active : bool = true                                             ## [color=green]Toggles player control.[/color] [br]If false, ignores all inputs and physics processing. Highly useful for cutscenes or swapping characters.
 @export var weight    : float = 80.0                                            ## [color=orange]Player's physical mass (kg).[/color] [br]Defines how hard the player can push dynamic PhysicsProps, and applies downward gravity when riding them. [br]Standard: [code]80.0[/code].
+
+@export_group("Visual Models")
+@export var first_person_model : Node3D                                         ## Container for headless bodies/floating arms.
+@export var third_person_model : Node3D                                         ## Container for the full body / shadow caster.
 #endregion
 
 
@@ -58,9 +62,28 @@ func _ready() -> void:
 	self.platform_on_leave = CharacterBody3D.PLATFORM_ON_LEAVE_DO_NOTHING
 	self.safe_margin = 0.0001
 	
-	for child : VisualInstance3D in world_model.find_children("*", "VisualInstance3D"):
-		child.set_layer_mask_value(1, false) 
-		child.set_layer_mask_value(2, true)
+	_update_model_layers(is_active)
+
+## Safely manages visibility layers so First Person cameras don't see full bodies, 
+## while ensuring inactive players/NPCs remain visible to everyone!
+func _update_model_layers(active: bool) -> void:
+	# First Person Meshes (Headless body, floating arms)
+	if first_person_model:
+		# Note: The 'false' parameter at the end ensures we find nodes inside instanced scenes too
+		for child : VisualInstance3D in first_person_model.find_children("*", "VisualInstance3D", true, false):
+			# Only active players see their FP model. It goes on Layer 2.
+			child.set_layer_mask_value(1, false)
+			child.set_layer_mask_value(2, active)
+			child.set_layer_mask_value(3, false)
+	
+	# Third Person Meshes (Full body, shadow caster)
+	if third_person_model:
+		for child : VisualInstance3D in third_person_model.find_children("*", "VisualInstance3D", true, false):
+		# If active player, put on Layer 3 (Local TP). If inactive (NPC/Other), put on Layer 1 (World)
+			child.set_layer_mask_value(1, not active)
+			child.set_layer_mask_value(2, false)
+			child.set_layer_mask_value(3, active)
+
 
 
 ## Listens for hardware events that aren't tied to the physics tick (like mouse movement).
@@ -95,8 +118,13 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if is_active:
 		input.gather_inputs(self.global_basis, camera_controller.current_camera.global_basis)       # Instead of current_camera maybe I should use its style state? Don't know :(
-		movement_controller.handle_toggles_and_settings()                                          
+		movement_controller.handle_toggles_and_settings()                  
 	
+	var anim : AnimationPlayer = $HeadOriginalPosition/Head/CameraSmoothPoint/FirstPersonCamera3D/FirstPersonModel/arms_rig/AnimationPlayer
+	if input.crouch_held:
+		anim.play("fp_pistol_reload")
+	else:
+		anim.play("fp_pistol_idle")
 	# Delegate exact execution order to the underlying components
 	
 	movement_controller.process_movement(delta)

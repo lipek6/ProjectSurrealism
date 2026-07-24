@@ -20,7 +20,6 @@ collision = NodePath("CollisionShape3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Model" unique_id=293114421]
-layers = 8
 mesh = SubResource("BoxMesh_866jk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1182266355]
