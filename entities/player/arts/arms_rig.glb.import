@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cf7xokene8blw"
+uid="uid://bpjjgvwca6v1l"
 path="res://.godot/imported/arms_rig.glb-928d39951b27d7443e9b22ca2dfd6243.scn"
 
 [deps]
@@ -40,11 +40,15 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={
-"nodes": {
-"PATH:ArmsRig/Skeleton3D": {
-"retarget/bone_map": null
+"materials": {
+"of_Arms": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://entities/player/arts/arms_material.tres",
+"use_external/path": "uid://bnkpfeak5tcgu"
+}
 },
-"PATH:ArmsRig/Skeleton3D/ArmsMesh": {
+"nodes": {
+"PATH:arms_rig/Skeleton3D/ArmsMesh_003": {
 "mesh_instance/layers": 2
 }
 }

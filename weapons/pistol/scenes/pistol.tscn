@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://32k27ywhka81"]
+
+[ext_resource type="PackedScene" uid="uid://ca44p5a4lia4q" path="res://weapons/pistol/arts/models/local/pistol.glb" id="1_i0th8"]
+
+[node name="Pistol" unique_id=485210773 instance=ExtResource("1_i0th8")]
+
+[node name="Skeleton3D" parent="pistol_armature" parent_id_path=PackedInt32Array(2007469353) index="0" unique_id=632906500]
+bones/0/position = Vector3(-0.5083668, 1.181493, -0.28124735)
+bones/0/rotation = Quaternion(-0.059672173, -0.44698617, 0.82200843, 0.34777132)
+bones/0/scale = Vector3(1.0000001, 1, 0.9999999)
+bones/1/position = Vector3(-0.08202853, 1.529764, 0.4122449)
+bones/1/rotation = Quaternion(-2.057953e-09, 0.7071068, 0.7071068, -5.7622634e-10)
+bones/2/position = Vector3(1.403091e-10, -0.017700745, -0.07063596)
+bones/3/position = Vector3(2.6393202e-08, -0.084521204, -0.03666718)
+bones/4/position = Vector3(-4.174366e-09, 0.016616879, 0.020477604)
+
+[node name="Muzzle" type="Marker3D" parent="pistol_armature/Skeleton3D" index="1" unique_id=936663093]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08129954, 1.542921, 0.5935051)
+
+[node name="Ejection" type="Marker3D" parent="pistol_armature/Skeleton3D" index="2" unique_id=328097931]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10224076, 1.5686449, 0.46751493)

@@ -35,6 +35,7 @@ enum PropType {
 # ==========================================
 #region Prop Configuration
 @export_group("Prop Settings")
+@export var health : int = 100
 @export var prop_type           : PropType = PropType.INTERACTIVE               ## Categorizes how this object interacts with the world and the player.
 @export var prop_scale          : Vector3  = Vector3.ONE:                       ## Safely scales the visual mesh and colliders without breaking RigidBody3D physics calculations.[br] Standard RigidBody3D nodes break if their Transform Scale is modified directly.
 	set(value):
@@ -166,3 +167,19 @@ func apply_resting_weight(force : Vector3, point: Vector3) -> void:
 # ==========================================
 # PICKUP HANDLERS
 # ==========================================
+
+
+
+# ==========================================
+# DAMAGE HANDLERS
+# ==========================================
+func take_damage(damage: int) -> void:
+	health -= damage
+	if health <= 0:
+		self.queue_free()
+	
+func take_impact(hit_point: Vector3, hit_direction: Vector3, impact_force: float) -> void:
+	var impulse : Vector3 = hit_direction * impact_force
+	var offset_from_center : Vector3 = hit_point - self.global_position         # Makes shooting in the corner spin things
+	self.apply_impulse(impulse, offset_from_center)
+	print(impulse)

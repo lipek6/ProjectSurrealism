@@ -21,6 +21,8 @@ class_name Player extends CharacterBody3D
 @onready var camera_controller    : PlayerCameraController    = %CameraController
 @onready var physics_interactor   : PhysicsInteractor         = %PhysicsInteractor
 @onready var animation_controller : PlayerAnimationController = %AnimationController
+@onready var weapon_manager       : WeaponManager             = %WeaponManager
+@onready var aim_raycast          : RayCast3D                 = %AimRayCast3D
 @onready var world_model : Node3D = %WorldModel
 @onready var debug_label : Label  = %DebugLabel          
 
@@ -112,7 +114,8 @@ func _process(delta: float) -> void:
 	debug_label.text += "CAM_POSITION: (" + str("%.2f" % camera_controller.current_camera.position.x) + "," + str("%.2f" % camera_controller.current_camera.position.y) + "," + str("%.2f" % camera_controller.current_camera.position.z) + ")\n"          
 	debug_label.text += "VELOCITY: " + str(("%.2f" % self.velocity.length()))         + "\n"        
 	debug_label.text += "POSITION: (" + str("%.2f" % self.global_position.x) + "," + str("%.2f" % self.global_position.y) + "," + str("%.2f" % self.global_position.z) + ")\n"              
-
+	if weapon_manager.inventory.size() > 0:
+		debug_label.text += "AMMO: " + str(weapon_manager.inventory[weapon_manager.active_index].on_mag_ammo) + "/" + str(weapon_manager.inventory[weapon_manager.active_index].on_reserve_ammo) + "\n"
 
 ## The rigid physics loop. Orchestrates the input gathering, state evaluation, and physics execution pipeline.
 func _physics_process(delta: float) -> void:
@@ -120,16 +123,11 @@ func _physics_process(delta: float) -> void:
 		input.gather_inputs(self.global_basis, camera_controller.current_camera.global_basis)       # Instead of current_camera maybe I should use its style state? Don't know :(
 		movement_controller.handle_toggles_and_settings()                  
 	
-	var anim : AnimationPlayer = $HeadOriginalPosition/Head/CameraSmoothPoint/FirstPersonCamera3D/FirstPersonModel/arms_rig/AnimationPlayer
-	if input.crouch_held:
-		anim.play("fp_pistol_reload")
-	else:
-		anim.play("fp_pistol_idle")
 	# Delegate exact execution order to the underlying components
-	
 	movement_controller.process_movement(delta)
 	camera_controller.process_camera(delta)
 	physics_interactor.process_physics()
+	weapon_manager.process_weapons(delta)
 	
 	# Update frame tracking for the downward stair raycast
 	if is_on_floor():

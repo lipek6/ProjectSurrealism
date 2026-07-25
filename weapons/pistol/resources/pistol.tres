@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="WeaponResource" format=3 uid="uid://ccnmwr0r41eki"]
+
+[ext_resource type="PackedScene" uid="uid://ch104rdoic4ia" path="res://weapons/pistol/arts/models/local/pistol_case.glb" id="1_3oato"]
+[ext_resource type="Script" uid="uid://4oukxtb444xf" path="res://weapons/commons/resources/weapon_resource.gd" id="1_q3bqy"]
+[ext_resource type="PackedScene" uid="uid://32k27ywhka81" path="res://weapons/pistol/scenes/pistol.tscn" id="3_3oato"]
+[ext_resource type="PackedScene" uid="uid://c63xi28spabs8" path="res://weapons/pistol/arts/effects/visual/pistol_muzzle_flash.tscn" id="3_p52ja"]
+
+[resource]
+script = ExtResource("1_q3bqy")
+weapon_name = "Pistol"
+damage = 20
+impact_force = 10.0
+fire_rate = 5.0
+hybrid_ballistics_distance = 20.0
+max_on_mag_ammo = 12
+on_mag_ammo = 12
+max_on_reserve_ammo = 120
+on_reserve_ammo = 24
+ammo_cost = 1
+weapon_scene = ExtResource("3_3oato")
+casing_mesh = ExtResource("1_3oato")
+shooting_effect = ExtResource("3_p52ja")
+metadata/_custom_type_script = "uid://4oukxtb444xf"

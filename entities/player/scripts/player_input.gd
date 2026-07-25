@@ -26,6 +26,13 @@ var jump_pressed                    : bool    = false                           
 var jump_held                       : bool    = false                           ## [color=green]Jump Held.[/color] [br]True while the jump button remains held down.
 var sprint_held                     : bool    = false                           ## [color=green]Sprint Held.[/color] [br]True while the sprint button remains held down.
 var crouch_held                     : bool    = false                           ## [color=green]Crouch Held.[/color] [br]True while the crouch button remains held down.
+var primary_shoot_held              : bool    = false
+var primary_shoot_pressed           : bool    = false
+var secondary_shoot_held            : bool    = false
+var secondary_shoot_pressed         : bool    = false
+var reload_pressed                  : bool    = false
+var swap_weapon_pressed             : bool    = false
+var interact_pressed                : bool    = false
 #endregion
 
 
@@ -51,6 +58,13 @@ func gather_inputs(player_basis: Basis, camera_basis: Basis) -> void:
 	jump_held               = Input.is_action_pressed("jump")
 	sprint_held             = Input.is_action_pressed("sprint")
 	crouch_held             = Input.is_action_pressed("crouch")
+	primary_shoot_held      = Input.is_action_pressed("primary_shoot")
+	primary_shoot_pressed   = Input.is_action_just_pressed("primary_shoot")
+	secondary_shoot_held    = Input.is_action_pressed("secondary_shoot")
+	secondary_shoot_pressed = Input.is_action_just_pressed("secondary_shoot")
+	reload_pressed          = Input.is_action_just_pressed("reload")
+	swap_weapon_pressed     = Input.is_action_just_pressed("swap_weapon")
+	interact_pressed        = Input.is_action_just_pressed("interact")
 	toggle_sprint_pressed   = Input.is_action_just_pressed("toggle_sprint")
 	toggle_noclip_pressed   = Input.is_action_just_pressed("_noclip")
 	noclip_increase_pressed = Input.is_action_just_pressed("_increase_noclip_speed")

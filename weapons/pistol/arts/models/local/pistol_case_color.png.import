@@ -2,24 +2,23 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://doy05dubg87y1"
-path.s3tc="res://.godot/imported/arms_rig_arms_01.png-e26a1c3233d6519c3c60bf82fcd6c867.s3tc.ctex"
+uid="uid://cu4pxy57kujc8"
+path="res://.godot/imported/pistol_case_color.png-f7920906054e161b951e459b855d90a7.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
-"md5": "51e2b3cfef98994030baf1708cf92b6f"
+"md5": "114ae3d90f7c83c51bb4dec5619926b7"
 }
 
 [deps]
 
-source_file="res://entities/player/arts/arms_rig_arms_01.png"
-dest_files=["res://.godot/imported/arms_rig_arms_01.png-e26a1c3233d6519c3c60bf82fcd6c867.s3tc.ctex"]
+source_file="res://weapons/pistol/arts/models/local/pistol_case_color.png"
+dest_files=["res://.godot/imported/pistol_case_color.png-f7920906054e161b951e459b855d90a7.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -41,4 +40,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
