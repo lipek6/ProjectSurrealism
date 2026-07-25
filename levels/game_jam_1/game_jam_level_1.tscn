@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://b4hnth4bl3ncn"]
+
+[ext_resource type="PackedScene" uid="uid://dr7ks3lx07q50" path="res://entities/player/scenes/player.tscn" id="1_npgic"]
+[ext_resource type="Texture2D" uid="uid://bc7ea2t5ueie1" path="res://levels/commons/skyboxes/SBS - Cloudy Skyboxes - Panorama/Panorama/Panorama_Sky_16-512x512.png" id="2_4frsa"]
+[ext_resource type="Shader" uid="uid://bp5b7v6mens7" path="res://levels/commons/checker_ground/shaders/infinity_floor.gdshader" id="2_npgic"]
+[ext_resource type="PackedScene" uid="uid://b1hqj0rqpk680" path="res://weapons/pistol/scenes/pistol_world.tscn" id="4_g3c0i"]
+[ext_resource type="PackedScene" uid="uid://punvxyibshat" path="res://props/reflexive/scenes/reflexive_sphere.tscn" id="5_g3c0i"]
+[ext_resource type="PackedScene" uid="uid://cutsw63a5iw35" path="res://entities/human_sphere/human_sphere.tscn" id="6_5mtbg"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_npgic"]
+panorama = ExtResource("2_4frsa")
+
+[sub_resource type="Sky" id="Sky_1pkhx"]
+sky_material = SubResource("PanoramaSkyMaterial_npgic")
+
+[sub_resource type="Environment" id="Environment_4frsa"]
+background_mode = 2
+sky = SubResource("Sky_1pkhx")
+tonemap_mode = 3
+tonemap_exposure = 0.5
+glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_density = 0.5
+fog_aerial_perspective = 0.6
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1pkhx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1pkhx"]
+render_priority = 0
+shader = ExtResource("2_npgic")
+shader_parameter/color1 = Color(0, 0, 0, 1)
+shader_parameter/color2 = Color(1, 1, 1, 1)
+shader_parameter/checker_scale = 4.0
+shader_parameter/roughness_value = 0.0
+shader_parameter/metallic_value = 1.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1pkhx"]
+material = SubResource("ShaderMaterial_1pkhx")
+size = Vector2(2000, 2000)
+
+[node name="GameJamLevel1" type="Node3D" unique_id=1915790507]
+
+[node name="Player" parent="." unique_id=1866164659 instance=ExtResource("1_npgic")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1106745270]
+transform = Transform3D(-5.4619793e-08, 0.5, -0.8660253, 2.7805944e-08, 0.8660253, 0.5, 1, -2.2117064e-08, -6.147256e-08, 0, 5, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2133522519]
+environment = SubResource("Environment_4frsa")
+
+[node name="InfinityFloorContainer" type="Node3D" parent="." unique_id=1075001522]
+
+[node name="InfiniteFloor" type="StaticBody3D" parent="InfinityFloorContainer" unique_id=76442154]
+collision_layer = 4
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InfinityFloorContainer/InfiniteFloor" unique_id=764635482]
+shape = SubResource("WorldBoundaryShape3D_1pkhx")
+
+[node name="PlaneMesh" type="MeshInstance3D" parent="InfinityFloorContainer" unique_id=1313017343]
+mesh = SubResource("PlaneMesh_1pkhx")
+
+[node name="PistolWorld" parent="." unique_id=1299527850 instance=ExtResource("4_g3c0i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -3)
+
+[node name="ReflexiveSphere" parent="." unique_id=2055625237 instance=ExtResource("5_g3c0i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.365495, 12.407749, -12.390766)
+mass = 10000.0
+health = 100
+prop_scale = Vector3(10, 10, 10)
+
+[node name="ReflexiveSphere2" parent="." unique_id=1272902941 instance=ExtResource("5_g3c0i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 12, -3)
+health = 30
+
+[node name="ReflexiveSphere3" parent="." unique_id=1722052701 instance=ExtResource("5_g3c0i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 13, -1)
+health = 30
+
+[node name="ReflexiveSphere4" parent="." unique_id=578727235 instance=ExtResource("5_g3c0i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 13, -2)
+health = 30
+
+[node name="ReflexiveSphere5" parent="." unique_id=1823548815 instance=ExtResource("5_g3c0i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, -7)
+
+[node name="ReflexiveSphere6" parent="." unique_id=1175549186 instance=ExtResource("5_g3c0i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 13, -5)
+
+[node name="HumanSphere" parent="." unique_id=1293444121 instance=ExtResource("6_5mtbg")]
+transform = Transform3D(0.86602545, 0, 0.49999997, 0, 1, 0, -0.49999997, 0, 0.86602545, 1, 0.14684105, -6)

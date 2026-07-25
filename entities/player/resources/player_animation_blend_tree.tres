@@ -1,0 +1,9 @@
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://c56071w8gc1x6"]
+
+[ext_resource type="AnimationNodeStateMachine" uid="uid://cvnu5qtkc632n" path="res://entities/commons/human/arts/animations/states/base_movement_state_machine.tres" id="1_4uxst"]
+
+[resource]
+nodes/output/position = Vector2(1180, 380)
+nodes/BaseMovementStateMachine/node = ExtResource("1_4uxst")
+nodes/BaseMovementStateMachine/position = Vector2(860, 360)
+node_connections = [&"output", 0, &"BaseMovementStateMachine"]

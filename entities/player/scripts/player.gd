@@ -21,7 +21,9 @@ class_name Player extends CharacterBody3D
 @onready var camera_controller    : PlayerCameraController    = %CameraController
 @onready var physics_interactor   : PhysicsInteractor         = %PhysicsInteractor
 @onready var animation_controller : PlayerAnimationController = %AnimationController
+@onready var footsteps_controller : FootstepsController       = %FootstepsController
 @onready var weapon_manager       : WeaponManager             = %WeaponManager
+@onready var weapon_sway          : WeaponSway                = %WeaponSway
 @onready var aim_raycast          : RayCast3D                 = %AimRayCast3D
 @onready var world_model : Node3D = %WorldModel
 @onready var debug_label : Label  = %DebugLabel          
@@ -100,6 +102,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and is_active:
 		if event is InputEventMouseMotion:
 			camera_controller.handle_camera_input(event)
+			weapon_sway.handle_sway_input(event)
 
 
 ## The visual frame loop. Used exclusively for updating UI and controller-based camera smoothing.
@@ -107,6 +110,7 @@ func _process(delta: float) -> void:
 	if is_active:
 		camera_controller.handle_controller_look_input(delta)
 		animation_controller.process_animation(delta)
+		weapon_sway.process_sway(delta)
 		
 	debug_label.text  = "FPS: " + str(Engine.get_frames_per_second())                 + "\n"        # For DEBUG purpouses. TODO: Need to find a way to enable/disable these things
 	debug_label.text += "STATE: " + str(movement_controller.State.keys()[movement_controller.current_state])            + "\n"        
@@ -128,6 +132,7 @@ func _physics_process(delta: float) -> void:
 	camera_controller.process_camera(delta)
 	physics_interactor.process_physics()
 	weapon_manager.process_weapons(delta)
+	footsteps_controller.process_footsteps(delta)
 	
 	# Update frame tracking for the downward stair raycast
 	if is_on_floor():

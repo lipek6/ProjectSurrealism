@@ -25,8 +25,8 @@ alpha_curve = SubResource("CurveTexture_6tyew")
 
 [sub_resource type="QuadMesh" id="QuadMesh_0iu8p"]
 size = Vector2(1.5, 1.5)
-subdivide_width = 16
-subdivide_depth = 16
+subdivide_width = 1
+subdivide_depth = 1
 center_offset = Vector3(0, 0.7, 0)
 
 [sub_resource type="Curve" id="Curve_i15wn"]
@@ -48,8 +48,8 @@ alpha_curve = SubResource("CurveTexture_b34i3")
 
 [sub_resource type="QuadMesh" id="QuadMesh_e3cen"]
 size = Vector2(0.8, 0.8)
-subdivide_width = 16
-subdivide_depth = 16
+subdivide_width = 1
+subdivide_depth = 1
 center_offset = Vector3(0, 0.3, 0)
 
 [sub_resource type="Curve" id="Curve_y2k0c"]
@@ -78,15 +78,15 @@ alpha_curve = SubResource("CurveTexture_45ohb")
 
 [sub_resource type="QuadMesh" id="QuadMesh_p0tjv"]
 size = Vector2(0.5, 0.5)
-subdivide_width = 16
-subdivide_depth = 16
+subdivide_width = 1
+subdivide_depth = 1
 orientation = 1
 
 [sub_resource type="SphereMesh" id="SphereMesh_m1co3"]
 radius = 0.15
 height = 0.4
-radial_segments = 16
-rings = 8
+radial_segments = 4
+rings = 16
 is_hemisphere = true
 
 [sub_resource type="Animation" id="Animation_03xhe"]
@@ -224,13 +224,16 @@ _data = {
 }
 
 [node name="PistolMuzzleFlash" type="Node3D" unique_id=127994509]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 script = ExtResource("1_yomdg")
+preview = false
+one_shot = true
 local_coords = true
 primary_color = Color(1, 1, 0.545098, 1)
 secondary_color = Color(1, 0.533333, 0.352941, 1)
 light_color = Color(1, 1, 0.545098, 1)
 light_energy = 2.0
-mesh_resolutions = 16
+mesh_resolutions = 1
 
 [node name="Flash_Long" type="GPUParticles3D" parent="." unique_id=2073558707]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.05, 0, 0)

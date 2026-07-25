@@ -6,8 +6,12 @@
 [ext_resource type="Script" uid="uid://hke8mqofw208" path="res://entities/player/scripts/movement_controller.gd" id="4_26q78"]
 [ext_resource type="Script" uid="uid://ibcgwefks3mb" path="res://entities/player/scripts/physics_interactor.gd" id="5_bectd"]
 [ext_resource type="Script" uid="uid://dpj7vkdogpfk7" path="res://entities/player/scripts/animation_controller.gd" id="6_8fjmc"]
+[ext_resource type="Script" uid="uid://bal55ymr5s75o" path="res://entities/player/scenes/footsteps_controller.gd" id="7_6oylw"]
 [ext_resource type="PackedScene" uid="uid://cx5oy8kj2p361" path="res://entities/commons/human/scenes/universal_character_model.tscn" id="7_qiwj3"]
+[ext_resource type="AudioStream" uid="uid://b4n6a7gims3g1" path="res://assets/Free Footsteps Pack/Concrete 1.wav" id="8_oucfp"]
 [ext_resource type="PackedScene" uid="uid://cf63k8h03nhqq" path="res://weapons/commons/scenes/weapon_manager.tscn" id="8_t4ku0"]
+[ext_resource type="Script" uid="uid://cwx1ipxf6bhee" path="res://entities/player/scripts/weapon_sway.gd" id="8_vvawb"]
+[ext_resource type="AudioStream" uid="uid://brkuqbei404rx" path="res://assets/Free Footsteps Pack/Concrete 2.wav" id="9_ekl84"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bcbww"]
 radius = 0.4
@@ -49,6 +53,13 @@ player = NodePath("..")
 movement_controller = NodePath("../MovementController")
 animation_tree = NodePath("../WorldModel/UniversalCharacterModel/AnimationTree")
 
+[node name="FootstepsController" type="Node3D" parent="." unique_id=555109723 node_paths=PackedStringArray("player", "audio_player")]
+unique_name_in_owner = true
+script = ExtResource("7_6oylw")
+player = NodePath("..")
+audio_player = NodePath("../AudioStreamPlayer3D")
+footstep_sounds = Array[AudioStream]([ExtResource("8_oucfp"), ExtResource("9_ekl84")])
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=74638354]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -67,24 +78,24 @@ unique_name_in_owner = true
 [node name="UniversalCharacterModel" parent="WorldModel" unique_id=308895306 instance=ExtResource("7_qiwj3")]
 
 [node name="GeneralSkeleton" parent="WorldModel/UniversalCharacterModel/Armature" parent_id_path=PackedInt32Array(308895306, 1552824315) index="0" unique_id=1271279536]
-bones/1/position = Vector3(0.0042410023, 0.8720768, -0.087830596)
-bones/1/rotation = Quaternion(-0.03619879, -0.1159374, -0.004228153, 0.99258775)
-bones/3/rotation = Quaternion(0.100239806, 0.00011472211, 0.00024970286, 0.9949633)
-bones/4/rotation = Quaternion(0.10024018, 0.00032687362, 0.00024294696, 0.9949632)
-bones/5/rotation = Quaternion(-0.100239925, -0.0002211261, -0.0002570021, 0.9949632)
-bones/6/rotation = Quaternion(0.060927384, 0.095727526, 0.007856895, 0.9935102)
-bones/7/rotation = Quaternion(0.4971967, 0.5232677, 0.5293799, -0.4458065)
-bones/8/rotation = Quaternion(-0.031525303, 0.8225645, -0.5677141, 0.00972394)
-bones/9/rotation = Quaternion(0.17914446, -0.67220116, 0.18357386, 0.6945168)
-bones/31/rotation = Quaternion(0.5492562, -0.4723045, -0.47656226, -0.4981311)
-bones/32/rotation = Quaternion(0.06583199, 0.8207824, -0.56735176, -0.009717612)
-bones/33/rotation = Quaternion(0.2881338, 0.5565148, -0.21036951, 0.75034314)
-bones/55/rotation = Quaternion(-0.00081334583, 0.14990842, 0.9818377, -0.11628275)
-bones/56/rotation = Quaternion(0.019901698, 0.9768285, -0.18198036, 0.110875346)
-bones/57/rotation = Quaternion(-0.095055245, 0.71890974, -0.68854475, 0.0062797153)
-bones/60/rotation = Quaternion(0.0009280494, -0.08076041, 0.9878624, 0.13268311)
-bones/61/rotation = Quaternion(-0.046540737, 0.9249448, -0.12799446, -0.35486403)
-bones/62/rotation = Quaternion(0.17111495, 0.62812203, -0.75906634, 0.0008534048)
+bones/1/position = Vector3(0.004331337, 0.8723707, -0.08777901)
+bones/1/rotation = Quaternion(-0.03655587, -0.11593586, -0.0042698635, 0.9925747)
+bones/3/rotation = Quaternion(0.10011608, 0.000114685885, 0.0002497714, 0.99497575)
+bones/4/rotation = Quaternion(0.10011642, 0.0003267738, 0.00024301323, 0.9949757)
+bones/5/rotation = Quaternion(-0.10011617, -0.0002210607, -0.00025705557, 0.9949757)
+bones/6/rotation = Quaternion(0.062301032, 0.095737256, 0.007737868, 0.993425)
+bones/7/rotation = Quaternion(0.4966465, 0.5234614, 0.5292123, -0.446391)
+bones/8/rotation = Quaternion(-0.033282228, 0.8222815, -0.5680236, 0.00972925)
+bones/9/rotation = Quaternion(0.18037184, -0.67087114, 0.18416749, 0.6953274)
+bones/31/rotation = Quaternion(0.54871744, -0.47243112, -0.4764591, -0.498703)
+bones/32/rotation = Quaternion(0.06692071, 0.82096297, -0.56696314, -0.009710938)
+bones/33/rotation = Quaternion(0.28832337, 0.5558801, -0.21011654, 0.75081164)
+bones/55/rotation = Quaternion(-0.0008113791, 0.14863627, 0.9820644, -0.116000876)
+bones/56/rotation = Quaternion(0.01972121, 0.97713494, -0.1802813, 0.11098302)
+bones/57/rotation = Quaternion(-0.0950015, 0.71945065, -0.687987, 0.006271674)
+bones/60/rotation = Quaternion(0.0009225518, -0.082018405, 0.98786396, 0.13189772)
+bones/61/rotation = Quaternion(-0.04571851, 0.9251871, -0.12579088, -0.35512727)
+bones/62/rotation = Quaternion(0.1711377, 0.62903094, -0.7583084, 0.0006747699)
 
 [node name="HeadOriginalPosition" type="Node3D" parent="." unique_id=1961007866]
 unique_name_in_owner = true
@@ -118,6 +129,7 @@ unique_name_in_owner = true
 [node name="FirstPersonCamera3D" type="Camera3D" parent="HeadOriginalPosition/Head/CameraSmoothPoint" unique_id=122657194]
 unique_name_in_owner = true
 cull_mask = 1048571
+current = true
 
 [node name="AimRayCast3D" type="RayCast3D" parent="HeadOriginalPosition/Head/CameraSmoothPoint/FirstPersonCamera3D" unique_id=277993149]
 unique_name_in_owner = true
@@ -129,9 +141,16 @@ collision_mask = 10
 unique_name_in_owner = true
 transform = Transform3D(0.9999998, 0.0004073333, -7.8221476e-08, -0.00040733334, 0.9999999, -1.327951e-07, 7.8167375e-08, 1.3282695e-07, 1, -0.00071004516, -1.7431548, -2.480756e-07)
 
-[node name="WeaponManager" parent="HeadOriginalPosition/Head/CameraSmoothPoint/FirstPersonCamera3D/FirstPersonModel" unique_id=1300931359 node_paths=PackedStringArray("player") instance=ExtResource("8_t4ku0")]
+[node name="WeaponSway" type="Node3D" parent="HeadOriginalPosition/Head/CameraSmoothPoint/FirstPersonCamera3D/FirstPersonModel" unique_id=2085620604 node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
+script = ExtResource("8_vvawb")
 player = NodePath("../../../../../..")
+
+[node name="WeaponManager" parent="HeadOriginalPosition/Head/CameraSmoothPoint/FirstPersonCamera3D/FirstPersonModel/WeaponSway" unique_id=1300931359 node_paths=PackedStringArray("player") instance=ExtResource("8_t4ku0")]
+unique_name_in_owner = true
+auto_equip = null
+max_slots = null
+player = NodePath("../../../../../../..")
 
 [node name="StairsAheadRayCast3D" type="RayCast3D" parent="." unique_id=1425612240]
 unique_name_in_owner = true
@@ -148,5 +167,7 @@ collision_mask = 15
 unique_name_in_owner = true
 offset_right = 368.0
 offset_bottom = 23.0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1234002226]
 
 [editable path="WorldModel/UniversalCharacterModel"]

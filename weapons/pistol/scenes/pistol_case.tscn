@@ -1,0 +1,66 @@
+[gd_scene format=4 uid="uid://pww2sscr0pbx"]
+
+[ext_resource type="Material" uid="uid://h0pjjwlf6ydy" path="res://weapons/pistol/arts/models/local/pistol_material.tres" id="1_qu4s1"]
+[ext_resource type="PhysicsMaterial" uid="uid://b5kmfvq4d3kej" path="res://weapons/commons/resources/bullet_case_physics_material.tres" id="2_0y55r"]
+[ext_resource type="Script" uid="uid://drptuaq5ncbw3" path="res://props/scripts/physics_prop.gd" id="2_gfq8h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1pkhx"]
+size = Vector3(0.017578125, 0.015625, 0.026367188)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_gn6f0"]
+_surfaces = [{
+"aabb": AABB(-0.0070271036, -0.008114219, -0.011465933, 0.014054209, 0.016228437, 0.023917213),
+"format": 34896613377,
+"index_count": 168,
+"index_data": PackedByteArray("AAABAAIAAAACAAMAAgAEAAMAAAADAAUABAAFAAMABgAAAAUAAgAHAAQABgAFAAgABAAJAAUABQAJAAgACQAEAAoABwAKAAQACwAIAAkACwAGAAgADAAJAAoADAALAAkABwAMAAoAAgANAAcAAgABAA0ABwAOAAwABwANAA4ADAAPAAsADAAOAA8ACwAPABAACwAQAAYADgARAA8ADQASAA4ADgASABEADQATABIAAQATAA0AEgAUABEADwAVABAADwARABUAEgAWABQAEwAWABIAEQAUABcAEQAXABUAFgAXABQAFQAXABgAEwAZABYAFgAaABcAFwAaABgAGgAWABkAFQAYABsAGwAYABoAEAAVABsAHAAZABMAHAAaABkAGwAaABwAAQAcABMAEAAbAB0AHQAbABwAHQAcAAEABgAQAB0AAAAdAAEABgAdAAAA"),
+"name": "ucu_pistol_material_official",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 30,
+"vertex_data": PackedByteArray("ChuFTV09AADHLRupgiEAAAobebJdPQAACht5sv//AAD/f/Tk//8AAAobhU3//wAA/38KG109AAD/f/TkXT0AAP9/Chv//wAA9OSFTf//AAD05Hmy//8AAPTkhU1dPQAA9OR5sl09AAD/fzfSgiEAADfSG6mCIQAAN9LjVoIhAAD/f8ctgiEAAP///z+FGAAA////v4UYAAD/f///hRgAAP///z8AAAAA/38AAIUYAAD///+/AAAAAP9/AAAAAAAAAAD/PwAAAAD/f///AAAAAAAA/78AAAAAAAD/P4UYAAAAAP+/hRgAAMct41aCIQAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_xdamr"]
+resource_name = "pistol_case_Cylinder_002"
+_surfaces = [{
+"aabb": AABB(-0.0070271036, -0.008114219, -0.011465933, 0.014054209, 0.016228437, 0.023917213),
+"attribute_data": PackedByteArray("CaRc6KmqpMDxqBLkVJWkwNerdOdUlaTAlqLP5KmqpMBBw1zo//+kwA/LF/+p6v9/QcP//////38Py3TnqeqkwKWzXOhUlaTAzsHP5P9/pMBBw1zo/3+kwBi1z+RUlaTA7NUszanqpMCI5c/kVNX/f+zVz+Sp6v9/iOUszVTVpMBtlFzo/7+kwJaiz+SpqqTACaRc6KmqpMDglc/k/7+kwJ+MdOdU1aTAbZT///+//3+fjBf/VNX/f22UXOj/v6TAn4x051TVpMDglc/k/7+kwG2UXOj/v6TAhY8S5FTVpMBtlFzo/7+kwAmk//+pqv9/bZT///+//38JpFzoqaqkwKinf9eZunvwn4x/1/+f78Ekmk7Tmbpz0SSaEuRkhXvwqKfh3/+f//+fjOHfZIVz0TDR2vKpqqTAD8sf6lSVpMAw0QbsVJWkwA/LwfSpqqTA16t056mqpMCls///VJX/f9erF/+pqv9/pbNc6FSVpMAezkXM//+kwF/Xn8mp6qTA7NUszanqpMAE0ePI//+kwKWzXOhUlaTAQcP///9//3+ls///VJX/f0HDXOj/f6TA7NUszanqpMAV5J/JVNWkwIjlLM1U1aTAX9efyanqpMCE85/E//+kwKH3y8mp6qTAGfICyqnqpMAM+WnE//+kwDXn2vJU1aTAM9wR+v+/pMAz3ET2/7+kwFbtwfRU1aTANecG7KnqpMBW7cH0VNWkwDXn2vJU1aTAVu0f6qnqpMAz3Jzo//+kwFbtH+qp6qTANecG7KnqpMAz3M/k//+kwDDRBuxUlaTAM9zP5P9/pMAz3Jzo/3+kwA/LH+pUlaTAM9xE9v+/pMAPy8H0qaqkwDDR2vKpqqTAM9wR+v+/pMD7vIzPZMVz0derft+Z+nPR16vd1P/f78Eezn7f/9///x7O3dRkxXvw+7zP5Jn6e/CE89LUVNWkwKH3/tn/v6TAGfI12v+/pMAM+ZzUVNWkwHf60tSpqqTAk/7+2VSVpMAM+TXaVJWkwP//nNSpqqTAGfICyqnqpMAM+WXUVNWkwITznNRU1aTAoffLyanqpMAZ8jXa/7+kwAz5mOSpqqTAhPPP5KmqpMCh9/7Z/7+kwAz5NdpUlaTA//+Y5P9/pMB3+s/k/3+kwJP+/tlUlaTA"),
+"format": 34896613431,
+"index_count": 168,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIQAgACMAIwAgACQAIQAjACUAJgAnACgAJgApACcAKgArACwAKgAtACsALgAvADAALgAxAC8AMgAzADQAMgA1ADMANgA3ADgANgA5ADcAOgA7ADwAOgA9ADsAPgA/AEAAPgBBAD8AQgBDAEQAQgBFAEMARgBHAEgARgBJAEcASgBLAEwASgBNAEsATgBPAFAATgBRAE8AUgBTAFQAUwBSAFUAVQBSAFYAUwBVAFcAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEAZABlAGYAZABnAGUAaABpAGoAaABrAGkA"),
+"material": ExtResource("1_qu4s1"),
+"name": "ucu_pistol_material_official",
+"primitive": 3,
+"uv_scale": Vector4(0.15401661, 0.28674817, 2, 1.98),
+"vertex_count": 108,
+"vertex_data": PackedByteArray("ChuFTV09t9zHLRupgiG33AobebJdPbfcxy3jVoIht9z/f/TkXT3vw/TkebL//+/D/3/05P//78P05HmyXT3vwwobebJdPTXR/3830oIhNdH/f/TkXT010cctG6mCITXR9OR5sl09VNX05IVN//9U1fTkebL//1TV9OSFTV09VNX/fwobXT0Y9Mct41aCIRj0ChuFTV09GPT/f8ctgiEY9PTkhU1dPfLt/38KG///8u305IVN///y7f9/ChtdPfLt9OSFTV09kfH/f8ctgiGR8f9/ChtdPZHxN9LjVoIhkfH/fwobXT3/8AobhU3////w/38KG/////AKG4VNXT3/8PTkhU3//6mq/3/05P//qar05Hmy//+pqgobhU3//6mq/38KG///qaoKG3my//+pqsct41aCISSNAAD/v4UYJI3HLRupgiEkjQAA/z+FGCSNChuFTV0969cKG3my///r1wobhU3//+vXCht5sl0969f/f/TkXT190DfSG6mCIX3Q9OR5sl09fdD/fzfSgiF90AobebJdPbrC/3/05P//usIKG3my//+6wv9/9ORdPbrC9OR5sl09rN430uNWgiGs3vTkhU1dPazeN9IbqYIhrN7/f///hRjgx////78AAODH////v4UY4Mf/f///AADgxzfS41aCISyN/38AAIUYLI3/f8ctgiEsjf///z+FGCyNN9IbqYIhJI3///8/hRgkjTfS41aCISSN////v4UYJI3/fzfSgiEsjf///7+FGCyNN9IbqYIhLI3/f///hRgsjcctG6mCISyN/3///4UYLI3/fzfSgiEsjQAA/7+FGCyN/3/HLYIhLI0AAP8/hRgsjcct41aCISyN/38AAIUYLI0AAP+/AAD//////78AAP///3///wAA////fwAAAAD//wAA/z8AAP//////PwAA//////8/hRj0zP9/AAAAAPPM/38AAIUY88z///8/AAD0zAAA/z+FGPr7AAD/vwAA+vsAAP+/hRj6+wAA/z8AAPr7////v4UYDMD///8/AAAMwP///z+FGAzA////vwAADMD/fwAAhRh15AAA/z8AAHXkAAD/P4UYdeT/fwAAAAB15AAA/7+FGKng/3///wAAqeD/f///hRip4AAA/78AAKngyMxK0sjMStLIzErSyMxK0sDTWW7A01luwNNZbsDTWW5Y6LunWOi7p1jou6dY6LunqqpUVaqqVFWqqlRVqqpUVUm+Y+5JvmPuSb5j7km+Y+5bjFdFW4xXRVuMV0VbjFdFQI52O0COdjtAjnY7QI52O47H3/COx9/wjsff8I7H3/D/f/9//3//f/9//3//f/9//3//f/9//38AgP7//3/+//9//v8BgP7/W9jR01vY0dNb2NHTW9jR073WZGO+1mRjvtZkY73WY2Oq6aisqumorKrpqKyq6aiswq88UMKvPFDCrzxQwq88UObFLifmxS4n5sUuJ+bFLiegM7VSoDO1Up8ztVKgM7VS/38AAP9/AQD/fwEA/38AALXSXky10l9MtdJfTLXSXkxezEmtXsxJrV7MSa1ezEmtSS2fs0ktn7NJLaCzSS2fsyVRJdElUSXRJVEl0SVRJdElUSXRJVEl0WhiVUNoYlVDZ2JVQ2hiVUOs+yjCrPsowqz7KMKs+yjCQYSDCECEgghAhIIIQYSDCARQ+GEFUPhhBVD4YQRQ+GG35GQzt+RkM7fkZTO35GQz")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_gn6f0")
+
+[node name="PistolCase" type="RigidBody3D" unique_id=1769864418 node_paths=PackedStringArray("model", "collision", "life_timer")]
+collision_layer = 16
+collision_mask = 28
+mass = 80.0
+physics_material_override = ExtResource("2_0y55r")
+script = ExtResource("2_gfq8h")
+model = NodePath("CasingMesh")
+collision = NodePath("CollisionShape3D")
+life_timer = NodePath("LifeTimer")
+lifetime = 10
+prop_type = 0
+prop_scale = Vector3(2, 2, 2)
+auto_calculate_mass = false
+metadata/_custom_type_script = "uid://drptuaq5ncbw3"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2056283171]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_1pkhx")
+
+[node name="CasingMesh" type="MeshInstance3D" parent="." unique_id=1969494480]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+layers = 3
+mesh = SubResource("ArrayMesh_xdamr")
+
+[node name="LifeTimer" type="Timer" parent="." unique_id=1361587399]

@@ -45,6 +45,8 @@ func process_physics() -> void:
 
 #region Prop Riding
 func _apply_weight_to_floor_prop() -> void:
+	if _current_floor_prop == null: return  # CRITICAL: IF NOT CHECKED, THE GAME WILL CRASH IF THE PLAYER BREAKS A THING BY STANDING ON TOP OF IT
+	
 	if _current_floor_prop is PhysicsProp and player.is_on_floor():
 		var downward_force : Vector3 = player.get_gravity() * player.weight
 		if stairs_below_ray.is_colliding():

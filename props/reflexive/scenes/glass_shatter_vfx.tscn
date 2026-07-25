@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cq4dndj66jtxg"]
+
+[ext_resource type="Script" uid="uid://brsigif5d72ja" path="res://props/reflexive/scripts/glass_shatter_vfx.gd" id="1_23vcd"]
+[ext_resource type="AudioStream" uid="uid://bifqnmqhftr2m" path="res://props/reflexive/effects/glass_shatter_1.mp3" id="2_f2ave"]
+[ext_resource type="Material" uid="uid://bi127t7l01gmi" path="res://props/reflexive/resources/reflexive_material.tres" id="2_sl1sl"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wh46i"]
+lifetime_randomness = 1.0
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, -12, 0)
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="PrismMesh" id="PrismMesh_1pkhx"]
+material = ExtResource("2_sl1sl")
+size = Vector3(0.05, 0.1, 0.013)
+
+[node name="GlassShatterVFX" type="Node3D" unique_id=2096917057]
+script = ExtResource("1_23vcd")
+shatter_sounds = Array[AudioStream]([ExtResource("2_f2ave")])
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=362044717]
+unique_name_in_owner = true
+emitting = false
+amount = 32
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_wh46i")
+draw_pass_1 = SubResource("PrismMesh_1pkhx")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=762766772]
+unique_name_in_owner = true

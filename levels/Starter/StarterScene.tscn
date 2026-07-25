@@ -9,8 +9,8 @@
 [ext_resource type="ArrayMesh" uid="uid://dry23jeo6prdo" path="res://levels/Starter/terrain_mesh.mesh" id="4_h2ppu"]
 [ext_resource type="Texture2D" uid="uid://c7yth5opetwes" path="res://levels/Starter/textures/kenney-dark-grey-checkerboard.png" id="5_bkb2o"]
 [ext_resource type="Texture2D" uid="uid://b28c62e3f23vb" path="res://levels/Starter/textures/kenney-orange-checkerboard-cc0.png" id="6_7b0n1"]
-[ext_resource type="PackedScene" uid="uid://dtke2htvs0sch" path="res://props/crate.tscn" id="9_77ybh"]
-[ext_resource type="PackedScene" uid="uid://csq2wl75k2gbo" path="res://props/cylinder.tscn" id="10_yv1ad"]
+[ext_resource type="PackedScene" uid="uid://dtke2htvs0sch" path="res://props/scenes/crate.tscn" id="9_77ybh"]
+[ext_resource type="PackedScene" uid="uid://csq2wl75k2gbo" path="res://props/scenes/cylinder.tscn" id="10_yv1ad"]
 [ext_resource type="PackedScene" uid="uid://b1hqj0rqpk680" path="res://weapons/pistol/scenes/pistol_world.tscn" id="12_2dpsm"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_u3c1g"]
@@ -449,13 +449,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.235462, 0.5005188, -33.35
 mass = 80.0
 linear_damp = 20.0
 angular_damp = 10.0
-health = null
 prop_scale = Vector3(2, 2, 2)
 
 [node name="Crate2" parent="Props" unique_id=1523950991 instance=ExtResource("9_77ybh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.789436, 0.25051832, -35.964157)
 mass = 33.75
-health = null
 prop_scale = Vector3(1.5, 1.5, 1.5)
 on_top_linear_damp = 0.0
 on_top_angular_damp = 0.0
@@ -463,7 +461,6 @@ on_top_angular_damp = 0.0
 [node name="Crate5" parent="Props" unique_id=1064319529 instance=ExtResource("9_77ybh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.37992, 12.980505, -35.964157)
 mass = 101.25
-health = null
 prop_scale = Vector3(1.5, 1.5, 1.5)
 base_mass = 30.0
 on_top_linear_damp = 0.0
@@ -473,7 +470,6 @@ metadata/_edit_group_ = true
 [node name="Crate6" parent="Props" unique_id=2081372714 instance=ExtResource("9_77ybh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.37992, 12.980505, -33.964157)
 mass = 101.25
-health = null
 prop_scale = Vector3(1.5, 1.5, 1.5)
 base_mass = 30.0
 on_top_linear_damp = 0.0
@@ -483,7 +479,6 @@ metadata/_edit_group_ = true
 [node name="Crate7" parent="Props" unique_id=272524589 instance=ExtResource("9_77ybh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.37992, 12.980505, -31.964157)
 mass = 101.25
-health = null
 prop_scale = Vector3(1.5, 1.5, 1.5)
 base_mass = 30.0
 on_top_linear_damp = 0.0
@@ -493,7 +488,6 @@ metadata/_edit_group_ = true
 [node name="Crate8" parent="Props" unique_id=586900975 instance=ExtResource("9_77ybh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.37992, 12.980505, -29.964157)
 mass = 101.25
-health = null
 prop_scale = Vector3(1.5, 1.5, 1.5)
 base_mass = 30.0
 on_top_linear_damp = 0.0
@@ -503,7 +497,6 @@ metadata/_edit_group_ = true
 [node name="Crate9" parent="Props" unique_id=845340369 instance=ExtResource("9_77ybh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.971123, 8.471769, -35.964157)
 mass = 101.25
-health = null
 prop_scale = Vector3(1.5, 1.5, 1.5)
 base_mass = 30.0
 on_top_linear_damp = 0.0
@@ -513,7 +506,6 @@ metadata/_edit_group_ = true
 [node name="Crate10" parent="Props" unique_id=1481018316 instance=ExtResource("9_77ybh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.971123, 8.471769, -33.964157)
 mass = 101.25
-health = null
 prop_scale = Vector3(1.5, 1.5, 1.5)
 base_mass = 30.0
 on_top_linear_damp = 0.0
@@ -523,7 +515,6 @@ metadata/_edit_group_ = true
 [node name="Crate11" parent="Props" unique_id=477151810 instance=ExtResource("9_77ybh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.971123, 8.471769, -31.964157)
 mass = 101.25
-health = null
 prop_scale = Vector3(1.5, 1.5, 1.5)
 base_mass = 30.0
 on_top_linear_damp = 0.0
@@ -533,7 +524,6 @@ metadata/_edit_group_ = true
 [node name="Crate12" parent="Props" unique_id=2008350700 instance=ExtResource("9_77ybh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.971123, 8.471769, -29.964157)
 mass = 101.25
-health = null
 prop_scale = Vector3(1.5, 1.5, 1.5)
 base_mass = 30.0
 on_top_linear_damp = 0.0
@@ -543,7 +533,6 @@ metadata/_edit_group_ = true
 [node name="Crate13" parent="Props" unique_id=1524137946 instance=ExtResource("9_77ybh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.612747, 8.471769, -35.964157)
 mass = 101.25
-health = null
 prop_scale = Vector3(1.5, 1.5, 1.5)
 base_mass = 30.0
 on_top_linear_damp = 0.0
@@ -553,7 +542,6 @@ metadata/_edit_group_ = true
 [node name="Crate14" parent="Props" unique_id=2139384410 instance=ExtResource("9_77ybh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.612747, 8.471769, -33.964157)
 mass = 101.25
-health = null
 prop_scale = Vector3(1.5, 1.5, 1.5)
 base_mass = 30.0
 on_top_linear_damp = 0.0
@@ -563,7 +551,6 @@ metadata/_edit_group_ = true
 [node name="Crate15" parent="Props" unique_id=66295343 instance=ExtResource("9_77ybh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.612747, 8.471769, -31.964157)
 mass = 101.25
-health = null
 prop_scale = Vector3(1.5, 1.5, 1.5)
 base_mass = 30.0
 on_top_linear_damp = 0.0
@@ -573,7 +560,6 @@ metadata/_edit_group_ = true
 [node name="Crate16" parent="Props" unique_id=454748713 instance=ExtResource("9_77ybh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.612747, 8.471769, -29.964157)
 mass = 101.25
-health = null
 prop_scale = Vector3(1.5, 1.5, 1.5)
 base_mass = 30.0
 on_top_linear_damp = 0.0
@@ -582,19 +568,17 @@ metadata/_edit_group_ = true
 
 [node name="Crate4" parent="Props" unique_id=1713720740 instance=ExtResource("9_77ybh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.771336, 0.25051832, -33.14086)
-health = null
+mass = 33.75
 prop_scale = Vector3(1.5, 1.5, 1.5)
 
 [node name="Crate3" parent="Props" unique_id=831000743 instance=ExtResource("9_77ybh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.325615, 2.0005183, -33.384247)
 mass = 0.125
-health = null
 prop_scale = Vector3(0.5, 0.5, 0.5)
 base_mass = 1.0
 
 [node name="Cylinder" parent="Props" unique_id=379870813 instance=ExtResource("10_yv1ad")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.043118, 4.651602, -41.381115)
-health = null
 
 [node name="PistolWorld" parent="." unique_id=1299527850 instance=ExtResource("12_2dpsm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.264942, 2.501564, -28.924513)

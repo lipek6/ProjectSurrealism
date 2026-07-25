@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://punvxyibshat"]
+
+[ext_resource type="Script" uid="uid://drptuaq5ncbw3" path="res://props/scripts/physics_prop.gd" id="1_kboia"]
+[ext_resource type="Material" uid="uid://bi127t7l01gmi" path="res://props/reflexive/resources/reflexive_material.tres" id="2_n4ya0"]
+[ext_resource type="PackedScene" uid="uid://cq4dndj66jtxg" path="res://props/reflexive/scenes/glass_shatter_vfx.tscn" id="2_wh46i"]
+[ext_resource type="AudioStream" uid="uid://cflv5dt0ghrfi" path="res://props/reflexive/effects/glass_hit_1.mp3" id="3_qaljl"]
+[ext_resource type="PackedScene" uid="uid://3qe2n824w8vf" path="res://props/reflexive/scenes/glass_fracture.tscn" id="3_rnu68"]
+[ext_resource type="AudioStream" uid="uid://bx10sf802xjiy" path="res://props/reflexive/effects/glass_hit_2.mp3" id="4_trwkm"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_xg4eq"]
+material = ExtResource("2_n4ya0")
+radial_segments = 32
+rings = 16
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g3c0i"]
+
+[node name="ReflexiveSphere" type="RigidBody3D" unique_id=2055625237 node_paths=PackedStringArray("model", "collision", "audio_player")]
+collision_layer = 8
+collision_mask = 31
+mass = 10.0
+script = ExtResource("1_kboia")
+model = NodePath("MeshInstance3D")
+collision = NodePath("CollisionShape3D")
+audio_player = NodePath("AudioStreamPlayer3D")
+health = 15
+is_fragile = true
+shatter_vfx = ExtResource("2_wh46i")
+impact_decal = ExtResource("3_rnu68")
+kinetic_break_threshold = 2.5
+hit_sounds = Array[AudioStream]([ExtResource("3_qaljl"), ExtResource("4_trwkm")])
+metadata/_custom_type_script = "uid://drptuaq5ncbw3"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=924945960]
+mesh = SubResource("SphereMesh_xg4eq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=650720018]
+shape = SubResource("SphereShape3D_g3c0i")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1374041257]
+unique_name_in_owner = true
+max_polyphony = 5

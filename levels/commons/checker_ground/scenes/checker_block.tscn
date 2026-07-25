@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ct15jp8k4u1pl"]
+
+[ext_resource type="PackedScene" uid="uid://melhkj1wicnt" path="res://levels/commons/checker_block/scenes/white_block.tscn" id="1_f8f7p"]
+[ext_resource type="PackedScene" uid="uid://cmfec5gux8y4m" path="res://levels/commons/checker_block/scenes/black_block.tscn" id="2_2l3qc"]
+
+[node name="CheckerBlock" type="Node3D" unique_id=466508328]
+
+[node name="WhiteBlock" parent="." unique_id=707130780 instance=ExtResource("1_f8f7p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
+
+[node name="WhiteBlock2" parent="." unique_id=1540787079 instance=ExtResource("1_f8f7p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+
+[node name="BlackBlock" parent="." unique_id=1981990620 instance=ExtResource("2_2l3qc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.5)
+
+[node name="BlackBlock2" parent="." unique_id=1312603462 instance=ExtResource("2_2l3qc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5)

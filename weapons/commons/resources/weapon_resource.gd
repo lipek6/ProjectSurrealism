@@ -29,5 +29,11 @@ enum FIRE_MODE { SEMI_AUTOMATIC, AUTOMATIC }
 
 @export_group("Visual Data")
 @export var weapon_scene   : PackedScene
-@export var casing_mesh    : PackedScene
-@export var shooting_effect: PackedScene
+@export var casing_scene   : PackedScene
+@export var shoot_effect: PackedScene
+
+@export_group("Audio Data")
+@export var shoot_sound     : AudioStream
+@export var reload_sound    : AudioStream
+@export var equip_sound     : AudioStream
+@export var unequip_sound   : AudioStream

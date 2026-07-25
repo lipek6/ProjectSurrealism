@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://3qe2n824w8vf"]
+
+[ext_resource type="Texture2D" uid="uid://dsiwa0oktvxk4" path="res://props/reflexive/effects/glass_fracture_decal.png" id="1_3ye5o"]
+
+[node name="GlassFracture" type="Decal" unique_id=882398385]
+size = Vector3(0.125, 0.125, 0.125)
+texture_albedo = ExtResource("1_3ye5o")

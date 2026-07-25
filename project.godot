@@ -15,7 +15,7 @@ warnings/check_invalid_track_paths=false
 [application]
 
 config/name="ProjectSurrealism"
-run/main_scene="uid://cumlkudt7n44b"
+run/main_scene="uid://b4hnth4bl3ncn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [debug]
@@ -173,6 +173,7 @@ interact={
 3d_physics/layer_2="Entity Layer"
 3d_physics/layer_3="Solid Layer"
 3d_physics/layer_4="Prop Layer"
+3d_physics/layer_5="No Player Collision Layer"
 
 [physics]
 
