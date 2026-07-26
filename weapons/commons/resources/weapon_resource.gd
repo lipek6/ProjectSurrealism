@@ -3,14 +3,16 @@ class_name WeaponResource extends Resource
 enum FIRE_MODE { SEMI_AUTOMATIC, AUTOMATIC }
 
 
-
 @export_group("Misc")
 @export var weapon_name : String
-
+@export var icon        : PackedScene
 
 @export_group("Stats")
 @export var damage       : int
 @export var impact_force : float
+@export var pellet_count : int = 1   # Set to 8 for a shotgun!
+@export var spread : float = 0.0     # Set to 5.0 for a shotgun!
+
 
 @export_group("Gunplay Mechanics")
 @export var fire_mode    : FIRE_MODE                  
@@ -30,7 +32,7 @@ enum FIRE_MODE { SEMI_AUTOMATIC, AUTOMATIC }
 @export_group("Visual Data")
 @export var weapon_scene   : PackedScene
 @export var casing_scene   : PackedScene
-@export var shoot_effect: PackedScene
+@export var shoot_effect   : PackedScene
 
 @export_group("Audio Data")
 @export var shoot_sound     : AudioStream

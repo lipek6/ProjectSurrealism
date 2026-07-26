@@ -3,3 +3,4 @@
 [resource]
 metallic = 1.0
 roughness = 0.0
+emission_enabled = true

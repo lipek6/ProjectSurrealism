@@ -16,17 +16,18 @@ class_name Player extends CharacterBody3D
 # ATTRIBUTES
 # ==============================================================================
 #region Node References
+@onready var health_manager       : HealthManager              = %HealthManager
 @onready var input                : PlayerInput               = %PlayerInput
 @onready var movement_controller  : PlayerMovementController  = %MovementController
 @onready var camera_controller    : PlayerCameraController    = %CameraController
 @onready var physics_interactor   : PhysicsInteractor         = %PhysicsInteractor
 @onready var animation_controller : PlayerAnimationController = %AnimationController
-@onready var footsteps_controller : FootstepsController       = %FootstepsController
+@onready var footstep_controller : FootstepController         = %FootstepController
 @onready var weapon_manager       : WeaponManager             = %WeaponManager
 @onready var weapon_sway          : WeaponSway                = %WeaponSway
 @onready var aim_raycast          : RayCast3D                 = %AimRayCast3D
-@onready var world_model : Node3D = %WorldModel
-@onready var debug_label : Label  = %DebugLabel          
+@onready var world_model : Node3D                             = %WorldModel
+@onready var debug_label : Label                              = %DebugLabel          
 
 #endregion
 
@@ -45,8 +46,7 @@ class_name Player extends CharacterBody3D
 #region Internal Variables
 var _last_frame_was_on_floor : float = -INF
 #endregion
-
-
+var wave_message : String = "WAITING FOR WAVES..."
 
 # ==============================================================================
 # METHODS
@@ -66,8 +66,62 @@ func _ready() -> void:
 	self.platform_on_leave = CharacterBody3D.PLATFORM_ON_LEAVE_DO_NOTHING
 	self.safe_margin = 0.0001
 	
+	if health_manager:
+		health_manager.died.connect(_on_player_died)
+	
 	_update_model_layers(is_active)
+	
+	# --- GAME JAM TRICK: ZERO-SETUP FADE IN ---
+	var fade_rect = ColorRect.new()
+	fade_rect.color = Color.BLACK
+	fade_rect.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	fade_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
+	var canvas = CanvasLayer.new()
+	canvas.layer = 100 # Ensure it draws over EVERYTHING
+	canvas.add_child(fade_rect)
+	add_child(canvas)
+	
+	# Fade it out over 1.5 seconds, then delete the canvas entirely to save memory
+	var tween = get_tree().create_tween()
+	tween.tween_property(fade_rect, "modulate:a", 0.0, 1.5)
+	tween.finished.connect(func(): canvas.queue_free())
+	
+	
+func take_damage(amount: int, source_pos: Vector3 = Vector3.ZERO) -> void:
+	if health_manager:
+		health_manager.take_damage(amount)
+		
+	# Apply Knockback!
+	if source_pos != Vector3.ZERO and is_active:
+		var knockback_dir = (self.global_position - source_pos).normalized()
+		# Add a little upward pop to the launch
+		knockback_dir.y = 0.5 
+		
+		# Override velocity to violently push the player back
+		self.velocity = knockback_dir * 15.0
 
+func _on_player_died() -> void:
+	is_active = false
+	print("PLAYER IS DEAD! GAME OVER!")
+	
+	
+	# --- DRAMATIC DEATH CAMERA ---
+	# Tween the camera head down to the floor and tilt it sideways
+	var tween = get_tree().create_tween()
+	if camera_controller and camera_controller.head:
+		# Drops the head down by about 1 meter
+		tween.parallel().tween_property(camera_controller.head, "position:y", -1.0, 0.5).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+		# Tilts the camera 75 degrees like the player collapsed
+		tween.parallel().tween_property(camera_controller.head, "rotation_degrees:z", 75.0, 0.5)
+		tween.parallel().tween_property(camera_controller.head, "rotation_degrees:x", 15.0, 0.5)
+		
+	# Wait 3 seconds, then return to Menu
+	await get_tree().create_timer(3.0).timeout
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+	# BE SURE TO CHECK THIS STRING MATCHES YOUR ACTUAL MAIN MENU PATH!
+	get_tree().change_scene_to_file("res://MainMenu.tscn")
 ## Safely manages visibility layers so First Person cameras don't see full bodies, 
 ## while ensuring inactive players/NPCs remain visible to everyone!
 func _update_model_layers(active: bool) -> void:
@@ -107,21 +161,38 @@ func _unhandled_input(event: InputEvent) -> void:
 
 ## The visual frame loop. Used exclusively for updating UI and controller-based camera smoothing.
 func _process(delta: float) -> void:
+	if get_tree().paused: return 
+	
 	if is_active:
 		camera_controller.handle_controller_look_input(delta)
 		animation_controller.process_animation(delta)
 		weapon_sway.process_sway(delta)
+	
+	# --- UPDATED DEBUG LABEL (Shows Wave, Health, Ammo, and Controls) ---
+	debug_label.text = wave_message + "\n\n"
+	
+	if health_manager:
+		debug_label.text += "HEALTH: " + str(health_manager.current_health) + "\n"
 		
-	debug_label.text  = "FPS: " + str(Engine.get_frames_per_second())                 + "\n"        # For DEBUG purpouses. TODO: Need to find a way to enable/disable these things
-	debug_label.text += "STATE: " + str(movement_controller.State.keys()[movement_controller.current_state])            + "\n"        
-	debug_label.text += "CAM_STYLE: " + str(camera_controller.Style.keys()[camera_controller.current_style]) + "\n"        
-	debug_label.text += "CAM_POSITION: (" + str("%.2f" % camera_controller.current_camera.position.x) + "," + str("%.2f" % camera_controller.current_camera.position.y) + "," + str("%.2f" % camera_controller.current_camera.position.z) + ")\n"          
-	debug_label.text += "VELOCITY: " + str(("%.2f" % self.velocity.length()))         + "\n"        
-	debug_label.text += "POSITION: (" + str("%.2f" % self.global_position.x) + "," + str("%.2f" % self.global_position.y) + "," + str("%.2f" % self.global_position.z) + ")\n"              
-	if weapon_manager.inventory.size() > 0:
-		debug_label.text += "AMMO: " + str(weapon_manager.inventory[weapon_manager.active_index].on_mag_ammo) + "/" + str(weapon_manager.inventory[weapon_manager.active_index].on_reserve_ammo) + "\n"
+	if weapon_manager and weapon_manager.inventory.size() > 0:
+		var active_weapon = weapon_manager.inventory[weapon_manager.active_index]
+		debug_label.text += "AMMO: " + str(active_weapon.on_mag_ammo) + "/" + str(active_weapon.on_reserve_ammo) + "\n"
 
-## The rigid physics loop. Orchestrates the input gathering, state evaluation, and physics execution pipeline.
+	# --- NEW: ON-SCREEN TUTORIAL ---
+	debug_label.text += "\n\n--- CONTROLS ---\n"
+	debug_label.text += "WASD      : Move\n"
+	debug_label.text += "Mouse     : Look\n"
+	debug_label.text += "L-Click   : Shoot\n"
+	debug_label.text += "R         : Reload\n"
+	debug_label.text += "1         : Next Weapon\n"
+	debug_label.text += "CRTL      : Crouch\n"
+	debug_label.text += "SPACE     : Jump\n"
+	debug_label.text += "SHIFT     : Walk/sprint\n"
+	debug_label.text += "CAPSLOCK  : Auto Sprint\n"
+	
+	
+	
+	## The rigid physics loop. Orchestrates the input gathering, state evaluation, and physics execution pipeline.
 func _physics_process(delta: float) -> void:
 	if is_active:
 		input.gather_inputs(self.global_basis, camera_controller.current_camera.global_basis)       # Instead of current_camera maybe I should use its style state? Don't know :(
@@ -132,7 +203,7 @@ func _physics_process(delta: float) -> void:
 	camera_controller.process_camera(delta)
 	physics_interactor.process_physics()
 	weapon_manager.process_weapons(delta)
-	footsteps_controller.process_footsteps(delta)
+	footstep_controller.process_footsteps(delta)
 	
 	# Update frame tracking for the downward stair raycast
 	if is_on_floor():

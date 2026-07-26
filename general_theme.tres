@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://hxnshnhevmjk"]
+
+[ext_resource type="FontFile" uid="uid://i2kltnxv8urk" path="res://assets/WinXp/Fonts/framdit.ttf" id="1_e1nxa"]
+
+[resource]
+default_font = ExtResource("1_e1nxa")
+default_font_size = 75

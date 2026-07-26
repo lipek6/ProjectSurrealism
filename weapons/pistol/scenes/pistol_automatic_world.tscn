@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://dfdd66f7brokd"]
+
+[ext_resource type="Script" uid="uid://cyot5x1embrxb" path="res://world_weapon.gd" id="1_0xfyy"]
+[ext_resource type="Resource" uid="uid://c4ghonrrlq8xa" path="res://weapons/pistol/resources/pistol_automatic.tres" id="2_0xfyy"]
+[ext_resource type="PackedScene" uid="uid://djprc6cmoqme2" path="res://weapons/pistol/arts/models/world/pistol_world.glb" id="3_nfyvt"]
+[ext_resource type="Texture2D" uid="uid://fi5vgt78sirj" path="res://weapons/pistol/arts/models/local/pistol_color.png" id="4_nfyvt"]
+[ext_resource type="Texture2D" uid="uid://sepri44bhkgc" path="res://weapons/pistol/arts/models/local/pistol_roughness.png" id="5_dy6pk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r5d82"]
+size = Vector3(0.052734375, 0.17492676, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xe28s"]
+resource_name = "ucu_pistol_material_official"
+albedo_color = Color(1.6687808, 0, 0, 1)
+albedo_texture = ExtResource("4_nfyvt")
+albedo_texture_force_srgb = true
+roughness_texture = ExtResource("5_dy6pk")
+roughness_texture_channel = 1
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1pkhx"]
+radius = 1.0
+
+[node name="PistolAutomaticWorld" type="RigidBody3D" unique_id=1299527850]
+collision_layer = 8
+collision_mask = 14
+script = ExtResource("1_0xfyy")
+weapon_data = ExtResource("2_0xfyy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=688847346]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, -0.085097976, 0.1020348)
+shape = SubResource("BoxShape3D_r5d82")
+
+[node name="pistol_world" parent="." unique_id=2115340450 instance=ExtResource("3_nfyvt")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0.028365992, -0.034011602)
+
+[node name="pistol_world" parent="pistol_world" index="0" unique_id=388355768]
+surface_material_override/0 = SubResource("StandardMaterial3D_xe28s")
+
+[node name="PickupRadius" type="Area3D" parent="." unique_id=2082590685]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0.028365992, -0.034011602)
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupRadius" unique_id=617478444]
+shape = SubResource("SphereShape3D_1pkhx")
+
+[connection signal="body_entered" from="PickupRadius" to="." method="_on_pickup_radius_body_entered"]
+[connection signal="body_exited" from="PickupRadius" to="." method="_on_pickup_radius_body_exited"]
+
+[editable path="pistol_world"]

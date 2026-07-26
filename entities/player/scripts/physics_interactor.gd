@@ -73,12 +73,13 @@ func _update_floor_prop_notification() -> void:
 			
 	# NOTIFY PHYSICS PROPS
 	if detected_floor_prop != null:
-		if detected_floor_prop != _current_floor_prop:
-			if _current_floor_prop is PhysicsProp:                              
-				_current_floor_prop.notify_stepped_off(player)
-			if detected_floor_prop is PhysicsProp:                              
-				detected_floor_prop.notify_stepped_on(player)
-			_current_floor_prop = detected_floor_prop
+		if _current_floor_prop != null:
+			if detected_floor_prop != _current_floor_prop:
+				if _current_floor_prop is PhysicsProp:                              
+					_current_floor_prop.notify_stepped_off(player)
+				if detected_floor_prop is PhysicsProp:                              
+					detected_floor_prop.notify_stepped_on(player)
+				_current_floor_prop = detected_floor_prop
 
 
 ## Dynamically activates flat feet to prevent the capsule curve from shooting out props (called by the PhysicsProp)

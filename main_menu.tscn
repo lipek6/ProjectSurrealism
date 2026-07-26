@@ -1,0 +1,2195 @@
+[gd_scene format=3 uid="uid://do4yeqwhyc2pb"]
+
+[ext_resource type="Script" uid="uid://yticwx8smmky" path="res://main_menu.gd" id="1_jix8l"]
+[ext_resource type="PackedScene" uid="uid://c6cvwloagl5ub" path="res://props/scenes/pillar.tscn" id="2_8qtwp"]
+[ext_resource type="Material" uid="uid://bi127t7l01gmi" path="res://props/reflexive/resources/reflexive_material.tres" id="2_glbon"]
+[ext_resource type="Texture2D" uid="uid://bc7ea2t5ueie1" path="res://levels/commons/skyboxes/SBS - Cloudy Skyboxes - Panorama/Panorama/Panorama_Sky_16-512x512.png" id="3_nlkkf"]
+[ext_resource type="Script" uid="uid://chykjblwj4wj2" path="res://floating_movement.gd" id="3_qe12f"]
+[ext_resource type="Script" uid="uid://y8c6tkfaha53" path="res://menu_camera.gd" id="4_8qtwp"]
+[ext_resource type="Shader" uid="uid://bp5b7v6mens7" path="res://levels/commons/checker_ground/shaders/infinity_floor.gdshader" id="4_qe12f"]
+[ext_resource type="Theme" uid="uid://hxnshnhevmjk" path="res://general_theme.tres" id="5_glbon"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_8qtwp"]
+material = ExtResource("2_glbon")
+radial_segments = 32
+rings = 16
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_dy7ct"]
+panorama = ExtResource("3_nlkkf")
+
+[sub_resource type="Sky" id="Sky_1pkhx"]
+sky_material = SubResource("PanoramaSkyMaterial_dy7ct")
+
+[sub_resource type="Environment" id="Environment_0o4t1"]
+background_mode = 2
+sky = SubResource("Sky_1pkhx")
+tonemap_mode = 3
+tonemap_exposure = 0.5
+glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_density = 0.5
+fog_aerial_perspective = 0.6
+fog_depth_begin = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8qtwp"]
+size = Vector3(2000, 0.5, 2000)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dy7ct"]
+render_priority = 0
+shader = ExtResource("4_qe12f")
+shader_parameter/color1 = Color(0, 0, 0, 1)
+shader_parameter/color2 = Color(1, 1, 1, 1)
+shader_parameter/checker_scale = 4.0
+shader_parameter/roughness_value = 0.0
+shader_parameter/metallic_value = 1.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0o4t1"]
+material = SubResource("ShaderMaterial_dy7ct")
+size = Vector2(2000, 2000)
+
+[node name="MainMenu" type="Node3D" unique_id=530244015]
+script = ExtResource("1_jix8l")
+level_to_load = "uid://b4hnth4bl3ncn"
+
+[node name="Things" type="Node3D" parent="." unique_id=60247040]
+
+[node name="Pillar" parent="Things" unique_id=1199929980 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 70.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar2" parent="Things" unique_id=1340361726 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 76.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar3" parent="Things" unique_id=1506303790 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 81.707375)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar4" parent="Things" unique_id=2017781622 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 87.707375)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar5" parent="Things" unique_id=442822172 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 93.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar6" parent="Things" unique_id=713153682 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 99.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar7" parent="Things" unique_id=1834620124 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 104.707375)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar8" parent="Things" unique_id=1734993963 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 110.707375)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar9" parent="Things" unique_id=545962881 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 70.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar10" parent="Things" unique_id=243290920 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 76.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar11" parent="Things" unique_id=468610651 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 81.707375)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar12" parent="Things" unique_id=1699622413 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 87.707375)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar13" parent="Things" unique_id=258740316 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 93.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar14" parent="Things" unique_id=2005590113 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 99.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar15" parent="Things" unique_id=1901962566 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 104.707375)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar16" parent="Things" unique_id=1613529696 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 110.707375)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar17" parent="Things" unique_id=77324282 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 116.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar18" parent="Things" unique_id=747454781 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 122.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar19" parent="Things" unique_id=1720153230 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 127.707375)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar20" parent="Things" unique_id=2039923680 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 133.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar21" parent="Things" unique_id=1269914917 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 139.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar22" parent="Things" unique_id=316133659 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 145.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar23" parent="Things" unique_id=768478209 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 150.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar24" parent="Things" unique_id=480021482 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 156.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar25" parent="Things" unique_id=104554792 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 116.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar26" parent="Things" unique_id=684144907 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 122.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar27" parent="Things" unique_id=1543108375 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 127.707375)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar28" parent="Things" unique_id=184784094 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 133.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar29" parent="Things" unique_id=1745852395 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 139.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar30" parent="Things" unique_id=1129724417 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 145.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar31" parent="Things" unique_id=591333995 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 150.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar32" parent="Things" unique_id=1897332849 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 156.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar33" parent="Things" unique_id=1538396768 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 161.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar34" parent="Things" unique_id=2016971152 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 167.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar35" parent="Things" unique_id=357868904 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 172.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar36" parent="Things" unique_id=1353733180 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 178.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar37" parent="Things" unique_id=1815199414 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 184.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar38" parent="Things" unique_id=1314377733 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 190.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar39" parent="Things" unique_id=1231239463 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 195.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar40" parent="Things" unique_id=372548038 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 201.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar41" parent="Things" unique_id=69803836 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 161.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar42" parent="Things" unique_id=356492797 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 167.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar43" parent="Things" unique_id=54159421 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 172.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar44" parent="Things" unique_id=417040871 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 178.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar45" parent="Things" unique_id=1057553336 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 184.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar46" parent="Things" unique_id=1405073247 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 190.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar47" parent="Things" unique_id=1602586423 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 195.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar48" parent="Things" unique_id=991081689 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 201.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar49" parent="Things" unique_id=1838577311 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 207.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar50" parent="Things" unique_id=2011483499 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 213.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar51" parent="Things" unique_id=991294202 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 218.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar52" parent="Things" unique_id=559991978 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 224.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar53" parent="Things" unique_id=788970853 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 230.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar54" parent="Things" unique_id=1113804569 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 236.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar55" parent="Things" unique_id=1766012296 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 241.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar56" parent="Things" unique_id=353914099 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 247.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar57" parent="Things" unique_id=1918255088 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 207.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar58" parent="Things" unique_id=2092114790 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 213.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar59" parent="Things" unique_id=275034693 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 218.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar60" parent="Things" unique_id=218874751 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 224.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar61" parent="Things" unique_id=96363997 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 230.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar62" parent="Things" unique_id=1182816755 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 236.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar63" parent="Things" unique_id=76358530 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 241.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar64" parent="Things" unique_id=1807629793 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 247.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar65" parent="Things" unique_id=57678811 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 253.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar66" parent="Things" unique_id=1111319488 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 259.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar67" parent="Things" unique_id=1411271397 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 264.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar68" parent="Things" unique_id=1860897256 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 270.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar69" parent="Things" unique_id=1292947072 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 276.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar70" parent="Things" unique_id=1502346910 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 282.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar71" parent="Things" unique_id=1682893445 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 287.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar72" parent="Things" unique_id=805588911 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 293.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar73" parent="Things" unique_id=480147333 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 253.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar74" parent="Things" unique_id=16638300 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 259.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar75" parent="Things" unique_id=512720925 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 264.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar76" parent="Things" unique_id=1672705075 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 270.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar77" parent="Things" unique_id=13315196 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 276.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar78" parent="Things" unique_id=1342682606 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 282.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar79" parent="Things" unique_id=1550146622 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 287.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar80" parent="Things" unique_id=1846633551 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 293.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar81" parent="Things" unique_id=114016002 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 299.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar82" parent="Things" unique_id=519445427 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 305.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar83" parent="Things" unique_id=1362581128 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 310.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar84" parent="Things" unique_id=932382577 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 316.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar85" parent="Things" unique_id=1692578001 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 322.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar86" parent="Things" unique_id=1674990652 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 328.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar87" parent="Things" unique_id=1806272924 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 333.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar88" parent="Things" unique_id=1647861156 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 339.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar89" parent="Things" unique_id=1983264374 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 299.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar90" parent="Things" unique_id=692711102 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 305.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar91" parent="Things" unique_id=176952076 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 310.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar92" parent="Things" unique_id=1382969176 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 316.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar93" parent="Things" unique_id=1006540176 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 322.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar94" parent="Things" unique_id=2119761571 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 328.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar95" parent="Things" unique_id=2036707874 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 333.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar96" parent="Things" unique_id=59359473 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 339.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar97" parent="Things" unique_id=1224733243 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 344.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar98" parent="Things" unique_id=1498696565 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 350.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar99" parent="Things" unique_id=944726307 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 355.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar100" parent="Things" unique_id=1287827514 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 361.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar101" parent="Things" unique_id=1783019990 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 367.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar102" parent="Things" unique_id=923098425 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 373.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar103" parent="Things" unique_id=1723925011 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 378.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar104" parent="Things" unique_id=2124666240 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 384.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar105" parent="Things" unique_id=1972383430 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 344.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar106" parent="Things" unique_id=2137685087 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 350.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar107" parent="Things" unique_id=280633188 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 355.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar108" parent="Things" unique_id=102857595 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 361.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar109" parent="Things" unique_id=1867846047 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 367.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar110" parent="Things" unique_id=745584475 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 373.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar111" parent="Things" unique_id=191959061 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 378.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar112" parent="Things" unique_id=438216099 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 384.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar113" parent="Things" unique_id=1140910505 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 390.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar114" parent="Things" unique_id=257984016 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 396.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar115" parent="Things" unique_id=364321258 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 401.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar116" parent="Things" unique_id=96605003 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 407.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar117" parent="Things" unique_id=1778863689 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 413.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar118" parent="Things" unique_id=1036210362 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 419.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar119" parent="Things" unique_id=1111168576 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 424.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar120" parent="Things" unique_id=329486381 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 430.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar121" parent="Things" unique_id=328505157 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 390.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar122" parent="Things" unique_id=1963603709 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 396.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar123" parent="Things" unique_id=1937292681 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 401.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar124" parent="Things" unique_id=542469347 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 407.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar125" parent="Things" unique_id=981257664 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 413.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar126" parent="Things" unique_id=1911046104 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 419.5)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar127" parent="Things" unique_id=1117089500 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 424.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar128" parent="Things" unique_id=643313005 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 430.70737)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar129" parent="Things" unique_id=1977770499 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 435.6436)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar130" parent="Things" unique_id=267067774 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 441.6436)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar131" parent="Things" unique_id=775689659 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 446.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar132" parent="Things" unique_id=379134269 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 452.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar133" parent="Things" unique_id=444626279 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 458.6436)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar134" parent="Things" unique_id=1488301071 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 464.6436)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar135" parent="Things" unique_id=946523403 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 469.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar136" parent="Things" unique_id=1079828132 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 475.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar137" parent="Things" unique_id=327795365 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 435.6436)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar138" parent="Things" unique_id=715349115 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 441.6436)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar139" parent="Things" unique_id=792644038 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 446.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar140" parent="Things" unique_id=2133346384 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 452.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar141" parent="Things" unique_id=2113325181 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 458.6436)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar142" parent="Things" unique_id=212323 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 464.6436)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar143" parent="Things" unique_id=1409986964 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 469.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar144" parent="Things" unique_id=1353952624 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 475.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar145" parent="Things" unique_id=377379421 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 481.6436)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar146" parent="Things" unique_id=1986280271 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 487.6436)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar147" parent="Things" unique_id=1007571835 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 492.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar148" parent="Things" unique_id=1937199552 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 498.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar149" parent="Things" unique_id=208883403 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 504.6436)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar150" parent="Things" unique_id=1528576528 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 510.6436)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar151" parent="Things" unique_id=1337377 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 515.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar152" parent="Things" unique_id=1014343187 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 521.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar153" parent="Things" unique_id=163941232 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 481.6436)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar154" parent="Things" unique_id=1177734092 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 487.6436)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar155" parent="Things" unique_id=2055595799 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 492.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar156" parent="Things" unique_id=1030754510 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 498.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar157" parent="Things" unique_id=1807862357 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 504.6436)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar158" parent="Things" unique_id=1933875313 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 510.6436)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar159" parent="Things" unique_id=765480791 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 515.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar160" parent="Things" unique_id=634909790 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 521.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar161" parent="Things" unique_id=81686578 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 526.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar162" parent="Things" unique_id=1299470038 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 532.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar163" parent="Things" unique_id=277749550 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 537.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar164" parent="Things" unique_id=458546904 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 543.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar165" parent="Things" unique_id=1695079884 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 549.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar166" parent="Things" unique_id=2022709323 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 555.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar167" parent="Things" unique_id=843059481 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 560.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar168" parent="Things" unique_id=717384444 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 566.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar169" parent="Things" unique_id=923252310 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 526.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar170" parent="Things" unique_id=1709358414 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 532.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar171" parent="Things" unique_id=759893969 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 537.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar172" parent="Things" unique_id=2091330110 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 543.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar173" parent="Things" unique_id=1293831795 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 549.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar174" parent="Things" unique_id=2085706856 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 555.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar175" parent="Things" unique_id=382718022 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 560.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar176" parent="Things" unique_id=560158311 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 566.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar177" parent="Things" unique_id=1064061482 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 572.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar178" parent="Things" unique_id=1948028633 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 578.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar179" parent="Things" unique_id=1200860139 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 583.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar180" parent="Things" unique_id=207816128 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 589.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar181" parent="Things" unique_id=1545198861 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 595.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar182" parent="Things" unique_id=683361843 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 601.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar183" parent="Things" unique_id=825963213 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 606.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar184" parent="Things" unique_id=327803829 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 612.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar185" parent="Things" unique_id=454945919 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 572.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar186" parent="Things" unique_id=1761626134 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 578.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar187" parent="Things" unique_id=1366614094 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 583.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar188" parent="Things" unique_id=2046076808 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 589.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar189" parent="Things" unique_id=935120068 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 595.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar190" parent="Things" unique_id=988216933 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 601.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar191" parent="Things" unique_id=343680161 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 606.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar192" parent="Things" unique_id=1204805434 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 612.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar193" parent="Things" unique_id=482069038 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 618.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar194" parent="Things" unique_id=269373950 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 624.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar195" parent="Things" unique_id=1336705925 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 629.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar196" parent="Things" unique_id=114928083 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 635.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar197" parent="Things" unique_id=910016253 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 641.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar198" parent="Things" unique_id=1069179612 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 647.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar199" parent="Things" unique_id=232234103 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 652.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar200" parent="Things" unique_id=121701487 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 658.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar201" parent="Things" unique_id=1496594047 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 618.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar202" parent="Things" unique_id=101079794 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 624.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar203" parent="Things" unique_id=736810038 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 629.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar204" parent="Things" unique_id=172653083 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 635.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar205" parent="Things" unique_id=549113089 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 641.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar206" parent="Things" unique_id=758129722 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 647.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar207" parent="Things" unique_id=1562853927 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 652.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar208" parent="Things" unique_id=348319016 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 658.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar209" parent="Things" unique_id=440620037 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 664.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar210" parent="Things" unique_id=1093288453 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 670.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar211" parent="Things" unique_id=1612502374 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 675.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar212" parent="Things" unique_id=1299827069 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 681.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar213" parent="Things" unique_id=1107886943 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 687.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar214" parent="Things" unique_id=1068892714 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 693.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar215" parent="Things" unique_id=1224366870 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 698.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar216" parent="Things" unique_id=1631553670 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 704.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar217" parent="Things" unique_id=1846690066 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 664.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar218" parent="Things" unique_id=2142152945 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 670.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar219" parent="Things" unique_id=1429324156 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 675.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar220" parent="Things" unique_id=1896978031 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 681.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar221" parent="Things" unique_id=933394079 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 687.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar222" parent="Things" unique_id=1569241792 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 693.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar223" parent="Things" unique_id=1722859356 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 698.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar224" parent="Things" unique_id=286516957 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 704.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar225" parent="Things" unique_id=1844644398 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 709.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar226" parent="Things" unique_id=1674025894 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 715.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar227" parent="Things" unique_id=1331468902 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 720.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar228" parent="Things" unique_id=1288739829 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 726.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar229" parent="Things" unique_id=1348168931 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 732.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar230" parent="Things" unique_id=2061304275 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 738.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar231" parent="Things" unique_id=1546454780 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 743.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar232" parent="Things" unique_id=180598970 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 749.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar233" parent="Things" unique_id=560699186 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 709.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar234" parent="Things" unique_id=1546602268 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 715.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar235" parent="Things" unique_id=207464058 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 720.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar236" parent="Things" unique_id=1696786578 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 726.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar237" parent="Things" unique_id=2070797977 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 732.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar238" parent="Things" unique_id=144228366 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 738.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar239" parent="Things" unique_id=639757876 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 743.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar240" parent="Things" unique_id=2110244096 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 749.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar241" parent="Things" unique_id=1569316140 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 755.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar242" parent="Things" unique_id=214544933 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 761.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar243" parent="Things" unique_id=1476632840 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 766.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar244" parent="Things" unique_id=1859860968 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 772.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar245" parent="Things" unique_id=1594253628 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 778.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar246" parent="Things" unique_id=5561163 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 784.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar247" parent="Things" unique_id=495474344 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 789.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar248" parent="Things" unique_id=1708877815 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 795.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar249" parent="Things" unique_id=708656753 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 755.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar250" parent="Things" unique_id=1611081568 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 761.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar251" parent="Things" unique_id=335640906 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 766.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar252" parent="Things" unique_id=30869637 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 772.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar253" parent="Things" unique_id=1959511578 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 778.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar254" parent="Things" unique_id=36538690 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 784.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar255" parent="Things" unique_id=1989814661 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 789.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar256" parent="Things" unique_id=1611972670 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 795.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar257" parent="Things" unique_id=60481319 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 800.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar258" parent="Things" unique_id=1448018465 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 806.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar259" parent="Things" unique_id=846882172 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 811.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar260" parent="Things" unique_id=1655431871 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 817.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar261" parent="Things" unique_id=729980876 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 823.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar262" parent="Things" unique_id=1144091578 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 829.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar263" parent="Things" unique_id=286045614 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 834.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar264" parent="Things" unique_id=1142354790 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 840.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar265" parent="Things" unique_id=1925425721 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 800.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar266" parent="Things" unique_id=1610482358 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 806.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar267" parent="Things" unique_id=91025810 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 811.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar268" parent="Things" unique_id=1770390930 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 817.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar269" parent="Things" unique_id=1076886330 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 823.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar270" parent="Things" unique_id=55778238 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 829.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar271" parent="Things" unique_id=1430474249 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 834.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar272" parent="Things" unique_id=125248262 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 840.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar273" parent="Things" unique_id=423106734 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 846.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar274" parent="Things" unique_id=629339769 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 852.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar275" parent="Things" unique_id=313054075 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 857.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar276" parent="Things" unique_id=1936413785 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 863.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar277" parent="Things" unique_id=2078632724 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 869.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar278" parent="Things" unique_id=1193335624 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 875.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar279" parent="Things" unique_id=1277215775 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 880.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar280" parent="Things" unique_id=692508507 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 886.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar281" parent="Things" unique_id=167757647 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 846.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar282" parent="Things" unique_id=2121496172 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 852.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar283" parent="Things" unique_id=707765352 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 857.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar284" parent="Things" unique_id=51330294 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 863.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar285" parent="Things" unique_id=844534211 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 869.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar286" parent="Things" unique_id=1894013990 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 875.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar287" parent="Things" unique_id=173915642 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 880.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar288" parent="Things" unique_id=505528103 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 886.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar289" parent="Things" unique_id=177306490 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 891.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar290" parent="Things" unique_id=203965619 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 897.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar291" parent="Things" unique_id=2033539855 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 902.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar292" parent="Things" unique_id=1648159339 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 908.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar293" parent="Things" unique_id=734753385 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 914.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar294" parent="Things" unique_id=1221334942 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 920.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar295" parent="Things" unique_id=1469958941 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 925.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar296" parent="Things" unique_id=2083441157 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 931.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar297" parent="Things" unique_id=336079708 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 891.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar298" parent="Things" unique_id=259337306 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 897.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar299" parent="Things" unique_id=20801616 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 902.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar300" parent="Things" unique_id=38692783 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 908.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar301" parent="Things" unique_id=988246113 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 914.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar302" parent="Things" unique_id=1744436871 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 920.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar303" parent="Things" unique_id=1837128597 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 925.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar304" parent="Things" unique_id=1114610343 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 931.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar305" parent="Things" unique_id=1471047849 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 937.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar306" parent="Things" unique_id=1902789046 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 943.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar307" parent="Things" unique_id=1304195646 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 948.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar308" parent="Things" unique_id=512191936 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 954.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar309" parent="Things" unique_id=1280333911 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 960.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar310" parent="Things" unique_id=1634146798 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 966.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar311" parent="Things" unique_id=349770968 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 971.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar312" parent="Things" unique_id=1902754637 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 977.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar313" parent="Things" unique_id=280441007 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 937.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar314" parent="Things" unique_id=1785342309 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 943.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar315" parent="Things" unique_id=1852652485 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 948.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar316" parent="Things" unique_id=1982028974 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 954.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar317" parent="Things" unique_id=324440545 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 960.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar318" parent="Things" unique_id=719136461 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 966.64355)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar319" parent="Things" unique_id=1381966558 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 971.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="Pillar320" parent="Things" unique_id=333214546 instance=ExtResource("2_8qtwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 977.85095)
+mass = 640.0
+gravity_scale = 0.0
+prop_scale = Vector3(4, 4, 4)
+
+[node name="ReflexiveSphere" type="MeshInstance3D" parent="Things" unique_id=460855143]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, -23.497719, 19.825382, 60.227367)
+mesh = SubResource("SphereMesh_8qtwp")
+script = ExtResource("3_qe12f")
+preview_in_editor = true
+
+[node name="ReflexiveSphere3" type="MeshInstance3D" parent="Things" unique_id=1992574009]
+transform = Transform3D(28.363619, 0, -41.21345, 0, 50, 0, 41.21345, 0, 28.363619, 37.477707, 17.741716, -140.54146)
+mesh = SubResource("SphereMesh_8qtwp")
+script = ExtResource("3_qe12f")
+preview_in_editor = true
+hover_speed = 3.0
+hover_amplitude = Vector3(0, 5, 0)
+orbit_speed = 0.75
+orbit_center = Vector3(1, 1, 1)
+
+[node name="ReflexiveSphere2" type="MeshInstance3D" parent="Things" unique_id=1906136861]
+transform = Transform3D(13.962005, 0, -42.80381, 0, 44.996, 0, 42.80381, 0, 13.962005, -153.45181, 44.382687, 278.50626)
+mesh = SubResource("SphereMesh_8qtwp")
+script = ExtResource("3_qe12f")
+preview_in_editor = true
+hover_amplitude = Vector3(1, -5, -2.2)
+orbit_speed = 0.2
+orbit_center = Vector3(-168.75389, 18.453016, 123.81097)
+
+[node name="ReflexiveSphere5" type="MeshInstance3D" parent="Things" unique_id=1308346654]
+transform = Transform3D(6.2051554, 0, -19.023663, 0, 20, 0, 19.023663, 0, 6.2051554, -165.91917, 33.287716, 60.645664)
+mesh = SubResource("SphereMesh_8qtwp")
+script = ExtResource("3_qe12f")
+preview_in_editor = true
+hover_amplitude = Vector3(3, 3, 3)
+
+[node name="ReflexiveSphere6" type="MeshInstance3D" parent="Things" unique_id=136916469]
+transform = Transform3D(3.1030085, 0, -9.512999, 0, 10, 0, 9.512999, 0, 3.1030085, -142.91917, 15.287718, 39.645668)
+mesh = SubResource("SphereMesh_8qtwp")
+script = ExtResource("3_qe12f")
+preview_in_editor = true
+hover_amplitude = Vector3(3, 3, 3)
+
+[node name="ReflexiveSphere7" type="MeshInstance3D" parent="Things" unique_id=1228735337]
+transform = Transform3D(10.113692, -8.403701, -37.79892, -5.0655284, 38.419823, -9.899204, 38.387466, 7.2887626, 8.651577, -171.57626, 21.569628, 131.6628)
+mesh = SubResource("SphereMesh_8qtwp")
+script = ExtResource("3_qe12f")
+preview_in_editor = true
+hover_speed = 1.0
+hover_amplitude = Vector3(-9.875, 5, 16.86)
+
+[node name="ReflexiveSphere4" type="MeshInstance3D" parent="Things" unique_id=1415408595]
+transform = Transform3D(12.876088, 0, 7.709731, 0, 14.999, 0, -7.709731, 0, 12.876088, -124.88575, 5.4663982, 71.674355)
+mesh = SubResource("SphereMesh_8qtwp")
+script = ExtResource("3_qe12f")
+preview_in_editor = true
+hover_speed = 1.0
+hover_amplitude = Vector3(-7.605, 1, 20.695)
+
+[node name="ReflexiveSphere8" type="MeshInstance3D" parent="Things" unique_id=1458377102]
+transform = Transform3D(-16.46367, 10.892033, 3.268937, 10.928396, 16.734869, -0.7260301, -3.1303816, 1.1883603, -19.72799, -381.8066, 81.59922, 320.16373)
+mesh = SubResource("SphereMesh_8qtwp")
+script = ExtResource("3_qe12f")
+preview_in_editor = true
+hover_amplitude = Vector3(3, 3, 3)
+
+[node name="ReflexiveSphere9" type="MeshInstance3D" parent="Things" unique_id=425738924]
+transform = Transform3D(-8.23293, 5.4460163, 1.6345336, 5.4649024, 8.3674345, -0.3630514, -1.5654383, 0.59418017, -9.864998, -358.47125, 54.692585, 325.21283)
+mesh = SubResource("SphereMesh_8qtwp")
+script = ExtResource("3_qe12f")
+preview_in_editor = true
+hover_amplitude = Vector3(3, 3, 3)
+
+[node name="ReflexiveSphere10" type="MeshInstance3D" parent="Things" unique_id=1979010184]
+transform = Transform3D(-34.992775, 19.04053, 3.7941322, 17.323008, 34.13684, -11.593876, -8.757687, -8.498499, -38.11357, -405.95605, 99.33315, 375.6359)
+mesh = SubResource("SphereMesh_8qtwp")
+script = ExtResource("3_qe12f")
+preview_in_editor = true
+hover_speed = 1.0
+hover_amplitude = Vector3(-9.875, 5, 16.86)
+
+[node name="ReflexiveSphere11" type="MeshInstance3D" parent="Things" unique_id=1333962039]
+transform = Transform3D(0.35506415, 8.1689, -12.583922, -1.2913663, 12.550314, 8.112342, 14.94788, 0.8913343, 1.00032, -379.9345, 82.17221, 384.45413)
+mesh = SubResource("SphereMesh_8qtwp")
+script = ExtResource("3_qe12f")
+preview_in_editor = true
+hover_speed = 1.0
+hover_amplitude = Vector3(-7.605, 1, 20.695)
+
+[node name="ReflexiveSphere12" type="MeshInstance3D" parent="Things" unique_id=1381007454]
+transform = Transform3D(6.0331273, -3.1230266, 18.821165, 10.928395, 16.734867, -0.72602975, -15.634961, 10.502428, 6.7549376, -240.62747, 97.60633, 478.43878)
+mesh = SubResource("SphereMesh_8qtwp")
+script = ExtResource("3_qe12f")
+preview_in_editor = true
+hover_amplitude = Vector3(3, 3, 3)
+
+[node name="ReflexiveSphere13" type="MeshInstance3D" parent="Things" unique_id=2034028249]
+transform = Transform3D(3.017062, -1.5615039, 9.4118185, 5.464902, 8.367434, -0.36305112, -7.8186355, 5.2511764, 3.3778706, -264.8245, 104.16944, 491.13766)
+mesh = SubResource("SphereMesh_8qtwp")
+script = ExtResource("3_qe12f")
+preview_in_editor = true
+hover_amplitude = Vector3(3, 3, 3)
+
+[node name="ReflexiveSphere14" type="MeshInstance3D" parent="Things" unique_id=1984333403]
+transform = Transform3D(14.893448, 4.944702, 36.814617, 17.323008, 34.13684, -11.593876, -32.85424, 20.256163, 10.570104, -235.76398, 45.88997, 437.0075)
+mesh = SubResource("SphereMesh_8qtwp")
+script = ExtResource("3_qe12f")
+preview_in_editor = true
+hover_speed = 1.0
+hover_amplitude = Vector3(-9.875, 5, 16.86)
+
+[node name="ReflexiveSphere15" type="MeshInstance3D" parent="Things" unique_id=218546935]
+transform = Transform3D(-14.768709, -2.3422587, 1.273445, -1.2913663, 12.550312, 8.11234, -2.332203, 7.8763814, -12.559452, -297.84985, 115.79179, 480.5345)
+mesh = SubResource("SphereMesh_8qtwp")
+script = ExtResource("3_qe12f")
+preview_in_editor = true
+hover_speed = 1.0
+hover_amplitude = Vector3(-7.605, 1, 20.695)
+
+[node name="MenuCamera" type="Camera3D" parent="." unique_id=699959821]
+transform = Transform3D(-0.6715751, -0.25511232, 0.69563246, 0, 0.93885577, 0.34431064, -0.74093646, 0.23123047, -0.6305122, 4.553676, 34.566143, 34.80195)
+current = true
+script = ExtResource("4_8qtwp")
+preview_in_editor = true
+look_target = Vector3(-23.497719, 20.68181, 60.227367)
+pan_speed = 0.1
+pan_distance = Vector3(3, 1, 0.1)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=60518745]
+transform = Transform3D(-5.4619793e-08, 0.50000006, -0.8660254, 2.7805944e-08, 0.8660254, 0.50000006, 1, 3.2292462e-09, -6.12051e-08, 0, 5, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=590421613]
+environment = SubResource("Environment_0o4t1")
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=1881404539]
+
+[node name="MenuUI" type="Control" parent="UILayer" unique_id=1505660281]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_glbon")
+
+[node name="Label" type="Label" parent="UILayer/MenuUI" unique_id=856906852]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -983.0
+offset_top = -117.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.75686276, 0.34901962, 0.8, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "This is a wave survivor game, you shall survive
+the 3 waves to win. A game by Felipe Augusto."
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/MenuUI" unique_id=1291741218]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 480
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/MenuUI/MarginContainer" unique_id=1277966997]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 160
+
+[node name="PlayButton" type="Button" parent="UILayer/MenuUI/MarginContainer/VBoxContainer" unique_id=1736670069]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Play
+"
+
+[node name="SettingsButton" type="Button" parent="UILayer/MenuUI/MarginContainer/VBoxContainer" unique_id=1190671377]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Settings"
+
+[node name="ExitButton" type="Button" parent="UILayer/MenuUI/MarginContainer/VBoxContainer" unique_id=292796437]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Exit"
+
+[node name="FadeRect" type="ColorRect" parent="UILayer/MenuUI" unique_id=139730748]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="InfinityFloorContainer" type="Node3D" parent="." unique_id=1083509841]
+
+[node name="InfiniteFloor" type="StaticBody3D" parent="InfinityFloorContainer" unique_id=269447726]
+collision_layer = 4
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InfinityFloorContainer/InfiniteFloor" unique_id=684440375]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = SubResource("BoxShape3D_8qtwp")
+
+[node name="PlaneMesh" type="MeshInstance3D" parent="InfinityFloorContainer" unique_id=527930325]
+mesh = SubResource("PlaneMesh_0o4t1")

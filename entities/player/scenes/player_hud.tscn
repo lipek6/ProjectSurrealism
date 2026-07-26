@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://cqlyqpm4gt81b"]
+
+[ext_resource type="Script" uid="uid://xk1je2c651bs" path="res://entities/player/scripts/player_hud_controller.gd" id="1_6chha"]
+
+[node name="PlayerHUD" type="CanvasLayer" unique_id=2115644939 node_paths=PackedStringArray("gameplay_ui")]
+script = ExtResource("1_6chha")
+gameplay_ui = NodePath("GameplayUI")
+
+[node name="GameplayUI" type="Control" parent="." unique_id=1206846836]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GameplayUI" unique_id=1973808994]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="TopLeftAnchor" type="VBoxContainer" parent="GameplayUI/MarginContainer" unique_id=1871757553]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TopRightAnchor" type="VBoxContainer" parent="GameplayUI/MarginContainer" unique_id=300662023]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="PauseMenuUI" type="Control" parent="." unique_id=1206375395]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cru5shjhixgob"
+path="res://.godot/imported/Windows XP Error.wav-0d86b00d1e52bf848fa649e81740b569.sample"
+
+[deps]
+
+source_file="res://assets/WinXp/Sounds/Windows XP Error.wav"
+dest_files=["res://.godot/imported/Windows XP Error.wav-0d86b00d1e52bf848fa649e81740b569.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

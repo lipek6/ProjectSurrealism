@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://micnmjfxmfmc"]
+
+[ext_resource type="PackedScene" uid="uid://es0f3rdf5ph7" path="res://levels/game_jam_1/Internal_building.glb" id="1_mvxg3"]
+[ext_resource type="Texture2D" uid="uid://bvcqb1duoji45" path="res://assets/MARBLE_porcelain_tiles_2.png" id="2_mo12r"]
+[ext_resource type="Material" uid="uid://bi127t7l01gmi" path="res://props/reflexive/resources/reflexive_material.tres" id="2_ru16e"]
+[ext_resource type="Texture2D" uid="uid://ba8vi85r51xy6" path="res://assets/MARBLE_45D_tiling_BIG_6.png" id="3_d6cny"]
+[ext_resource type="Texture2D" uid="uid://bn84brxo8dj1v" path="res://assets/METAL_random_paneling_1.png" id="4_wrjhk"]
+[ext_resource type="Texture2D" uid="uid://bdor5f7cfey1g" path="res://assets/MARBLE_square_slot_pattern_5.png" id="6_drlxk"]
+[ext_resource type="Texture2D" uid="uid://v4ay6qk6vbek" path="res://assets/MARBLE_porcelain_tiles_3.png" id="7_1b88j"]
+[ext_resource type="Texture2D" uid="uid://cbdmsrcmhhq6w" path="res://assets/METAL_dragon_scale_shutter_2.png" id="8_2e31a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i5kxn"]
+albedo_texture = ExtResource("2_mo12r")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ggk71"]
+albedo_texture = ExtResource("3_d6cny")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4sgs"]
+albedo_texture = ExtResource("4_wrjhk")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pyt6d"]
+albedo_texture = ExtResource("6_drlxk")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ji0le"]
+albedo_texture = ExtResource("7_1b88j")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cku2"]
+albedo_texture = ExtResource("8_2e31a")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_55m6a"]
+
+[node name="Internal_building" unique_id=1754506599 instance=ExtResource("1_mvxg3")]
+
+[node name="Cube" parent="." index="0" unique_id=1245485590]
+surface_material_override/0 = SubResource("StandardMaterial3D_i5kxn")
+
+[node name="Cube_001" parent="." index="1" unique_id=256331333]
+surface_material_override/0 = SubResource("StandardMaterial3D_i5kxn")
+
+[node name="Cube_002" parent="." index="2" unique_id=1185847141]
+surface_material_override/0 = SubResource("StandardMaterial3D_i5kxn")
+
+[node name="Cube_003" parent="." index="3" unique_id=666729873]
+surface_material_override/0 = SubResource("StandardMaterial3D_ggk71")
+
+[node name="Cube_004" parent="." index="4" unique_id=1736538765]
+surface_material_override/0 = SubResource("StandardMaterial3D_g4sgs")
+
+[node name="Cube_005" parent="." index="5" unique_id=866631762]
+surface_material_override/0 = SubResource("StandardMaterial3D_g4sgs")
+
+[node name="Cube_008" parent="." index="8" unique_id=1634787666]
+surface_material_override/0 = SubResource("StandardMaterial3D_g4sgs")
+
+[node name="Cube_009" parent="." index="9" unique_id=1696506808]
+visible = false
+surface_material_override/0 = ExtResource("2_ru16e")
+
+[node name="Cube_010" parent="." index="10" unique_id=2066744641]
+surface_material_override/0 = ExtResource("2_ru16e")
+
+[node name="Cube_011" parent="." index="11" unique_id=505707750]
+surface_material_override/0 = ExtResource("2_ru16e")
+
+[node name="Cube_012" parent="." index="12" unique_id=1637560906]
+surface_material_override/0 = ExtResource("2_ru16e")
+
+[node name="Cube_013" parent="." index="13" unique_id=936573357]
+surface_material_override/0 = ExtResource("2_ru16e")
+
+[node name="Cube_014" parent="." index="14" unique_id=1568625848]
+surface_material_override/0 = SubResource("StandardMaterial3D_i5kxn")
+
+[node name="Torus" parent="." index="16" unique_id=36659453]
+surface_material_override/0 = SubResource("StandardMaterial3D_pyt6d")
+
+[node name="Torus_004" parent="." index="17" unique_id=496485722]
+surface_material_override/0 = SubResource("StandardMaterial3D_ji0le")
+
+[node name="Torus_005" parent="." index="18" unique_id=583475453]
+material_override = SubResource("StandardMaterial3D_0cku2")
+surface_material_override/0 = SubResource("StandardMaterial3D_55m6a")
+
+[node name="CollisionShape3D" parent="Torus_005/StaticBody3D" parent_id_path=PackedInt32Array(888803297) index="0" unique_id=1112322615]
+transform = Transform3D(1, 0, 0, 0, 1.0000002, 0, 0, 0, 1, 0, 0, 0)

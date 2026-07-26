@@ -4,6 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://dun1wp44w0n6p" path="res://weapons/pistol/arts/effects/audio/pistol_equip.wav" id="2_oaa48"]
 [ext_resource type="PackedScene" uid="uid://32k27ywhka81" path="res://weapons/pistol/scenes/pistol.tscn" id="3_3oato"]
 [ext_resource type="PackedScene" uid="uid://pww2sscr0pbx" path="res://weapons/pistol/scenes/pistol_case.tscn" id="3_p52ja"]
+[ext_resource type="PackedScene" uid="uid://c63xi28spabs8" path="res://weapons/pistol/arts/effects/visual/pistol_muzzle_flash.tscn" id="3_ri7s5"]
 [ext_resource type="AudioStream" uid="uid://cy27uo1isp8dx" path="res://weapons/pistol/arts/effects/audio/pistol_shoot.wav" id="5_jegqt"]
 [ext_resource type="AudioStream" uid="uid://cc2ewrd71bmjq" path="res://weapons/pistol/arts/effects/audio/pistol_unequip.wav" id="6_wked1"]
 
@@ -13,14 +14,15 @@ weapon_name = "Pistol"
 damage = 20
 impact_force = 10.0
 fire_rate = 5.0
-hybrid_ballistics_distance = 20.0
+hybrid_ballistics_distance = 10000.0
 max_on_mag_ammo = 12
 on_mag_ammo = 12
 max_on_reserve_ammo = 120
-on_reserve_ammo = 24
+on_reserve_ammo = 72
 ammo_cost = 1
 weapon_scene = ExtResource("3_3oato")
 casing_scene = ExtResource("3_p52ja")
+shoot_effect = ExtResource("3_ri7s5")
 shoot_sound = ExtResource("5_jegqt")
 equip_sound = ExtResource("2_oaa48")
 unequip_sound = ExtResource("6_wked1")

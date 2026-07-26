@@ -37,6 +37,7 @@ var fire_cooldown : float = 0.0                                                 
 func process_weapons(delta: float) -> void:
 	handle_shoot(delta)
 	handle_reload()
+	handle_swap()
 
 
 ## Processes input and cooldowns to determine if the weapon should fire this frame.
@@ -70,7 +71,7 @@ func handle_reload() -> void:
 		if free_mag_space > 0 and weapon.on_reserve_ammo > 0:
 			
 			match weapon.weapon_name:
-				"Pistol":
+				"Pistol", "PistolAutomatic":
 					weapon_instances[active_index].anim_player.play("pistol_reload")
 					hands_animation.play("fp_pistol_reload")
 				_:
@@ -82,6 +83,17 @@ func handle_reload() -> void:
 			else:
 				weapon.on_mag_ammo += weapon.on_reserve_ammo
 				weapon.on_reserve_ammo = 0
+
+
+func handle_swap() -> void:
+	# GUARD CLAUSE: Prevent modulo-by-zero crashes, and don't swap if we only have 1 gun!
+	if inventory.size() <= 1: 
+		return
+		
+	if player.input.swap_weapon_pressed:
+		var next_index = (active_index + 1) % inventory.size()
+		equip_weapon(next_index)
+
 #endregion
 
 
@@ -100,6 +112,7 @@ func add_weapon_to_inventory(new_weapon : WeaponResource) -> bool:
 	
 	# Weapon is not in inventory. Try to equip it
 	elif inventory.size() < max_slots:
+		print("GOT NEW WEAPON!!!!")
 		# Create a unique clone of the resource so we don't edit the global file
 		var local_weapon_data : WeaponResource = new_weapon.duplicate() 
 		
@@ -134,13 +147,16 @@ func equip_weapon(index: int) -> void:
 	
 	# Play dynamic equip animations
 	match inventory[index].weapon_name:
-		"Pistol":
+		"Pistol", "PistolAutomatic":
+			# CRITICAL FIX: Stop the animation players first so the equip animation is forced to override whatever was playing!
+			hands_animation.stop()
+			weapon_instances[index].anim_player.stop()
+			
 			hands_animation.play("fp_pistol_equip")
 			weapon_instances[index].anim_player.play("pistol_equip")
 			weapon_instances[index].play_equip_effects(inventory[index].equip_sound)
 		_:
 			print("WARNING: Missing equip animation logic for: ", inventory[index].weapon_name)
-
 
 ## Returns the array index of the weapon if the player owns it, or -1 if they don't.
 func get_inventory_index(weapon: WeaponResource) -> int:
