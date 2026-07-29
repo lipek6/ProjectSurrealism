@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dtke2htvs0sch" path="res://props/scenes/crate.tscn" id="8_bymef"]
 [ext_resource type="PackedScene" uid="uid://csq2wl75k2gbo" path="res://props/scenes/cylinder.tscn" id="9_e13we"]
 [ext_resource type="PackedScene" uid="uid://c6cvwloagl5ub" path="res://props/scenes/pillar.tscn" id="10_e13we"]
+[ext_resource type="PackedScene" uid="uid://c34nyps1j64dt" path="res://weapons/pistol/scenes/pistol_shadered_world.tscn" id="14_3a1mm"]
 
 [sub_resource type="Resource" id="Resource_5mtbg"]
 script = ExtResource("2_5mtbg")
@@ -50,6 +51,7 @@ sky_material = SubResource("PanoramaSkyMaterial_npgic")
 [sub_resource type="Environment" id="Environment_4frsa"]
 background_mode = 2
 sky = SubResource("Sky_28d7k")
+ambient_light_color = Color(1, 1, 1, 1)
 tonemap_mode = 3
 tonemap_exposure = 0.5
 glow_enabled = true
@@ -419,3 +421,6 @@ mesh = SubResource("PlaneMesh_1pkhx")
 
 [node name="Player" parent="." unique_id=1866164659 instance=ExtResource("1_npgic")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -0.5, -3.8146973e-06, -2.5)
+
+[node name="PistolWorld" parent="." unique_id=139004008 instance=ExtResource("14_3a1mm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2702498, 0.42735037, 1.4225415)
