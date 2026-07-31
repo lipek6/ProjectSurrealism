@@ -15,7 +15,7 @@ warnings/check_invalid_track_paths=false
 [application]
 
 config/name="ProjectSurrealism"
-run/main_scene="uid://do4yeqwhyc2pb"
+run/main_scene="uid://cumlkudt7n44b"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [debug]
@@ -40,6 +40,12 @@ movie_writer/fps=30
 [editor_plugins]
 
 enabled=PackedStringArray()
+
+[file_customization]
+
+folder_colors={
+"res://entities/player/states/": "green"
+}
 
 [global_group]
 
@@ -136,7 +142,8 @@ swap={
 }
 next_camera={
 "deadzone": 0.2,
-"events": []
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194306,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
 }
 primary_shoot={
 "deadzone": 0.2,

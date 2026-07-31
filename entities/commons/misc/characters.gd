@@ -28,8 +28,9 @@ func _ready() -> void:
 
 ## CAUTION: Lots of unsafe accesses here. All of this needs to be refactored later!
 func _process(delta: float) -> void:
-	$Label.text = "Player state:  "  + str(character_1.movement_controller.State.keys()[character_1.movement_controller.current_state]) + "\n"  
-	$Label.text += "Player2 state: " + str(character_2.movement_controller.State.keys()[character_2.movement_controller.current_state])
+	pass
+	#$Label.text = "Player state:  "  + str(character_1.movement_controller.State.keys()[character_1.movement_controller.current_state]) + "\n"  
+	#$Label.text += "Player2 state: " + str(character_2.movement_controller.State.keys()[character_2.movement_controller.current_state])
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("swap"):

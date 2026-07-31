@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ca44p5a4lia4q" path="res://weapons/pistol/arts/models/local/pistol.glb" id="1_mwjux"]
 [ext_resource type="Script" uid="uid://7dex76fwrx8e" path="res://weapons/commons/weapon_instance.gd" id="2_d3668"]
-[ext_resource type="Shader" uid="uid://dfamaq3n1075d" path="res://Metal.gdshader" id="3_mwjux"]
+[ext_resource type="Shader" uid="uid://dfamaq3n1075d" path="res://unorganized/Metal.gdshader" id="3_mwjux"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d3668"]
 render_priority = 0

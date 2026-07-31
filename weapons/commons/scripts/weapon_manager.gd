@@ -51,9 +51,9 @@ func handle_shoot(delta: float) -> void:
 	# Determine firing logic based on the FIRE_MODE enum
 	match weapon.fire_mode:
 		weapon.FIRE_MODE.SEMI_AUTOMATIC:
-			try_shoot = player.input.primary_shoot_pressed
+			try_shoot = player.input.wants_primary_shoot
 		weapon.FIRE_MODE.AUTOMATIC:
-			try_shoot = player.input.primary_shoot_held
+			try_shoot = player.input.wants_primary_shoot
 	
 	if try_shoot and fire_cooldown <= 0.0:
 		if weapon.on_mag_ammo >= weapon.ammo_cost:
@@ -64,7 +64,7 @@ func handle_shoot(delta: float) -> void:
 
 
 func handle_reload() -> void:
-	if player.input.reload_pressed:
+	if player.input.wants_reload:
 		var weapon : WeaponResource = inventory[active_index]
 		var free_mag_space : int = weapon.max_on_mag_ammo - weapon.on_mag_ammo
 		
@@ -90,7 +90,7 @@ func handle_swap() -> void:
 	if inventory.size() <= 1: 
 		return
 		
-	if player.input.swap_weapon_pressed:
+	if player.input.wants_weapon_swap:
 		var next_index = (active_index + 1) % inventory.size()
 		equip_weapon(next_index)
 

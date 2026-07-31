@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dfdd66f7brokd"]
 
-[ext_resource type="Script" uid="uid://cyot5x1embrxb" path="res://world_weapon.gd" id="1_0xfyy"]
+[ext_resource type="Script" uid="uid://cyot5x1embrxb" path="res://unorganized/world_weapon.gd" id="1_0xfyy"]
 [ext_resource type="Resource" uid="uid://c4ghonrrlq8xa" path="res://weapons/pistol/resources/pistol_automatic.tres" id="2_0xfyy"]
 [ext_resource type="PackedScene" uid="uid://djprc6cmoqme2" path="res://weapons/pistol/arts/models/world/pistol_world.glb" id="3_nfyvt"]
 [ext_resource type="Texture2D" uid="uid://fi5vgt78sirj" path="res://weapons/pistol/arts/models/local/pistol_color.png" id="4_nfyvt"]

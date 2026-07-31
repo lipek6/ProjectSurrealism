@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://b4hnth4bl3ncn"]
 
 [ext_resource type="Script" uid="uid://yd8ybm6sw86b" path="res://levels/game_jam_1/wave_manager.gd" id="1_g3c0i"]
-[ext_resource type="PackedScene" uid="uid://dr7ks3lx07q50" path="res://entities/player/scenes/player.tscn" id="1_npgic"]
+[ext_resource type="PackedScene" uid="uid://dr7ks3lx07q50" path="res://entities/player/player.tscn" id="1_npgic"]
 [ext_resource type="Texture2D" uid="uid://bc7ea2t5ueie1" path="res://levels/commons/skyboxes/SBS - Cloudy Skyboxes - Panorama/Panorama/Panorama_Sky_16-512x512.png" id="2_4frsa"]
-[ext_resource type="Script" uid="uid://b1aq8iojmr385" path="res://wave_config.gd" id="2_5mtbg"]
+[ext_resource type="Script" uid="uid://b1aq8iojmr385" path="res://unorganized/wave_config.gd" id="2_5mtbg"]
 [ext_resource type="Shader" uid="uid://bp5b7v6mens7" path="res://levels/commons/checker_ground/shaders/infinity_floor.gdshader" id="2_npgic"]
-[ext_resource type="PackedScene" uid="uid://chb6w602ee62n" path="res://entities/human_sphere/human_sphere_big.tscn" id="3_6cmbu"]
+[ext_resource type="PackedScene" path="res://entities/human_sphere/human_sphere_big.tscn" id="3_6cmbu"]
 [ext_resource type="PackedScene" uid="uid://dfdd66f7brokd" path="res://weapons/pistol/scenes/pistol_automatic_world.tscn" id="4_6cmbu"]
 [ext_resource type="PackedScene" uid="uid://b1hqj0rqpk680" path="res://weapons/pistol/scenes/pistol_world.tscn" id="4_g3c0i"]
-[ext_resource type="PackedScene" uid="uid://bq243f4bcric1" path="res://entities/human_sphere/human_sphere_faster.tscn" id="5_dbbdy"]
-[ext_resource type="PackedScene" uid="uid://cutsw63a5iw35" path="res://entities/human_sphere/human_sphere_default.tscn" id="6_5mtbg"]
+[ext_resource type="PackedScene" path="res://entities/human_sphere/human_sphere_faster.tscn" id="5_dbbdy"]
+[ext_resource type="PackedScene" path="res://entities/human_sphere/human_sphere_default.tscn" id="6_5mtbg"]
 [ext_resource type="PackedScene" uid="uid://dtke2htvs0sch" path="res://props/scenes/crate.tscn" id="8_bymef"]
 [ext_resource type="PackedScene" uid="uid://csq2wl75k2gbo" path="res://props/scenes/cylinder.tscn" id="9_e13we"]
 [ext_resource type="PackedScene" uid="uid://c6cvwloagl5ub" path="res://props/scenes/pillar.tscn" id="10_e13we"]
@@ -45,12 +45,12 @@ metadata/_custom_type_script = "uid://b1aq8iojmr385"
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_npgic"]
 panorama = ExtResource("2_4frsa")
 
-[sub_resource type="Sky" id="Sky_28d7k"]
+[sub_resource type="Sky" id="Sky_3a1mm"]
 sky_material = SubResource("PanoramaSkyMaterial_npgic")
 
 [sub_resource type="Environment" id="Environment_4frsa"]
 background_mode = 2
-sky = SubResource("Sky_28d7k")
+sky = SubResource("Sky_3a1mm")
 ambient_light_color = Color(1, 1, 1, 1)
 tonemap_mode = 3
 tonemap_exposure = 0.5
