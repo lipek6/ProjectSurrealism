@@ -192,7 +192,7 @@ func _handle_headbob(delta : float) -> void:
 		fp_camera.transform.origin = Vector3(
 			cos(headbob_time * HEADBOB_FREQUNCY * 0.5) * HEADBOB_MOVE_AMOUNT,       
 			sin(headbob_time * HEADBOB_FREQUNCY) * HEADBOB_MOVE_AMOUNT,             
-			0                                                                       
+			0.0                                                                       
 		)
 	else:
 		if smooth_headbob:
@@ -203,7 +203,7 @@ func _handle_crouch_camera_smoothing(delta : float) -> void:
 	# String checking: Are we in a crouch state?
 	var is_crouching : bool = state_machine.current_state.name in [&"CrouchState", &"AirCrouchState"]
 	
-	var stats = player.movement_stats # We read the data from the generic resource!
+	var stats : MovementStats = player.movement_stats # We read the data from the generic resource!
 	var target_y : float = -stats.crouch_translate if is_crouching else 0.0
 	head.position.y = move_toward(head.position.y, target_y, 7.0 * delta)
 
@@ -214,9 +214,11 @@ func _save_camera_position_for_smoothing() -> void:
 
 func _slide_camera_smooth_back_to_origin(delta : float) -> void:
 	if _saved_camera_global_position == Vector3.INF: return 
-	camera_smooth_point.global_position.y = _saved_camera_global_position.y
-	camera_smooth_point.position.y        = clampf(camera_smooth_point.position.y, -0.7, 0.7)       # Avoid teleporting
-	var move_amount :float = maxf(player.velocity.length() * delta, player.movement_stats.walk_speed/2 * delta) 
+	
+	var global_diff : float = _saved_camera_global_position.y - camera_smooth_point.global_position.y
+	camera_smooth_point.global_position.y += global_diff
+	camera_smooth_point.position.y = clampf(camera_smooth_point.position.y, -0.7, 0.7)       # Avoid teleporting
+	var move_amount :float = maxf(player.velocity.length() * delta, player.movement_stats.walk_speed/2 * delta)  #WARNING: Is just using the walk speed 
 	camera_smooth_point.position.y = move_toward(camera_smooth_point.position.y, 0.0, move_amount)
 	
 	if camera_smooth_point.position.y == 0:

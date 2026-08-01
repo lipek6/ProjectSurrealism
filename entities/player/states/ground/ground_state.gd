@@ -18,7 +18,7 @@ var _snapped_to_stairs_last_frame: bool = false
 func physics_update(delta: float) -> void:
 	# UNIVERSAL GROUND TRANSITIONS: Check for no_clip input
 	if input.is_noclipping:
-		state_machine.transition_to("NoClipState")
+		state_machine.transition_to(&"NoClipState")
 		return
 	
 	

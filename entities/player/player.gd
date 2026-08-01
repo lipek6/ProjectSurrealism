@@ -2,36 +2,15 @@ class_name Player extends Actor
 
 # ==============================================================================
 # COMPONENT: PLAYER MANAGER (ROOT)
-## Responsibilities: Acts as the Master Controller for the Component Architecture.
-## Inherits core FSM dependencies from Actor. Safely executes optional components.
 # ==============================================================================
 
-# ==============================================================================
-# ATTRIBUTES
-# ==============================================================================
-#region Optional Components
-@export_group("Optional Components")
-@export var movement_state_machine : MovementStateMachine
-@export var camera_controller               : PlayerCameraController 
-@export var footstep_controller             : FootstepController     
-@export var weapon_manager                  : WeaponManager          
-@export var weapon_sway                     : WeaponSway             
-#endregion
+@export_group("Player-Specific Components")
+@export var camera_controller   : PlayerCameraController 
+@export var animation_controller: PlayerAnimationController
+@export var footstep_controller : FootstepController
+@export var weapon_manager      : WeaponManager          
+@export var weapon_sway         : WeaponSway             
 
-#region Node References
-@onready var world_model         : Node3D           = %WorldModel
-@onready var debug_label         : Label            = %DebugLabel          
-@onready var aim_raycast         : RayCast3D        = %AimRayCast3D
-
-# --- CRITICAL PHYSICAL REFERENCES ---
-@onready var collision_shape          : CollisionShape3D = %CollisionShape3D
-@onready var head                     : Node3D           = %Head
-@onready var stairs_ahead_ray         : RayCast3D        = %StairsAheadRayCast3D
-@onready var stairs_below_ray         : RayCast3D        = %StairsBelowRayCast3D
-@onready var _original_capsule_height : float            = collision_shape.shape.height
-#endregion
-
-#region General Parameters
 @export_group("General")
 @export var is_active : bool = true                                             
 @export var weight    : float = 80.0                                            
@@ -39,16 +18,11 @@ class_name Player extends Actor
 @export_group("Visual Models")
 @export var first_person_model : Node3D                                         
 @export var third_person_model : Node3D                                         
-#endregion
 
-#region Internal Variables
+@onready var world_model : Node3D = %WorldModel
+@onready var debug_label : Label  = %DebugLabel          
+
 var _last_frame_was_on_floor : float = -INF
-var wave_message : String = "WAITING FOR WAVES..."
-#endregion
-
-# ==============================================================================
-# METHODS
-# ==============================================================================
 
 func _ready() -> void:
 	self.platform_on_leave = CharacterBody3D.PLATFORM_ON_LEAVE_DO_NOTHING
@@ -76,51 +50,20 @@ func _process(delta: float) -> void:
 	_update_debug_ui()
 
 func _physics_process(delta: float) -> void:
-	if is_active:
-		# Provide the basis for input calculation. Fallback to global_basis if camera is missing.
-		var cam_basis = camera_controller.current_camera.global_basis if camera_controller and camera_controller.current_camera else self.global_basis
-		if input: input.gather_inputs(self.global_basis, cam_basis)       
+	if is_active and input:
+		var cam_basis : Basis = camera_controller.current_camera.global_basis if camera_controller and camera_controller.current_camera else self.global_basis
+		input.gather_inputs(self.global_basis, cam_basis)       
 		
 		if movement_state_machine: movement_state_machine.process_physics(delta)
 	
 	if physics_interactor: physics_interactor.process_physics()
 	if camera_controller: camera_controller.process_camera(delta)
-	
+	if animation_controller: animation_controller.process_animation(delta)
 	if is_active and weapon_manager: weapon_manager.process_weapons(delta)
 	if footstep_controller: footstep_controller.process_footsteps(delta)
 	
 	if is_on_floor():
 		_last_frame_was_on_floor = Engine.get_physics_frames()
-
-# ==============================================================================
-# ACTOR OVERRIDES (Crouching Logic)
-# ==============================================================================
-func crouch() -> void:
-	if collision_shape.shape.height != _original_capsule_height / 2.0: 
-		collision_shape.shape.height = _original_capsule_height - movement_stats.crouch_translate
-		collision_shape.position.y   = collision_shape.shape.height / 2.0  
-	
-func uncrouch() -> void:
-	collision_shape.shape.height = _original_capsule_height
-	collision_shape.position.y   = collision_shape.shape.height / 2.0 
-
-func crouch_midair() -> void:
-	var collision_result : KinematicCollision3D = KinematicCollision3D.new()
-	self.test_move(self.transform, Vector3(0.0, +movement_stats.crouch_jump_add, 0.0), collision_result)
-	
-	self.position.y += collision_result.get_travel().y   
-	head.position.y -= collision_result.get_travel().y
-	head.position.y = clampf(head.position.y, -movement_stats.crouch_translate, 0) 
-	crouch()
-
-func uncrouch_midair() -> void:
-	var collision_result : KinematicCollision3D = KinematicCollision3D.new()
-	self.test_move(self.transform, Vector3(0.0, -movement_stats.crouch_jump_add, 0.0), collision_result)
-	
-	self.position.y += collision_result.get_travel().y   
-	head.position.y -= collision_result.get_travel().y
-	head.position.y = clampf(head.position.y, -movement_stats.crouch_translate, 0)
-	uncrouch()
 
 #region Private Utilities
 func _update_model_layers(active: bool) -> void:

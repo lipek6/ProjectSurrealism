@@ -22,8 +22,11 @@ var _previous_state_name    : StringName = &"IdleState"
 var _current_blend_position : Vector2 = Vector2.ZERO 
 
 func process_animation(delta: float) -> void:
+	if animation_tree: print("animation_tree - OK")
+	if base_movement_state_machine_playback: print("base_movement_state_machine_playback - OK")
+	if state_machine.current_state: print("state_machine.current_state - OK")
 	if not animation_tree or not base_movement_state_machine_playback or not state_machine.current_state: return
-	
+	print("HASSSS")
 	_update_blend_spaces(delta)
 	
 	var current_state_name : StringName = state_machine.current_state.name

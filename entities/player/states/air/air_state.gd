@@ -4,7 +4,7 @@ class_name AirState extends State
 
 func physics_update(delta: float) -> void:
 	if input.is_noclipping:
-		state_machine.transition_to("NoClipState")
+		state_machine.transition_to(&"NoClipState")
 		return
 	
 	# Universal Air Physics

@@ -13,10 +13,11 @@ var move_direction                       : Vector2 = Vector2.ZERO
 # ==============================================================================
 # MOVEMENT INTENTS
 # ==============================================================================
-var is_moving    : bool = false
-var wants_jump   : bool = false
-var wants_sprint : bool = false
-var wants_crouch : bool = false
+var is_moving     : bool = false
+var is_noclipping : bool = false
+var wants_jump    : bool = false
+var wants_sprint  : bool = false
+var wants_crouch  : bool = false
 
 # ==============================================================================
 # COMBAT & INTERACTION INTENTS

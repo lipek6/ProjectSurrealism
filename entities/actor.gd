@@ -1,24 +1,62 @@
 class_name Actor extends CharacterBody3D
+
 ## [color=cyan]Abstract Base Actor.[/color]
-## Defines the standard interface and core components required for the 
-## MovementStateMachine to function. All moving entities (Players, NPCs) must inherit from this.
-
-@export_group("Core Actor Components")
-@export var input              : ActorInput
-@export var movement_stats     : MovementStats
-@export var physics_interactor : PhysicsInteractor
+## The universal blueprint for any moving entity in the game.
+## Owns the physical nodes and provides the FSM with a guaranteed interface.
 
 # ==============================================================================
-# VIRTUAL METHODS (To be overridden by children)
+# CORE COMPONENTS (Required by FSM)
 # ==============================================================================
+@export_group("Core Components")
+@export var input                  : ActorInput
+@export var movement_stats         : MovementStats
+@export var movement_state_machine : MovementStateMachine
+@export var physics_interactor     : PhysicsInteractor
+
+# ==============================================================================
+# PHYSICAL NODES
+# ==============================================================================
+@export_group("Physical Nodes")
+@export var collision_shape    : CollisionShape3D
+@export var aim_raycast        : RayCast3D
+@export var head               : Node3D
+@export var stairs_ahead_ray   : RayCast3D
+@export var stairs_below_ray   : RayCast3D
+
+@onready var _original_capsule_height : float = collision_shape.shape.height
+
+var is_crouched : bool = false
+
+# ==============================================================================
+# UNIVERSAL ACTOR LOGIC
+# ==============================================================================
+
 func crouch() -> void:
-	push_warning("crouch() called on base Actor. Child class forgot to override.")
-
+	if is_crouched: return
+	collision_shape.shape.height = _original_capsule_height - movement_stats.crouch_translate
+	collision_shape.position.y   = collision_shape.shape.height / 2.0  
+	is_crouched = true
+	
 func uncrouch() -> void:
-	push_warning("uncrouch() called on base Actor. Child class forgot to override.")
+	if not is_crouched: return
+	collision_shape.shape.height = _original_capsule_height
+	collision_shape.position.y   = collision_shape.shape.height / 2.0 
+	is_crouched = false
 
 func crouch_midair() -> void:
-	push_warning("crouch_midair() called on base Actor. Child class forgot to override.")
+	var collision_result : KinematicCollision3D = KinematicCollision3D.new()
+	self.test_move(self.transform, Vector3(0.0, +movement_stats.crouch_jump_add, 0.0), collision_result)
+	
+	self.position.y += collision_result.get_travel().y   
+	head.position.y -= collision_result.get_travel().y
+	head.position.y = clampf(head.position.y, -movement_stats.crouch_translate, 0) 
+	crouch()
 
 func uncrouch_midair() -> void:
-	push_warning("uncrouch_midair() called on base Actor. Child class forgot to override.")
+	var collision_result : KinematicCollision3D = KinematicCollision3D.new()
+	self.test_move(self.transform, Vector3(0.0, -movement_stats.crouch_jump_add, 0.0), collision_result)
+	
+	self.position.y += collision_result.get_travel().y   
+	head.position.y -= collision_result.get_travel().y
+	head.position.y = clampf(head.position.y, -movement_stats.crouch_translate, 0)
+	uncrouch()

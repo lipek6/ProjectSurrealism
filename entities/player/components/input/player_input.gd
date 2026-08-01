@@ -16,7 +16,6 @@ var wants_noclip                 : bool = false
 var wants_noclip_speed_increase  : bool = false
 var wants_noclip_speed_decrease  : bool = false
 
-var is_noclipping : bool = false
 
 var stats: MovementStats
 
@@ -37,7 +36,7 @@ func gather_inputs(actor_basis: Basis, camera_basis: Basis) -> void:
 		stats.auto_sprint = not stats.auto_sprint
 		
 	if stats.can_noclip and Input.is_action_just_pressed("_noclip"):
-		stats.noclip = not stats.noclip
+		is_noclipping = not is_noclipping
 		stats.noclip_speed_multiplier = 3.0 # Reset to base multiplier
 		
 	if stats.can_noclip and stats.noclip:
@@ -83,9 +82,3 @@ func gather_inputs(actor_basis: Basis, camera_basis: Basis) -> void:
 	else:
 		flat_camera_aligned_wished_direction = Vector3.ZERO
 		is_moving = false
-	
-	if stats.can_noclip:
-		if wants_noclip and stats.can_noclip:
-			is_noclipping = true
-		else:
-			is_noclipping = false
