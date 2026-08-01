@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="CameraStats" format=3 uid="uid://dwde4cawybvcg"]
+
+[ext_resource type="Script" uid="uid://chfo4m3l8lf07" path="res://entities/player/resources/camera/camera_stats.gd" id="1_0sexu"]
+
+[resource]
+script = ExtResource("1_0sexu")
+metadata/_custom_type_script = "uid://chfo4m3l8lf07"

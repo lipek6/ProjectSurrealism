@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dr7ks3lx07q50"]
 
 [ext_resource type="Script" uid="uid://c5u5ggumqebem" path="res://entities/player/player.gd" id="1_mv1ah"]
+[ext_resource type="Resource" uid="uid://dwde4cawybvcg" path="res://entities/player/resources/camera/default_camera_stats.tres" id="2_24ehl"]
 [ext_resource type="Resource" uid="uid://18oo2agoly8k" path="res://entities/player/resources/movement/default_movement_stats.tres" id="2_221hk"]
 [ext_resource type="Script" uid="uid://c5xwnln3f5tqj" path="res://entities/player/components/input/player_input.gd" id="2_bls4j"]
-[ext_resource type="Script" uid="uid://dfmvx404pe1p4" path="res://entities/player/components/camera/camera_controller.gd" id="3_qiwj3"]
 [ext_resource type="Script" uid="uid://ibcgwefks3mb" path="res://entities/player/components/physics/physics_interactor.gd" id="5_bectd"]
 [ext_resource type="Script" uid="uid://dpj7vkdogpfk7" path="res://entities/player/components/animation/animation_controller.gd" id="6_8fjmc"]
 [ext_resource type="Script" uid="uid://bal55ymr5s75o" path="res://entities/player/components/footstep/footstep_controller.gd" id="7_6oylw"]
@@ -12,20 +12,23 @@
 [ext_resource type="PackedScene" uid="uid://cf63k8h03nhqq" path="res://weapons/commons/scenes/weapon_manager.tscn" id="8_t4ku0"]
 [ext_resource type="Script" uid="uid://cwx1ipxf6bhee" path="res://entities/player/components/weapons/weapon_sway.gd" id="8_vvawb"]
 [ext_resource type="AudioStream" uid="uid://brkuqbei404rx" path="res://assets/Free Footsteps Pack/Concrete 2.wav" id="9_ekl84"]
-[ext_resource type="Script" uid="uid://xm07d4umikao" path="res://entities/player/states/movement_state_machine.gd" id="11_eyb6c"]
-[ext_resource type="Script" uid="uid://i5hfu55j4vrk" path="res://entities/player/states/state.gd" id="11_gx6sm"]
-[ext_resource type="Script" uid="uid://ulrwme1k7ch0" path="res://entities/player/states/ground/ground_state.gd" id="12_3wlsy"]
-[ext_resource type="Script" uid="uid://dotwt467pst41" path="res://entities/player/states/air/air_state.gd" id="13_b2kln"]
-[ext_resource type="Script" uid="uid://dude4fkaduxh1" path="res://entities/player/states/ground/idle_state.gd" id="13_mtric"]
-[ext_resource type="Script" uid="uid://c8sjthgtw8g5b" path="res://entities/player/states/ground/walk_state.gd" id="14_eyb6c"]
+[ext_resource type="Script" uid="uid://xm07d4umikao" path="res://entities/player/states/movement/movement_state_machine.gd" id="11_eyb6c"]
+[ext_resource type="Script" uid="uid://ulrwme1k7ch0" path="res://entities/player/states/movement/ground/ground_state.gd" id="12_3wlsy"]
+[ext_resource type="Script" uid="uid://dotwt467pst41" path="res://entities/player/states/movement/air/air_state.gd" id="13_b2kln"]
+[ext_resource type="Script" uid="uid://dude4fkaduxh1" path="res://entities/player/states/movement/ground/idle_state.gd" id="13_mtric"]
+[ext_resource type="Script" uid="uid://c8sjthgtw8g5b" path="res://entities/player/states/movement/ground/walk_state.gd" id="14_eyb6c"]
 [ext_resource type="Texture2D" uid="uid://c8g6hsijxj7tx" path="res://assets/142.png" id="14_vwfor"]
-[ext_resource type="Script" uid="uid://cd5traa2hx5yx" path="res://entities/player/states/ground/sprint_state.gd" id="15_221hk"]
-[ext_resource type="Script" uid="uid://va8jo13b01sj" path="res://entities/player/states/ground/crouch_state.gd" id="18_ghoj8"]
-[ext_resource type="Script" uid="uid://bhp7i3i3u1a64" path="res://entities/player/states/air/jump_state.gd" id="20_qpopc"]
-[ext_resource type="Script" uid="uid://denbwau32xd3o" path="res://entities/player/states/air/surf_state.gd" id="21_50fht"]
-[ext_resource type="Script" uid="uid://dijh40t4gbwif" path="res://entities/player/states/air/fall_state.gd" id="21_wq0jh"]
-[ext_resource type="Script" uid="uid://df35jvdjmbbjc" path="res://entities/player/states/no_clip/no_clip_state.gd" id="22_wuv6x"]
-[ext_resource type="Script" uid="uid://dlvorcv4bvqad" path="res://entities/player/states/air/air_crouch_state.gd" id="23_gt4e4"]
+[ext_resource type="Script" uid="uid://cd5traa2hx5yx" path="res://entities/player/states/movement/ground/sprint_state.gd" id="15_221hk"]
+[ext_resource type="Script" uid="uid://va8jo13b01sj" path="res://entities/player/states/movement/ground/crouch_state.gd" id="18_ghoj8"]
+[ext_resource type="Script" uid="uid://bhp7i3i3u1a64" path="res://entities/player/states/movement/air/jump_state.gd" id="20_qpopc"]
+[ext_resource type="Script" uid="uid://denbwau32xd3o" path="res://entities/player/states/movement/air/surf_state.gd" id="21_50fht"]
+[ext_resource type="Script" uid="uid://dijh40t4gbwif" path="res://entities/player/states/movement/air/fall_state.gd" id="21_wq0jh"]
+[ext_resource type="Script" uid="uid://df35jvdjmbbjc" path="res://entities/player/states/movement/no_clip/no_clip_state.gd" id="22_wuv6x"]
+[ext_resource type="Script" uid="uid://dxupcnv07r3ev" path="res://entities/player/states/camera/first_person_state.gd" id="23_24ehl"]
+[ext_resource type="Script" uid="uid://bmn541j4ydxvh" path="res://entities/player/states/camera/camera_state_machine.gd" id="23_bwdx1"]
+[ext_resource type="Script" uid="uid://dlvorcv4bvqad" path="res://entities/player/states/movement/air/air_crouch_state.gd" id="23_gt4e4"]
+[ext_resource type="Script" uid="uid://b8n0q1rolvmpg" path="res://entities/player/states/camera/third_person_state.gd" id="24_bwdx1"]
+[ext_resource type="Script" uid="uid://cbfx0l05bnq2c" path="res://entities/player/states/camera/third_person_free_look_state.gd" id="25_vewsg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wuv6x"]
 radius = 0.4
@@ -36,15 +39,21 @@ size = Vector3(0.7, 0.1, 0.7)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_sglur"]
 
-[node name="Player" type="CharacterBody3D" unique_id=1866164659 node_paths=PackedStringArray("camera_controller", "animation_controller", "footstep_controller", "weapon_manager", "weapon_sway", "first_person_model", "third_person_model", "input", "movement_state_machine", "physics_interactor", "collision_shape", "aim_raycast", "head", "stairs_ahead_ray", "stairs_below_ray") groups=["Entity", "Player"]]
+[node name="Player" type="CharacterBody3D" unique_id=1866164659 node_paths=PackedStringArray("camera_state_machine", "footstep_controller", "weapon_manager", "weapon_sway", "fp_camera", "tp_camera", "camera_smooth_point", "orbit_cam_yaw", "orbit_cam_pitch", "orbit_cam_spring_arm", "first_person_model", "third_person_model", "input", "movement_state_machine", "physics_interactor", "collision_shape", "aim_raycast", "head", "stairs_ahead_ray", "stairs_below_ray") groups=["Entity", "Player"]]
 collision_mask = 15
 platform_on_leave = 2
 script = ExtResource("1_mv1ah")
-camera_controller = NodePath("ManagersAndControllers/CameraController")
-animation_controller = NodePath("ManagersAndControllers/AnimationController")
+camera_state_machine = NodePath("CameraStateMachine")
 footstep_controller = NodePath("ManagersAndControllers/FootstepController")
 weapon_manager = NodePath("HeadOriginalPosition/Head/CameraSmoothPoint/FirstPersonCamera3D/FirstPersonModel/WeaponSway/WeaponManager")
 weapon_sway = NodePath("HeadOriginalPosition/Head/CameraSmoothPoint/FirstPersonCamera3D/FirstPersonModel/WeaponSway")
+fp_camera = NodePath("HeadOriginalPosition/Head/CameraSmoothPoint/FirstPersonCamera3D")
+tp_camera = NodePath("HeadOriginalPosition/ThirdPersonOrbitCamYaw/ThirdPersonOrbitCamPitch/ThirdPersonOrbitCamSpringArm3D/ThirdPersonCamera3D")
+camera_smooth_point = NodePath("HeadOriginalPosition/Head/CameraSmoothPoint")
+orbit_cam_yaw = NodePath("HeadOriginalPosition/ThirdPersonOrbitCamYaw")
+orbit_cam_pitch = NodePath("HeadOriginalPosition/ThirdPersonOrbitCamYaw/ThirdPersonOrbitCamPitch")
+orbit_cam_spring_arm = NodePath("HeadOriginalPosition/ThirdPersonOrbitCamYaw/ThirdPersonOrbitCamPitch/ThirdPersonOrbitCamSpringArm3D")
+camera_stats = ExtResource("2_24ehl")
 first_person_model = NodePath("HeadOriginalPosition/Head/CameraSmoothPoint/FirstPersonCamera3D/FirstPersonModel")
 third_person_model = NodePath("WorldModel")
 input = NodePath("ManagersAndControllers/PlayerInput")
@@ -62,12 +71,6 @@ stairs_below_ray = NodePath("StairsBelowRayCast3D")
 [node name="PlayerInput" type="Node" parent="ManagersAndControllers" unique_id=1277437082]
 unique_name_in_owner = true
 script = ExtResource("2_bls4j")
-
-[node name="CameraController" type="Node" parent="ManagersAndControllers" unique_id=1606047111]
-unique_name_in_owner = true
-script = ExtResource("3_qiwj3")
-tp_look_sensitivity = 0.008
-fp_look_sensitivity = 0.008
 
 [node name="PhysicsInteractor" type="Node" parent="ManagersAndControllers" unique_id=688488064]
 unique_name_in_owner = true
@@ -90,56 +93,82 @@ footstep_sounds = Array[AudioStream]([ExtResource("8_oucfp"), ExtResource("9_ekl
 [node name="MovementStateMachine" type="Node" parent="." unique_id=1638502832 node_paths=PackedStringArray("initial_state")]
 unique_name_in_owner = true
 script = ExtResource("11_eyb6c")
-initial_state = NodePath("State/GroundState/IdleState")
+initial_state = NodePath("GroundState/IdleState")
 
-[node name="State" type="Node" parent="MovementStateMachine" unique_id=2001656552]
-unique_name_in_owner = true
-script = ExtResource("11_gx6sm")
-
-[node name="GroundState" type="Node" parent="MovementStateMachine/State" unique_id=76948492]
+[node name="GroundState" type="Node" parent="MovementStateMachine" unique_id=1910916577]
 unique_name_in_owner = true
 script = ExtResource("12_3wlsy")
+metadata/_custom_type_script = "uid://bfpnuo267fg4h"
 
-[node name="IdleState" type="Node" parent="MovementStateMachine/State/GroundState" unique_id=694171162]
+[node name="IdleState" type="Node" parent="MovementStateMachine/GroundState" unique_id=377235488]
 unique_name_in_owner = true
 script = ExtResource("13_mtric")
+metadata/_custom_type_script = "uid://bfpnuo267fg4h"
 
-[node name="WalkState" type="Node" parent="MovementStateMachine/State/GroundState" unique_id=274840876]
+[node name="WalkState" type="Node" parent="MovementStateMachine/GroundState" unique_id=991142666]
 unique_name_in_owner = true
 script = ExtResource("14_eyb6c")
+metadata/_custom_type_script = "uid://bfpnuo267fg4h"
 
-[node name="SprintState" type="Node" parent="MovementStateMachine/State/GroundState" unique_id=538530984]
+[node name="SprintState" type="Node" parent="MovementStateMachine/GroundState" unique_id=2094646849]
 unique_name_in_owner = true
 script = ExtResource("15_221hk")
+metadata/_custom_type_script = "uid://bfpnuo267fg4h"
 
-[node name="CrouchState" type="Node" parent="MovementStateMachine/State/GroundState" unique_id=383486061]
+[node name="CrouchState" type="Node" parent="MovementStateMachine/GroundState" unique_id=732308630]
 unique_name_in_owner = true
 script = ExtResource("18_ghoj8")
+metadata/_custom_type_script = "uid://bfpnuo267fg4h"
 
-[node name="AirState" type="Node" parent="MovementStateMachine/State" unique_id=293820088]
+[node name="AirState" type="Node" parent="MovementStateMachine" unique_id=2116072668]
 unique_name_in_owner = true
 script = ExtResource("13_b2kln")
+metadata/_custom_type_script = "uid://bfpnuo267fg4h"
 
-[node name="JumpState" type="Node" parent="MovementStateMachine/State/AirState" unique_id=177239750]
+[node name="JumpState" type="Node" parent="MovementStateMachine/AirState" unique_id=522080530]
 unique_name_in_owner = true
 script = ExtResource("20_qpopc")
+metadata/_custom_type_script = "uid://bfpnuo267fg4h"
 
-[node name="FallState" type="Node" parent="MovementStateMachine/State/AirState" unique_id=1639664987]
+[node name="FallState" type="Node" parent="MovementStateMachine/AirState" unique_id=1934563032]
 unique_name_in_owner = true
 script = ExtResource("21_wq0jh")
+metadata/_custom_type_script = "uid://bfpnuo267fg4h"
 
-[node name="SurfState" type="Node" parent="MovementStateMachine/State/AirState" unique_id=904330529]
+[node name="SurfState" type="Node" parent="MovementStateMachine/AirState" unique_id=1659949214]
 unique_name_in_owner = true
 script = ExtResource("21_50fht")
+metadata/_custom_type_script = "uid://bfpnuo267fg4h"
 
-[node name="AirCrouchState" type="Node" parent="MovementStateMachine/State/AirState" unique_id=61807551]
+[node name="AirCrouchState" type="Node" parent="MovementStateMachine/AirState" unique_id=1746294519]
 unique_name_in_owner = true
 script = ExtResource("23_gt4e4")
+metadata/_custom_type_script = "uid://bfpnuo267fg4h"
 
-[node name="NoClipState" type="Node" parent="MovementStateMachine" unique_id=166725882]
+[node name="NoClipState" type="Node" parent="MovementStateMachine" unique_id=399533304]
 unique_name_in_owner = true
 script = ExtResource("22_wuv6x")
-metadata/_custom_type_script = "uid://i5hfu55j4vrk"
+metadata/_custom_type_script = "uid://bfpnuo267fg4h"
+
+[node name="CameraStateMachine" type="Node" parent="." unique_id=1811461506 node_paths=PackedStringArray("initial_state")]
+unique_name_in_owner = true
+script = ExtResource("23_bwdx1")
+initial_state = NodePath("FirstPersonState")
+
+[node name="FirstPersonState" type="Node" parent="CameraStateMachine" unique_id=1863111667]
+unique_name_in_owner = true
+script = ExtResource("23_24ehl")
+metadata/_custom_type_script = "uid://bat1pqsoddcy6"
+
+[node name="ThirdPersonState" type="Node" parent="CameraStateMachine" unique_id=445220830]
+unique_name_in_owner = true
+script = ExtResource("24_bwdx1")
+metadata/_custom_type_script = "uid://bat1pqsoddcy6"
+
+[node name="ThirdPersonFreeLookState" type="Node" parent="CameraStateMachine" unique_id=596832148]
+unique_name_in_owner = true
+script = ExtResource("25_vewsg")
+metadata/_custom_type_script = "uid://bat1pqsoddcy6"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=74638354]
 unique_name_in_owner = true
@@ -159,15 +188,15 @@ unique_name_in_owner = true
 [node name="UniversalCharacterModel" parent="WorldModel" unique_id=308895306 instance=ExtResource("7_qiwj3")]
 
 [node name="GeneralSkeleton" parent="WorldModel/UniversalCharacterModel/Armature" parent_id_path=PackedInt32Array(308895306, 1552824315) index="0" unique_id=1271279536]
-bones/1/position = Vector3(0.0016472059, 0.8687731, -0.08815159)
-bones/1/rotation = Quaternion(-0.034079492, -0.11594616, -0.0039805993, 0.9926628)
-bones/3/rotation = Quaternion(0.09408017, 0.000113057205, 0.0002530329, 0.99556464)
-bones/4/rotation = Quaternion(0.09407685, 0.0003218871, 0.00024637888, 0.99556494)
-bones/5/rotation = Quaternion(-0.09406691, -0.00021780015, -0.00025956708, 0.9955659)
-bones/6/rotation = Quaternion(0.045232017, 0.095446035, 0.010762302, 0.99434817)
-bones/7/rotation = Quaternion(0.50298023, 0.5212017, 0.5311252, -0.43962002)
-bones/8/rotation = Quaternion(-0.012205984, 0.82580495, -0.5637411, 0.009655977)
-bones/9/rotation = Quaternion(0.16017526, -0.6884441, 0.17144412, 0.68629116)
+bones/1/position = Vector3(-0.0022374517, 0.8766091, -0.08681354)
+bones/1/rotation = Quaternion(-0.043959007, -0.11590076, -0.005134566, 0.9922744)
+bones/3/rotation = Quaternion(0.09514042, 0.00011332805, 0.00025249014, 0.9954639)
+bones/4/rotation = Quaternion(0.09507618, 0.00032270967, 0.00024582676, 0.99547)
+bones/5/rotation = Quaternion(-0.09513594, -0.00021837547, -0.00025914444, 0.99546427)
+bones/6/rotation = Quaternion(0.07877094, 0.095770314, 0.007331686, 0.99225473)
+bones/7/rotation = Quaternion(0.48844725, 0.5262893, 0.5266832, -0.45502052)
+bones/8/rotation = Quaternion(-0.05926642, 0.8181357, -0.571879, 0.009795267)
+bones/9/rotation = Quaternion(0.19236961, -0.65222144, 0.18630229, 0.70914936)
 bones/10/rotation = Quaternion(0.09913024, 0.70686626, 0.0629003, 0.69753635)
 bones/11/rotation = Quaternion(0.6295969, -4.0978193e-08, -4.61936e-06, 0.77692205)
 bones/12/rotation = Quaternion(0.62334186, 2.9802322e-08, -4.261732e-06, 0.78194946)
@@ -185,9 +214,9 @@ bones/27/rotation = Quaternion(-0.123819165, 0.7195233, 0.2018354, 0.65285325)
 bones/28/rotation = Quaternion(0.18180694, 0.11012423, 0.060063303, 0.9753006)
 bones/29/rotation = Quaternion(0.5994299, 0.27396563, 0.19463211, 0.7264606)
 bones/30/scale = Vector3(1.0001454, 1.0004877, 1.0005833)
-bones/31/rotation = Quaternion(0.55492693, -0.47094777, -0.47763354, -0.49206766)
-bones/32/rotation = Quaternion(0.06198651, 0.8201471, -0.5687017, -0.009740843)
-bones/33/rotation = Quaternion(0.28746262, 0.55875313, -0.2112618, 0.7486846)
+bones/31/rotation = Quaternion(0.5406692, -0.47427762, -0.47488979, -0.50716585)
+bones/32/rotation = Quaternion(0.08511451, 0.8239955, -0.56008476, -0.0095930975)
+bones/33/rotation = Quaternion(0.29146388, 0.545202, -0.20586126, 0.7585676)
 bones/34/rotation = Quaternion(0.12024976, -0.69903094, -0.056890074, 0.702609)
 bones/35/rotation = Quaternion(0.6295971, 3.7252903e-08, 4.172325e-06, 0.7769218)
 bones/36/rotation = Quaternion(0.62334144, 1.825392e-07, 4.470348e-06, 0.7819497)
@@ -207,13 +236,13 @@ bones/51/rotation = Quaternion(-0.12381923, -0.7195234, -0.2018356, 0.6528533)
 bones/52/rotation = Quaternion(0.18180703, -0.11012423, -0.060063303, 0.97530067)
 bones/53/rotation = Quaternion(0.5994302, -0.2739653, -0.19463223, 0.7264605)
 bones/54/scale = Vector3(1.0001454, 1.0004876, 1.0005835)
-bones/55/rotation = Quaternion(-0.0008389078, 0.16045864, 0.9797282, -0.11993783)
-bones/56/rotation = Quaternion(0.021526936, 0.9738528, -0.1977901, 0.10966466)
-bones/57/rotation = Quaternion(-0.09646796, 0.71434087, -0.69308156, 0.006999393)
+bones/55/rotation = Quaternion(-0.0008068544, 0.12201876, 0.9858013, -0.11535449)
+bones/56/rotation = Quaternion(0.01594889, 0.982736, -0.14602244, 0.11248546)
+bones/57/rotation = Quaternion(-0.097929515, 0.72993773, -0.67639333, 0.009637324)
 bones/58/rotation = Quaternion(4.664862e-08, 1, 5.9604645e-08, 2.7766912e-08)
-bones/60/rotation = Quaternion(0.0009773576, -0.06974204, 0.98773, 0.13973041)
-bones/61/rotation = Quaternion(-0.054870587, 0.92217183, -0.1504537, -0.35206816)
-bones/62/rotation = Quaternion(0.1705402, 0.6187183, -0.76687324, 0.0030194675)
+bones/60/rotation = Quaternion(0.0008054581, -0.1042279, 0.98786414, 0.11515438)
+bones/61/rotation = Quaternion(-0.033111006, 0.9281284, -0.09219186, -0.35914084)
+bones/62/rotation = Quaternion(0.1693094, 0.6400449, -0.74945104, 5.4664924e-05)
 bones/63/rotation = Quaternion(-6.703263e-08, 1, 8.940697e-08, 2.1454163e-09)
 
 [node name="HeadOriginalPosition" type="Node3D" parent="." unique_id=1961007866]

@@ -3,6 +3,9 @@ class_name PlayerInput extends ActorInput
 ## Translates raw OS hardware events (Keyboard/Mouse) into generic Actor Intents.
 ## Also dynamically modifies the player's MovementStats resource based on toggles.
 
+
+# TODO: Review what things here are messing around on the resource itself or just on internal variables
+
 # ==============================================================================
 # VECTORS
 # ==============================================================================
@@ -17,11 +20,11 @@ var wants_noclip_speed_increase  : bool = false
 var wants_noclip_speed_decrease  : bool = false
 
 
-var stats: MovementStats
+var movement_stats: MovementStats
 
 func _ready() -> void:
 	await owner.ready
-	stats = owner.movement_stats
+	movement_stats = owner.movement_stats
 
 
 func gather_inputs(actor_basis: Basis, camera_basis: Basis) -> void:
@@ -33,23 +36,23 @@ func gather_inputs(actor_basis: Basis, camera_basis: Basis) -> void:
 	
 	# --- TOGGLES & SETTINGS ---
 	if Input.is_action_just_pressed("toggle_sprint"):
-		stats.auto_sprint = not stats.auto_sprint
+		movement_stats.auto_sprint = not movement_stats.auto_sprint
 		
-	if stats.can_noclip and Input.is_action_just_pressed("_noclip"):
+	if movement_stats.can_noclip and Input.is_action_just_pressed("_noclip"):
 		is_noclipping = not is_noclipping
-		stats.noclip_speed_multiplier = 3.0 # Reset to base multiplier
-		
-	if stats.can_noclip and stats.noclip:
+		movement_stats.noclip_speed_multiplier = 3.0 # Reset to base multiplier
+	
+	if movement_stats.can_noclip and is_noclipping:
 		if Input.is_action_just_pressed("_increase_noclip_speed"):
-			stats.noclip_speed_multiplier = minf(stats.noclip_max_speed, stats.noclip_speed_multiplier * stats.noclip_speed_increase_multiplier) 
+			movement_stats.noclip_speed_multiplier = minf(movement_stats.noclip_max_speed, movement_stats.noclip_speed_multiplier * movement_stats.noclip_speed_increase_multiplier) 
 		elif Input.is_action_just_pressed("_decrease_noclip_speed"):
-			stats.noclip_speed_multiplier = maxf(stats.noclip_min_speed, stats.noclip_speed_multiplier * stats.noclip_speed_decrease_multiplier)
+			movement_stats.noclip_speed_multiplier = maxf(movement_stats.noclip_min_speed, movement_stats.noclip_speed_multiplier * movement_stats.noclip_speed_decrease_multiplier)
 	
 	# --------------------------
 	# RESOLVE MOVEMENT INTENTS
 	wants_crouch = Input.is_action_pressed("crouch")
-	wants_jump   = Input.is_action_just_pressed("jump") or (stats.auto_bhop and jump_held)
-	wants_sprint = (sprint_held and not stats.auto_sprint) or (stats.auto_sprint and not sprint_held)
+	wants_jump   = Input.is_action_just_pressed("jump") or (movement_stats.auto_bhop and jump_held)
+	wants_sprint = (sprint_held and not movement_stats.auto_sprint) or (movement_stats.auto_sprint and not sprint_held)
 
 	# RESOLVE COMBAT & INTERACTION INTENTS
 	wants_primary_shoot   = Input.is_action_pressed("primary_shoot")

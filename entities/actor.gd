@@ -1,8 +1,13 @@
 class_name Actor extends CharacterBody3D
-
 ## [color=cyan]Abstract Base Actor.[/color]
 ## The universal blueprint for any moving entity in the game.
 ## Owns the physical nodes and provides the FSM with a guaranteed interface.
+
+# ==============================================================================
+# SIGNALS
+# ==============================================================================
+signal stepped_on_stair
+
 
 # ==============================================================================
 # CORE COMPONENTS (Required by FSM)
@@ -36,7 +41,7 @@ func crouch() -> void:
 	collision_shape.shape.height = _original_capsule_height - movement_stats.crouch_translate
 	collision_shape.position.y   = collision_shape.shape.height / 2.0  
 	is_crouched = true
-	
+
 func uncrouch() -> void:
 	if not is_crouched: return
 	collision_shape.shape.height = _original_capsule_height
