@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c5wjxgrh1qnsa"
+path="res://.godot/imported/9mm Single.mp3-43102d5284b3ba855533e691f444f8e4.mp3str"
+
+[deps]
+
+source_file="res://assets/Snake's SECOND Authentic Gun Sounds/Full Sounds/9mm/MP3/9mm Single.mp3"
+dest_files=["res://.godot/imported/9mm Single.mp3-43102d5284b3ba855533e691f444f8e4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

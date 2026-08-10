@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="WeaponResource" format=3 uid="uid://y1qrn8e8i54r"]
+
+[ext_resource type="Script" uid="uid://4oukxtb444xf" path="res://weapons/weapon_resource.gd" id="1_2xdhk"]
+[ext_resource type="PackedScene" uid="uid://betpbf4hsqilm" path="res://weapons/mock/cube/mock_cube_view_model.tscn" id="2_0pqm8"]
+[ext_resource type="PackedScene" uid="uid://dmwggvgxej5t6" path="res://weapons/mock/cube/mock_cube_world_model.tscn" id="3_8htb0"]
+
+[resource]
+script = ExtResource("1_2xdhk")
+id_name = &"mock_cube"
+view_model = ExtResource("2_0pqm8")
+world_model = ExtResource("3_8htb0")
+pickable_ground_ammo = true
+metadata/_custom_type_script = "uid://4oukxtb444xf"

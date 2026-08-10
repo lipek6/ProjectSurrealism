@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dmwggvgxej5t6"]
+
+[ext_resource type="Script" uid="uid://c8sq81fv7c4h1" path="res://weapons/weapon_world_instance.gd" id="1_nohkc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1pkhx"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1pkhx"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="MockCubeWorldModel" type="RigidBody3D" unique_id=493366488]
+collision_layer = 8
+collision_mask = 31
+script = ExtResource("1_nohkc")
+metadata/_custom_type_script = "uid://c8sq81fv7c4h1"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1328864358]
+mesh = SubResource("BoxMesh_1pkhx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1511732465]
+shape = SubResource("BoxShape3D_1pkhx")

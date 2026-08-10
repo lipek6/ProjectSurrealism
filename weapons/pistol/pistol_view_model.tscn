@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bj4oml4c2whay"]
+
+[ext_resource type="PackedScene" uid="uid://det4ijaapxdvh" path="res://weapons/pistol/arts/models/imported_data/pistol.glb" id="1_s5uct"]
+[ext_resource type="Script" uid="uid://d3usfw4tj0v7l" path="res://weapons/pistol/pistol.gd" id="2_iuw17"]
+
+[node name="PistolViewModel" unique_id=897917557 node_paths=PackedStringArray("animation", "audio") instance=ExtResource("1_s5uct")]
+script = ExtResource("2_iuw17")
+animation = NodePath("AnimationPlayer")
+audio = NodePath("AudioStreamPlayer3D")
+
+[node name="Skeleton3D" parent="pistol_armature_001" parent_id_path=PackedInt32Array(1020476708) index="0" unique_id=951886108]
+bones/0/position = Vector3(0.007971367, 0.02233027, -0.046827994)
+bones/0/rotation = Quaternion(-1.3170895e-09, 0.7071068, 0.7071068, -1.3170895e-09)
+bones/1/position = Vector3(1.15115135e-08, -0.014799291, -0.07496456)
+bones/2/position = Vector3(2.3840753e-08, -0.08452133, -0.036667224)
+bones/3/position = Vector3(-5.6410876e-10, 0.016616879, 0.020477766)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="2" unique_id=948693606]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008973412, 0.10767551, 0.03431894)
+max_polyphony = 5
+
+[node name="Muzzle" type="Marker3D" parent="." index="3" unique_id=1964878790]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.115785e-05, 0.0670951, 0.14642854)
+
+[node name="Ejection" type="Marker3D" parent="." index="4" unique_id=926253943]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.021032378, 0.092819035, 0.015595965)

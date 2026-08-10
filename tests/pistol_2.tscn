@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://pojrk4w8s1xf"]
 
-[ext_resource type="PackedScene" uid="uid://ca44p5a4lia4q" path="res://weapons/pistol/arts/models/local/pistol.glb" id="1_aygqp"]
-[ext_resource type="Script" uid="uid://7dex76fwrx8e" path="res://weapons/commons/weapon_instance.gd" id="2_t64go"]
+[ext_resource type="PackedScene" path="res://weapons/pistol/arts/models/local/pistol.glb" id="1_aygqp"]
+[ext_resource type="Script" uid="uid://7dex76fwrx8e" path="res://weapons/weapon_instance.gd" id="2_t64go"]
 
 [node name="Pistol2" unique_id=730711089 node_paths=PackedStringArray("anim_player", "muzzle_point", "ejection_point") instance=ExtResource("1_aygqp")]
 script = ExtResource("2_t64go")

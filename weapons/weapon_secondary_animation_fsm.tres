@@ -1,0 +1,69 @@
+[gd_resource type="AnimationNodeStateMachine" format=3 uid="uid://sk4k52mddl28"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_87fiu"]
+animation = &"fp_pistol_equip"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_461bl"]
+animation = &"fp_pistol_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lv2c8"]
+animation = &"fp_pistol_shoot"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0fs25"]
+animation = &"fp_pistol_reload"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_divi4"]
+animation = &"fp_pistol_reload_empty"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qib55"]
+animation = &"fp_pistol_unequip"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qmv0h"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_20bwe"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xfumh"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vofyx"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mkxkl"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ue4y8"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_886xk"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5oqk6"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0ycg6"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5fa65"]
+switch_mode = 2
+advance_mode = 2
+
+[resource]
+resource_local_to_scene = true
+states/End/position = Vector2(722, 100)
+states/Equip/node = SubResource("AnimationNodeAnimation_87fiu")
+states/Equip/position = Vector2(214, 100)
+states/Idle/node = SubResource("AnimationNodeAnimation_461bl")
+states/Idle/position = Vector2(365, 100)
+states/PrimaryPull/node = SubResource("AnimationNodeAnimation_lv2c8")
+states/PrimaryPull/position = Vector2(365, -26)
+states/Reload/node = SubResource("AnimationNodeAnimation_0fs25")
+states/Reload/position = Vector2(237, 252)
+states/ReloadEmpty/node = SubResource("AnimationNodeAnimation_divi4")
+states/ReloadEmpty/position = Vector2(513, 252)
+states/Start/position = Vector2(74, 100)
+states/Unequip/node = SubResource("AnimationNodeAnimation_qib55")
+states/Unequip/position = Vector2(547, 100)
+transitions = ["Idle", "ReloadEmpty", SubResource("AnimationNodeStateMachineTransition_qmv0h"), "Idle", "Reload", SubResource("AnimationNodeStateMachineTransition_20bwe"), "Idle", "PrimaryPull", SubResource("AnimationNodeStateMachineTransition_xfumh"), "Reload", "Idle", SubResource("AnimationNodeStateMachineTransition_vofyx"), "ReloadEmpty", "Idle", SubResource("AnimationNodeStateMachineTransition_mkxkl"), "PrimaryPull", "Idle", SubResource("AnimationNodeStateMachineTransition_ue4y8"), "Equip", "Idle", SubResource("AnimationNodeStateMachineTransition_886xk"), "Start", "Equip", SubResource("AnimationNodeStateMachineTransition_5oqk6"), "Idle", "Unequip", SubResource("AnimationNodeStateMachineTransition_0ycg6"), "Unequip", "End", SubResource("AnimationNodeStateMachineTransition_5fa65")]
+graph_offset = Vector2(-98, 4)

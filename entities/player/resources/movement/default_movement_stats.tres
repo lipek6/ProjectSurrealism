@@ -4,5 +4,6 @@
 
 [resource]
 script = ExtResource("1_dvgog")
+ground_friction = 4.0
 can_noclip = true
 metadata/_custom_type_script = "uid://4hq2a1ouxago"

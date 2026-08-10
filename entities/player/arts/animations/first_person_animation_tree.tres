@@ -1,0 +1,35 @@
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://byb4conwnjv1i"]
+
+[ext_resource type="AnimationNodeStateMachine" uid="uid://dj24jmigcsqif" path="res://weapons/weapon_animation_fsm.tres" id="1_87fiu"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://sk4k52mddl28" path="res://weapons/weapon_secondary_animation_fsm.tres" id="2_461bl"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_87fiu"]
+animation = &"fp_pistol_idle_l"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_461bl"]
+animation = &"fp_pistol_idle_r"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_0fs25"]
+filter_enabled = true
+filters = ["arms_rig/Skeleton3D:f_index.01.L", "arms_rig/Skeleton3D:f_index.02.L", "arms_rig/Skeleton3D:f_index.03.L", "arms_rig/Skeleton3D:f_middle.01.L", "arms_rig/Skeleton3D:f_middle.02.L", "arms_rig/Skeleton3D:f_middle.03.L", "arms_rig/Skeleton3D:f_pinky.01.L", "arms_rig/Skeleton3D:f_pinky.02.L", "arms_rig/Skeleton3D:f_pinky.03.L", "arms_rig/Skeleton3D:f_ring.01.L", "arms_rig/Skeleton3D:f_ring.02.L", "arms_rig/Skeleton3D:f_ring.03.L", "arms_rig/Skeleton3D:forearm.L", "arms_rig/Skeleton3D:hand.L", "arms_rig/Skeleton3D:palm.01.L", "arms_rig/Skeleton3D:palm.02.L", "arms_rig/Skeleton3D:palm.03.L", "arms_rig/Skeleton3D:palm.04.L", "arms_rig/Skeleton3D:shoulder.L", "arms_rig/Skeleton3D:thumb.01.L", "arms_rig/Skeleton3D:thumb.02.L", "arms_rig/Skeleton3D:thumb.03.L", "arms_rig/Skeleton3D:upper_arm.L"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_gjyv2"]
+filter_enabled = true
+filters = ["arms_rig/Skeleton3D:f_index.01.L", "arms_rig/Skeleton3D:f_index.02.L", "arms_rig/Skeleton3D:f_index.03.L", "arms_rig/Skeleton3D:f_middle.01.L", "arms_rig/Skeleton3D:f_middle.02.L", "arms_rig/Skeleton3D:f_middle.03.L", "arms_rig/Skeleton3D:f_pinky.01.L", "arms_rig/Skeleton3D:f_pinky.02.L", "arms_rig/Skeleton3D:f_pinky.03.L", "arms_rig/Skeleton3D:f_ring.01.L", "arms_rig/Skeleton3D:f_ring.02.L", "arms_rig/Skeleton3D:f_ring.03.L", "arms_rig/Skeleton3D:forearm.L", "arms_rig/Skeleton3D:hand.L", "arms_rig/Skeleton3D:palm.01.L", "arms_rig/Skeleton3D:palm.02.L", "arms_rig/Skeleton3D:palm.03.L", "arms_rig/Skeleton3D:palm.04.L", "arms_rig/Skeleton3D:shoulder.L", "arms_rig/Skeleton3D:thumb.01.L", "arms_rig/Skeleton3D:thumb.02.L", "arms_rig/Skeleton3D:thumb.03.L", "arms_rig/Skeleton3D:upper_arm.L"]
+
+[resource]
+graph_offset = Vector2(445.8064, -11.356369)
+nodes/output/position = Vector2(1220, 80)
+nodes/PrimaryFSM/node = ExtResource("1_87fiu")
+nodes/PrimaryFSM/position = Vector2(720, 20)
+nodes/DualWieldMixer/node = SubResource("AnimationNodeBlend2_gjyv2")
+nodes/DualWieldMixer/position = Vector2(999.60004, 72.3)
+nodes/SecondaryFSM/node = ExtResource("2_461bl")
+nodes/SecondaryFSM/position = Vector2(720, 200)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_461bl")
+nodes/Animation/position = Vector2(1180, -540)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_87fiu")
+"nodes/Animation 2/position" = Vector2(1180, -360)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_0fs25")
+nodes/Blend2/position = Vector2(1440, -500)
+node_connections = [&"output", 0, &"DualWieldMixer", &"DualWieldMixer", 0, &"PrimaryFSM", &"DualWieldMixer", 1, &"SecondaryFSM", &"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2"]

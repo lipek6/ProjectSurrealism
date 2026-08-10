@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://blq4258qt7d57"
+path="res://.godot/imported/9mm Double Tap.mp3-d666cc7b3ad5b2c5c70da6d40e28f789.mp3str"
+
+[deps]
+
+source_file="res://assets/Snake's SECOND Authentic Gun Sounds/Full Sounds/9mm/MP3/9mm Double Tap.mp3"
+dest_files=["res://.godot/imported/9mm Double Tap.mp3-d666cc7b3ad5b2c5c70da6d40e28f789.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

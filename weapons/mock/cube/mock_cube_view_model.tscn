@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://betpbf4hsqilm"]
+
+[ext_resource type="Script" uid="uid://7dex76fwrx8e" path="res://weapons/weapon_instance.gd" id="1_ungej"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1pkhx"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="MockCubeViewModel" type="Node3D" unique_id=214130965]
+script = ExtResource("1_ungej")
+metadata/_custom_type_script = "uid://7dex76fwrx8e"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=305653055]
+mesh = SubResource("BoxMesh_1pkhx")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=339031256]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10806894, 0.31219184, 0.31949806)
+volume_db = -30.0
+max_polyphony = 5
+
+[node name="Muzzle" type="Marker3D" parent="." unique_id=1528363322]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015820503, 0.15514275, 0.43734455)
+
+[node name="Ejection" type="Marker3D" parent="." unique_id=1202055684]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3672929, 0.01963146, 0.12965107)

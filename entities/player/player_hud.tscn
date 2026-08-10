@@ -1,0 +1,168 @@
+[gd_scene format=3 uid="uid://d0joe8ngxm6ou"]
+
+[ext_resource type="Script" uid="uid://xk1je2c651bs" path="res://entities/player/player_hud_controller.gd" id="1_41jdb"]
+[ext_resource type="Texture2D" uid="uid://cjf22f33pd8lv" path="res://entities/player/crosshair-dot.svg" id="2_whuct"]
+[ext_resource type="PackedScene" uid="uid://bhxb70642g8cs" path="res://entities/player/arts/hud_slot.tscn" id="3_n0c5w"]
+[ext_resource type="Texture2D" uid="uid://cuixqvnp2j1fc" path="res://ui_svgs/health_icon.png" id="4_ni1bd"]
+[ext_resource type="Texture2D" uid="uid://2wxcb865jq7n" path="res://ui_svgs/shield_icon.png" id="5_numc0"]
+[ext_resource type="Texture2D" uid="uid://c4xfds8yc2v6q" path="res://ui_svgs/pistol_icon.png" id="6_p26tj"]
+[ext_resource type="Texture2D" uid="uid://c3rcgad85u2rs" path="res://ui_svgs/pistol_bullet_icon.png" id="11_78rk4"]
+
+[node name="PlayerHud" type="CanvasLayer" unique_id=1217310715 node_paths=PackedStringArray("inventory_container", "reticle", "primary_ammo_slot", "secondary_ammo_slot")]
+script = ExtResource("1_41jdb")
+inventory_container = NodePath("Control/Inventory")
+reticle = NodePath("Control/Reticle/ReticleTexture")
+primary_ammo_slot = NodePath("Control/Ammo/PrimaryAmmo")
+secondary_ammo_slot = NodePath("Control/Ammo/SecondaryAmmo")
+default_reticle = ExtResource("2_whuct")
+weapon_slot_scene = ExtResource("3_n0c5w")
+
+[node name="Control" type="Control" parent="." unique_id=620197190]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Reticle" type="CenterContainer" parent="Control" unique_id=696385150]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ReticleTexture" type="TextureRect" parent="Control/Reticle" unique_id=146561117]
+layout_mode = 2
+
+[node name="Inventory" type="VBoxContainer" parent="Control" unique_id=1902054455]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.4814815
+offset_left = 5.0
+offset_top = 135.0
+offset_right = 5.0
+offset_bottom = -385.0
+scale = Vector2(0.35, 0.35)
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 300
+
+[node name="WeaponSlot1" parent="Control/Inventory" unique_id=1189828897 instance=ExtResource("3_n0c5w")]
+layout_mode = 2
+
+[node name="Icon" parent="Control/Inventory/WeaponSlot1" index="4" unique_id=920902536]
+texture = ExtResource("6_p26tj")
+
+[node name="LifeStats" type="HBoxContainer" parent="Control" unique_id=523693298]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -120.0
+offset_right = 562.0
+offset_bottom = -120.0
+grow_vertical = 0
+scale = Vector2(0.25, 0.375)
+theme_override_constants/separation = 522
+
+[node name="HealthSlot" parent="Control/LifeStats" unique_id=1912232716 instance=ExtResource("3_n0c5w")]
+layout_mode = 2
+
+[node name="Text" parent="Control/LifeStats/HealthSlot" index="3" unique_id=339027609]
+offset_left = 176.0
+offset_top = 40.0
+offset_right = 471.0
+offset_bottom = 209.0
+scale = Vector2(1, 1.0056316)
+theme_override_font_sizes/normal_font_size = 150
+text = "100"
+
+[node name="Icon" parent="Control/LifeStats/HealthSlot" index="4" unique_id=920902536]
+offset_left = 16.0
+offset_top = 48.0
+offset_right = 528.0
+offset_bottom = 560.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_ni1bd")
+
+[node name="ShieldSlot" parent="Control/LifeStats" unique_id=1598121568 instance=ExtResource("3_n0c5w")]
+layout_mode = 2
+
+[node name="Text" parent="Control/LifeStats/ShieldSlot" index="3" unique_id=339027609]
+offset_left = 176.0
+offset_top = 40.0
+offset_right = 471.0
+offset_bottom = 209.0
+scale = Vector2(1, 1.0056316)
+theme_override_font_sizes/normal_font_size = 150
+text = "100"
+
+[node name="Icon" parent="Control/LifeStats/ShieldSlot" index="4" unique_id=920902536]
+offset_left = 16.0
+offset_top = 48.0
+offset_right = 528.0
+offset_bottom = 560.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_numc0")
+
+[node name="Ammo" type="HBoxContainer" parent="Control" unique_id=1892632687]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -168.0
+offset_top = -120.0
+offset_right = -168.0
+offset_bottom = -120.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.25, 0.375)
+theme_override_constants/separation = -522
+
+[node name="PrimaryAmmo" parent="Control/Ammo" unique_id=1516269388 instance=ExtResource("3_n0c5w")]
+layout_mode = 2
+
+[node name="Text" parent="Control/Ammo/PrimaryAmmo" index="3" unique_id=339027609]
+offset_left = 120.0
+offset_top = 60.0
+offset_right = 711.0
+offset_bottom = 229.0
+theme_override_font_sizes/normal_font_size = 100
+text = "12/100"
+
+[node name="Icon" parent="Control/Ammo/PrimaryAmmo" index="4" unique_id=920902536]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 121.0
+offset_bottom = 203.0
+texture = ExtResource("11_78rk4")
+
+[node name="SecondaryAmmo" parent="Control/Ammo" unique_id=1151751566 instance=ExtResource("3_n0c5w")]
+layout_mode = 2
+
+[node name="Text" parent="Control/Ammo/SecondaryAmmo" index="3" unique_id=339027609]
+offset_left = 120.0
+offset_top = 60.0
+offset_right = 711.0
+offset_bottom = 229.0
+theme_override_font_sizes/normal_font_size = 100
+text = "12/100"
+
+[node name="Icon" parent="Control/Ammo/SecondaryAmmo" index="4" unique_id=920902536]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 121.0
+offset_bottom = 203.0
+texture = ExtResource("11_78rk4")
+
+[editable path="Control/Inventory/WeaponSlot1"]
+[editable path="Control/LifeStats/HealthSlot"]
+[editable path="Control/LifeStats/ShieldSlot"]
+[editable path="Control/Ammo/PrimaryAmmo"]
+[editable path="Control/Ammo/SecondaryAmmo"]

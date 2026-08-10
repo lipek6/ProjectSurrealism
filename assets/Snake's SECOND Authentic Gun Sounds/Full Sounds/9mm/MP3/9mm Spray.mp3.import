@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bqnqy0kmntva6"
+path="res://.godot/imported/9mm Spray.mp3-43d271ea0395f2ed10adb2671febbc7a.mp3str"
+
+[deps]
+
+source_file="res://assets/Snake's SECOND Authentic Gun Sounds/Full Sounds/9mm/MP3/9mm Spray.mp3"
+dest_files=["res://.godot/imported/9mm Spray.mp3-43d271ea0395f2ed10adb2671febbc7a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

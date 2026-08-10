@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PlacementFixTransform" format=3 uid="uid://de000027sisol"]
+
+[ext_resource type="Script" uid="uid://dsgm0cw5g5wak" path="res://weapons/placement_fix_transform.gd" id="1_smkh7"]
+
+[resource]
+script = ExtResource("1_smkh7")
+primary_pos = Vector3(-0.022392273, 0.14766693, 0.01625514)
+primary_rot = Vector3(-1.4981658, 2.2908807, 0.97189564)
+primary_d_pos = Vector3(-0.022392273, 0.14766693, 0.01625514)
+primary_d_rot = Vector3(-1.476928, -2.387067, -0.6319125)
+secondary_pos = Vector3(0.022, 0.148, 0.016)
+secondary_rot = Vector3(-1.4768473, 2.387151, 0.631863)
+metadata/_custom_type_script = "uid://dsgm0cw5g5wak"

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bfes2fbg8v0s2"
+path="res://.godot/imported/32 SW Open Cylinder Part 2.wav-b3822f3623a94afc25cea307138d122f.sample"
+
+[deps]
+
+source_file="res://assets/Snake's SECOND Authentic Gun Sounds/& More/Revolver/32 SW Long/WAV/32 SW Open Cylinder Part 2.wav"
+dest_files=["res://.godot/imported/32 SW Open Cylinder Part 2.wav-b3822f3623a94afc25cea307138d122f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

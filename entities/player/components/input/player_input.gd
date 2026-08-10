@@ -58,9 +58,24 @@ func gather_inputs(actor_basis: Basis, camera_basis: Basis) -> void:
 	wants_primary_shoot   = Input.is_action_pressed("primary_shoot")
 	wants_secondary_shoot = Input.is_action_pressed("secondary_shoot")
 	wants_reload          = Input.is_action_just_pressed("reload")
-	wants_weapon_swap     = Input.is_action_just_pressed("swap_weapon")
 	wants_interact        = Input.is_action_just_pressed("interact")
-
+	wants_dual_wield      = Input.is_action_pressed("dual_wield") # Equips weapon on secondary hand of the player 
+	
+	# INVENTORY
+	wants_slot_1 = Input.is_action_just_pressed("slot_1")
+	wants_slot_2 = Input.is_action_just_pressed("slot_2")
+	wants_slot_3 = Input.is_action_just_pressed("slot_3")
+	wants_slot_4 = Input.is_action_just_pressed("slot_4")
+	wants_slot_5 = Input.is_action_just_pressed("slot_5")
+	wants_slot_6 = Input.is_action_just_pressed("slot_6")
+	wants_slot_7 = Input.is_action_just_pressed("slot_7")
+	wants_slot_8 = Input.is_action_just_pressed("slot_8")
+	wants_slot_9 = Input.is_action_just_pressed("slot_9")
+	wants_slot_0 = Input.is_action_just_pressed("slot_0")
+	wants_next_slot = Input.is_action_just_pressed("next_slot")
+	wants_prev_slot = Input.is_action_just_pressed("prev_slot")
+	
+	
 	# RESOLVE DEBUG INTENTS
 	wants_camera_swap           = Input.is_action_just_pressed("next_camera")
 	wants_noclip                = Input.is_action_just_pressed("_noclip")

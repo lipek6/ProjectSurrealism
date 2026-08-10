@@ -17,6 +17,9 @@ signal stepped_on_stair
 @export var movement_stats         : MovementStats
 @export var movement_state_machine : MovementStateMachine
 @export var physics_interactor     : PhysicsInteractor
+@export var interaction_manager    : InteractionManager
+@export var weapon_manager         : WeaponManager
+
 
 # ==============================================================================
 # PHYSICAL NODES

@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cl3swoxtx3ers"]
+
+[ext_resource type="Texture2D" uid="uid://dt06vp5bksak8" path="res://weapons/pistol/arts/models/imported_data/pistol_color.png" id="1_co4r7"]
+[ext_resource type="Texture2D" uid="uid://bcepf8tyns6yk" path="res://weapons/pistol/arts/models/imported_data/pistol_roughness.png" id="2_co4r7"]
+
+[resource]
+resource_name = "ucu_pistol_material_official"
+albedo_texture = ExtResource("1_co4r7")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_co4r7")
+roughness_texture_channel = 1
+metadata/_gltf_primary_texture_coord = 0

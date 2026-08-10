@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="WeaponResource" format=3 uid="uid://ccnmwr0r41eki"]
+
+[ext_resource type="Texture2D" uid="uid://c3rcgad85u2rs" path="res://ui_svgs/pistol_bullet_icon.png" id="1_8ab8b"]
+[ext_resource type="PackedScene" uid="uid://pww2sscr0pbx" path="res://weapons/pistol/scenes/pistol_case.tscn" id="1_73cem"]
+[ext_resource type="Resource" uid="uid://de000027sisol" path="res://weapons/pistol/pistol_placement.tres" id="1_fbyut"]
+[ext_resource type="Script" uid="uid://4oukxtb444xf" path="res://weapons/weapon_resource.gd" id="1_tsb7k"]
+[ext_resource type="Texture2D" uid="uid://c8g6hsijxj7tx" path="res://assets/142.png" id="2_3nay8"]
+[ext_resource type="PackedScene" uid="uid://bj4oml4c2whay" path="res://weapons/pistol/pistol_view_model.tscn" id="2_tsb7k"]
+[ext_resource type="AudioStream" uid="uid://bkmxnvq08suyq" path="res://assets/Snake's SECOND Authentic Gun Sounds/& More/Pistol/WAV/9mm Pistol Dry Fire.wav" id="3_e52ug"]
+[ext_resource type="Texture2D" uid="uid://c4xfds8yc2v6q" path="res://ui_svgs/pistol_icon.png" id="3_my6on"]
+[ext_resource type="Texture2D" uid="uid://dnmvowxf7w2yh" path="res://ui_svgs/pistol_dual_icon.png" id="3_tmhmi"]
+[ext_resource type="PackedScene" uid="uid://ccounvt18glkm" path="res://weapons/pistol/pistol_world_model.tscn" id="4_3nay8"]
+[ext_resource type="AudioStream" uid="uid://66pc2knq6s6m" path="res://assets/Snake's SECOND Authentic Gun Sounds/& More/Pistol/WAV/9mm Pistol Rack Full.wav" id="5_yanml"]
+[ext_resource type="AudioStream" uid="uid://bm66fdavg3myy" path="res://assets/Snake's SECOND Authentic Gun Sounds/Isolated/9mm/WAV/9mm Single Isolated.wav" id="8_tmhmi"]
+[ext_resource type="AudioStream" uid="uid://btgleujlmpb36" path="res://assets/Snake's SECOND Authentic Gun Sounds/& More/Pistol/WAV/9mm Pistol Reload 1.wav" id="8_wqwjm"]
+
+[resource]
+script = ExtResource("1_tsb7k")
+id_name = &"Pistol"
+view_model = ExtResource("2_tsb7k")
+world_model = ExtResource("4_3nay8")
+case_model = ExtResource("1_73cem")
+icon = ExtResource("3_my6on")
+dual_icon = ExtResource("3_tmhmi")
+bullet_icon = ExtResource("1_8ab8b")
+reticle = ExtResource("2_3nay8")
+placement_fix = ExtResource("1_fbyut")
+equip_animation = &"pistol_equip"
+unequip_animation = &"pistol_unequip"
+idle_animation = &"pistol_idle"
+reload_animation = &"pistol_reload"
+reload_empty_animation = &"pistol_reload_empty"
+primary_trigger_pull_animation = &"pistol_shoot"
+reload_sound = ExtResource("8_wqwjm")
+shoot_sound = ExtResource("8_tmhmi")
+dry_shoot_sound = ExtResource("3_e52ug")
+equip_sound = ExtResource("5_yanml")
+damage = 25
+fire_mode = 1
+fire_rate = 7.5
+pickable_ground_ammo = true
+ammo_cost = 1
+max_mag_ammo = 12
+max_reserve_ammo = 144
+metadata/_custom_type_script = "uid://4oukxtb444xf"

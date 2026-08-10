@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dch0bdgpk21wa"
+path="res://.godot/imported/44 Magnum Eject Part 1.wav-410085687ce1a67b50eef191ee9fcc1a.sample"
+
+[deps]
+
+source_file="res://assets/Snake's SECOND Authentic Gun Sounds/& More/Revolver/44 Magnum/WAV/44 Magnum Eject Part 1.wav"
+dest_files=["res://.godot/imported/44 Magnum Eject Part 1.wav-410085687ce1a67b50eef191ee9fcc1a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

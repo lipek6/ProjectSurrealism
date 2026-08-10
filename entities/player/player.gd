@@ -7,8 +7,7 @@ class_name Player extends Actor
 @export_group("Player-Specific Components")
 @export var camera_state_machine : CameraStateMachine
 @export var footstep_controller  : FootstepController
-@export var weapon_manager       : WeaponManager          
-@export var weapon_sway          : WeaponSway            
+@export var weapon_sway          : WeaponSway        
 
 @export_group("Player Camera Nodes")
 @export var fp_camera            : Camera3D   
@@ -54,7 +53,7 @@ func _process(delta: float) -> void:
 	if get_tree().paused: return 
 	
 	if is_active:
-		#WARNING: Controllers are currently out of support while I am working on the refactoring: if camera_controller: camera_controller.handle_controller_look_input(delta)
+		# WARNING: Controllers are currently out of support while I am working on the refactoring: if camera_controller: camera_controller.handle_controller_look_input(delta)
 		if weapon_sway: weapon_sway.process_sway(delta)
 		
 	_update_debug_ui()
@@ -68,12 +67,15 @@ func _physics_process(delta: float) -> void:
 		if movement_state_machine: movement_state_machine.process_physics(delta)
 	
 	if physics_interactor: physics_interactor.process_physics()
-	# Snap the camera after the physics interactor has pushed objects away
+	
 	if camera_state_machine: camera_state_machine.process_physics(delta)
 	
-	if is_active and weapon_manager: weapon_manager.process_weapons(delta)
+	if is_active and weapon_manager: weapon_manager.process_weapons()
 	
 	if footstep_controller: footstep_controller.process_footsteps(delta)
+	
+	if interaction_manager: interaction_manager.process_interaction()
+	
 	
 	if is_on_floor():
 		_last_frame_was_on_floor = Engine.get_physics_frames()

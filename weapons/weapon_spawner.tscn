@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://ckwl3c215v567"]
+
+[ext_resource type="Script" uid="uid://bgud8g3aoktt2" path="res://weapons/weapon_spawner.gd" id="1_ijyph"]
+[ext_resource type="Resource" uid="uid://ccnmwr0r41eki" path="res://weapons/pistol/pistol.tres" id="2_ld0ig"]
+
+[node name="WeaponSpawner" type="Marker3D" unique_id=646301658]
+script = ExtResource("1_ijyph")
+weapon_data = ExtResource("2_ld0ig")

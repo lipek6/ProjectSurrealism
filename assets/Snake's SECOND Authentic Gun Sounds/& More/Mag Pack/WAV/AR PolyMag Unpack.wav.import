@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bd4o8wxehrih0"
+path="res://.godot/imported/AR PolyMag Unpack.wav-c517ef3a3ee9c81ae2be601c88cf4686.sample"
+
+[deps]
+
+source_file="res://assets/Snake's SECOND Authentic Gun Sounds/& More/Mag Pack/WAV/AR PolyMag Unpack.wav"
+dest_files=["res://.godot/imported/AR PolyMag Unpack.wav-c517ef3a3ee9c81ae2be601c88cf4686.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

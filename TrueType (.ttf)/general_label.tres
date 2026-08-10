@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://d4f65duud30jm"]
+
+[ext_resource type="FontFile" uid="uid://blsx7dawbujpv" path="res://TrueType (.ttf)/DigitTech16-Regular.ttf" id="1_leuww"]
+
+[resource]
+font = ExtResource("1_leuww")
+font_size = 75

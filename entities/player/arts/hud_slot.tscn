@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://bhxb70642g8cs"]
+
+[ext_resource type="Script" uid="uid://d2acknqnyfr2s" path="res://entities/player/arts/hud_slot.gd" id="1_f5dgw"]
+[ext_resource type="Texture2D" uid="uid://c30c75xkyxng2" path="res://ui_svgs/slot.png" id="1_v07au"]
+[ext_resource type="Texture2D" uid="uid://ba5vh4ts0jsgf" path="res://ui_svgs/hash.png" id="2_f5dgw"]
+[ext_resource type="Texture2D" uid="uid://dnxjnoc1vb2gj" path="res://ui_svgs/gradient.png" id="3_ncyfd"]
+[ext_resource type="Theme" uid="uid://c2h27q058tkjp" path="res://TrueType (.ttf)/general_theme.tres" id="5_e32c5"]
+[ext_resource type="FontFile" uid="uid://blsx7dawbujpv" path="res://TrueType (.ttf)/DigitTech16-Regular.ttf" id="6_4hjr0"]
+[ext_resource type="FontFile" uid="uid://b1m1ng6hkjd3r" path="res://TrueType (.ttf)/DigitTech16-Italic.ttf" id="7_a0edj"]
+[ext_resource type="Texture2D" uid="uid://46hhfmuo0ri6" path="res://ui_svgs/crt.png" id="8_ry7dc"]
+
+[node name="HudSlot" type="Control" unique_id=1189828897 node_paths=PackedStringArray("text_label", "icon_rect")]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_f5dgw")
+text_label = NodePath("Text")
+icon_rect = NodePath("Icon")
+
+[node name="Base" type="NinePatchRect" parent="." unique_id=22463035]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_v07au")
+patch_margin_left = 256
+patch_margin_top = 128
+patch_margin_right = 256
+patch_margin_bottom = 128
+
+[node name="Hash" type="NinePatchRect" parent="." unique_id=930348058]
+layout_mode = 0
+offset_right = 510.0
+offset_bottom = 230.0
+texture = ExtResource("2_f5dgw")
+patch_margin_left = 255
+patch_margin_top = 115
+patch_margin_right = 255
+patch_margin_bottom = 115
+
+[node name="GradientBar" type="NinePatchRect" parent="." unique_id=2134008762]
+layout_mode = 0
+offset_top = 216.0
+offset_right = 512.0
+offset_bottom = 255.99939
+texture = ExtResource("3_ncyfd")
+patch_margin_left = 256
+patch_margin_top = 16
+patch_margin_right = 256
+patch_margin_bottom = 16
+
+[node name="Text" type="RichTextLabel" parent="." unique_id=339027609]
+custom_minimum_size = Vector2(98, 85)
+layout_mode = 1
+offset_right = 98.0
+offset_bottom = 85.0
+theme = ExtResource("5_e32c5")
+theme_override_colors/default_color = Color(0, 1, 0, 1)
+theme_override_fonts/normal_font = ExtResource("6_4hjr0")
+theme_override_fonts/bold_font = ExtResource("6_4hjr0")
+theme_override_fonts/bold_italics_font = ExtResource("6_4hjr0")
+theme_override_fonts/italics_font = ExtResource("7_a0edj")
+theme_override_fonts/mono_font = ExtResource("6_4hjr0")
+text = "*"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Icon" type="TextureRect" parent="." unique_id=920902536]
+layout_mode = 0
+offset_left = 163.96
+offset_top = 40.0
+offset_right = 374.96008
+offset_bottom = 194.0
+
+[node name="Crt" type="NinePatchRect" parent="." unique_id=1073716236]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("8_ry7dc")
+patch_margin_left = 256
+patch_margin_top = 128
+patch_margin_right = 256
+patch_margin_bottom = 128

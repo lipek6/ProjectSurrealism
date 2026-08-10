@@ -1,0 +1,79 @@
+[gd_resource type="Theme" format=3 uid="uid://c2h27q058tkjp"]
+
+[ext_resource type="FontFile" uid="uid://blsx7dawbujpv" path="res://TrueType (.ttf)/DigitTech16-Regular.ttf" id="1_wo3vu"]
+
+[sub_resource type="Image" id="Image_wo3vu"]
+data = {
+"data": PackedByteArray(255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255),
+"format": "RGBA8",
+"height": 2,
+"mipmaps": false,
+"width": 2
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_t1uoj"]
+image = SubResource("Image_wo3vu")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8gpl"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_skyqb"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[resource]
+default_font = ExtResource("1_wo3vu")
+default_font_size = 75
+RichTextLabel/colors/default_color = Color(0, 1, 0, 1)
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/font_selected_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/font_shadow_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/selection_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/table_border = Color(0, 0, 0, 1)
+RichTextLabel/colors/table_even_row_bg = Color(0, 0, 0, 1)
+RichTextLabel/colors/table_odd_row_bg = Color(0, 0, 0, 1)
+RichTextLabel/constants/line_separation = 0
+RichTextLabel/constants/outline_size = 0
+RichTextLabel/constants/paragraph_separation = 0
+RichTextLabel/constants/shadow_offset_x = 0
+RichTextLabel/constants/shadow_offset_y = 0
+RichTextLabel/constants/shadow_outline_size = 0
+RichTextLabel/constants/strikethrough_alpha = 0
+RichTextLabel/constants/table_h_separation = 0
+RichTextLabel/constants/table_v_separation = 0
+RichTextLabel/constants/text_highlight_h_padding = 0
+RichTextLabel/constants/text_highlight_v_padding = 0
+RichTextLabel/constants/underline_alpha = 0
+RichTextLabel/font_sizes/bold_font_size = 75
+RichTextLabel/font_sizes/bold_italics_font_size = 75
+RichTextLabel/font_sizes/italics_font_size = 75
+RichTextLabel/font_sizes/mono_font_size = 75
+RichTextLabel/font_sizes/normal_font_size = 75
+RichTextLabel/fonts/bold_font = ExtResource("1_wo3vu")
+RichTextLabel/fonts/bold_italics_font = ExtResource("1_wo3vu")
+RichTextLabel/fonts/italics_font = ExtResource("1_wo3vu")
+RichTextLabel/fonts/mono_font = ExtResource("1_wo3vu")
+RichTextLabel/fonts/normal_font = ExtResource("1_wo3vu")
+RichTextLabel/icons/horizontal_rule = SubResource("ImageTexture_t1uoj")
+RichTextLabel/styles/focus = SubResource("StyleBoxFlat_q8gpl")
+RichTextLabel/styles/normal = SubResource("StyleBoxEmpty_skyqb")

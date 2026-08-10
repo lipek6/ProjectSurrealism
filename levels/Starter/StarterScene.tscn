@@ -11,17 +11,19 @@
 [ext_resource type="Texture2D" uid="uid://b28c62e3f23vb" path="res://levels/Starter/textures/kenney-orange-checkerboard-cc0.png" id="6_7b0n1"]
 [ext_resource type="PackedScene" uid="uid://dtke2htvs0sch" path="res://props/scenes/crate.tscn" id="9_77ybh"]
 [ext_resource type="PackedScene" uid="uid://csq2wl75k2gbo" path="res://props/scenes/cylinder.tscn" id="10_yv1ad"]
-[ext_resource type="PackedScene" uid="uid://b1hqj0rqpk680" path="res://weapons/pistol/scenes/pistol_world.tscn" id="12_2dpsm"]
+[ext_resource type="Script" uid="uid://bgud8g3aoktt2" path="res://weapons/weapon_spawner.gd" id="12_2dpsm"]
+[ext_resource type="Resource" uid="uid://ccnmwr0r41eki" path="res://weapons/pistol/pistol.tres" id="13_ct7oj"]
+[ext_resource type="Resource" uid="uid://y1qrn8e8i54r" path="res://weapons/mock/cube/mock_cube.tres" id="14_6y15s"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_u3c1g"]
 panorama = ExtResource("3_suphq")
 
-[sub_resource type="Sky" id="Sky_hfysu"]
+[sub_resource type="Sky" id="Sky_6y15s"]
 sky_material = SubResource("PanoramaSkyMaterial_u3c1g")
 
 [sub_resource type="Environment" id="Environment_dpqee"]
 background_mode = 2
-sky = SubResource("Sky_hfysu")
+sky = SubResource("Sky_6y15s")
 tonemap_mode = 4
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_1pkhx"]
@@ -381,6 +383,13 @@ collision_layer = 4
 collision_mask = 0
 size = Vector3(5, 3.2, 5)
 
+[node name="CSGBox3D12" type="CSGBox3D" parent="NavigationRegion3D/Level/HeigthProps" unique_id=1309953673 groups=["Solids"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.32183, 3.0785184, 0.89047813)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(5, 3.2, 5)
+
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="NavigationRegion3D/Level/HeigthProps" unique_id=172608590]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 1.9585185, 28)
 use_collision = true
@@ -636,5 +645,60 @@ is_fragile = false
 kinetic_break_threshold = 15.0
 hit_sounds = Array[AudioStream]([])
 
-[node name="PistolWorld" parent="." unique_id=1299527850 instance=ExtResource("12_2dpsm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.264942, 2.501564, -28.924513)
+[node name="Weapons" type="Node3D" parent="." unique_id=208993335]
+
+[node name="WeaponSpawner" type="Marker3D" parent="Weapons" unique_id=1484988814]
+transform = Transform3D(0, -1.0000001, 0, 1.0000001, 0, 0, 0, 0, 1, -57.73291, 2.1676219, -30.609978)
+gizmo_extents = 1.0
+script = ExtResource("12_2dpsm")
+weapon_data = ExtResource("13_ct7oj")
+metadata/_custom_type_script = "uid://bgud8g3aoktt2"
+
+[node name="WeaponSpawner6" type="Marker3D" parent="Weapons" unique_id=1302217618]
+transform = Transform3D(0, -1.0000001, 0, 1.0000001, 0, 0, 0, 0, 1, -63.410572, 2.1676219, -30.609978)
+gizmo_extents = 1.0
+script = ExtResource("12_2dpsm")
+weapon_data = ExtResource("13_ct7oj")
+metadata/_custom_type_script = "uid://bgud8g3aoktt2"
+
+[node name="WeaponSpawner7" type="Marker3D" parent="Weapons" unique_id=745559246]
+transform = Transform3D(0, -1.0000001, 0, 1.0000001, 0, 0, 0, 0, 1, -67.67006, 2.1676219, -30.609978)
+gizmo_extents = 1.0
+script = ExtResource("12_2dpsm")
+weapon_data = ExtResource("13_ct7oj")
+metadata/_custom_type_script = "uid://bgud8g3aoktt2"
+
+[node name="WeaponSpawner8" type="Marker3D" parent="Weapons" unique_id=1815878564]
+transform = Transform3D(0, -1.0000001, 0, 1.0000001, 0, 0, 0, 0, 1, -67.67006, 2.1676219, -33.806053)
+gizmo_extents = 1.0
+script = ExtResource("12_2dpsm")
+weapon_data = ExtResource("13_ct7oj")
+metadata/_custom_type_script = "uid://bgud8g3aoktt2"
+
+[node name="WeaponSpawner2" type="Marker3D" parent="Weapons" unique_id=755254570]
+transform = Transform3D(0, -1.0000001, 0, 1.0000001, 0, 0, 0, 0, 1, -53.78754, 2.1676219, -30.609978)
+gizmo_extents = 1.0
+script = ExtResource("12_2dpsm")
+weapon_data = ExtResource("14_6y15s")
+metadata/_custom_type_script = "uid://bgud8g3aoktt2"
+
+[node name="WeaponSpawner3" type="Marker3D" parent="Weapons" unique_id=403324565]
+transform = Transform3D(0, -1.0000001, 0, 1.0000001, 0, 0, 0, 0, 1, -48.50429, 2.1676219, -30.609978)
+gizmo_extents = 1.0
+script = ExtResource("12_2dpsm")
+weapon_data = ExtResource("14_6y15s")
+metadata/_custom_type_script = "uid://bgud8g3aoktt2"
+
+[node name="WeaponSpawner4" type="Marker3D" parent="Weapons" unique_id=1824383240]
+transform = Transform3D(0, -1.0000001, 0, 1.0000001, 0, 0, 0, 0, 1, -44.514984, 2.1676219, -30.609978)
+gizmo_extents = 1.0
+script = ExtResource("12_2dpsm")
+weapon_data = ExtResource("14_6y15s")
+metadata/_custom_type_script = "uid://bgud8g3aoktt2"
+
+[node name="WeaponSpawner5" type="Marker3D" parent="Weapons" unique_id=1689832774]
+transform = Transform3D(0, -1.0000001, 0, 1.0000001, 0, 0, 0, 0, 1, -40.635696, 2.1676219, -30.609978)
+gizmo_extents = 1.0
+script = ExtResource("12_2dpsm")
+weapon_data = ExtResource("14_6y15s")
+metadata/_custom_type_script = "uid://bgud8g3aoktt2"

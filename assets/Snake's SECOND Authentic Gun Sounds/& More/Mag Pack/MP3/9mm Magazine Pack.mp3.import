@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bs6fh5bi00pfq"
+path="res://.godot/imported/9mm Magazine Pack.mp3-87b0f9b2ca850cc308fcb2adef6dc23a.mp3str"
+
+[deps]
+
+source_file="res://assets/Snake's SECOND Authentic Gun Sounds/& More/Mag Pack/MP3/9mm Magazine Pack.mp3"
+dest_files=["res://.godot/imported/9mm Magazine Pack.mp3-87b0f9b2ca850cc308fcb2adef6dc23a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
