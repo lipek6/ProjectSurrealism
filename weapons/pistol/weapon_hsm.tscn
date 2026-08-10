@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://boiy4gquykvbk"]
+
+[ext_resource type="Script" uid="uid://dfdh5k7rjua3x" path="res://weapons/states/IdleWeaponState.gd" id="1_g24u7"]
+
+[node name="WeaponHSM" type="LimboHSM" unique_id=1246521167]
+
+[node name="IdleState" type="LimboState" parent="." unique_id=1788124331]
+script = ExtResource("1_g24u7")
+metadata/_custom_type_script = "uid://dfdh5k7rjua3x"
+
+[node name="ReloadState" type="LimboState" parent="." unique_id=1098971860]
+
+[node name="PrimaryReloadState" type="LimboState" parent="ReloadState" unique_id=8083907]
+
+[node name="SecondaryReloadState" type="LimboState" parent="ReloadState" unique_id=2133533953]
+
+[node name="ActionState" type="LimboState" parent="." unique_id=625858436]
+
+[node name="PrimaryActionState" type="LimboState" parent="ActionState" unique_id=1335557498]
+
+[node name="PrimaryRecoveryState" type="LimboState" parent="ActionState" unique_id=2105774339]
+
+[node name="SecondaryRecoveryState" type="LimboState" parent="ActionState" unique_id=1421701121]
+
+[node name="SecondaryActionState" type="LimboState" parent="ActionState" unique_id=574024831]
+
+[node name="EquipState" type="LimboState" parent="." unique_id=2137954220]
+
+[node name="UnequipState" type="LimboState" parent="." unique_id=994584275]

@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://pww2sscr0pbx"]
 
-[ext_resource type="Material" uid="uid://h0pjjwlf6ydy" path="res://weapons/pistol/arts/models/local/pistol_material.tres" id="1_qu4s1"]
+[ext_resource type="Material" uid="uid://cl3swoxtx3ers" path="res://weapons/pistol/arts/models/imported_data/pistol_material.tres" id="1_qu4s1"]
 [ext_resource type="PhysicsMaterial" uid="uid://b5kmfvq4d3kej" path="res://weapons/commons/resources/bullet_case_physics_material.tres" id="2_0y55r"]
 [ext_resource type="Script" uid="uid://drptuaq5ncbw3" path="res://props/scripts/physics_prop.gd" id="2_gfq8h"]
 

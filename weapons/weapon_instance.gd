@@ -28,6 +28,26 @@ signal action_denied(reason: DENIAL_REASON)
 
 @export var animation : AnimationPlayer
 @export var audio     : AudioStreamPlayer3D
+
+@export_group("State Machine")
+@export var hsm: LimboHSM
+@export var idle_state: LimboState
+@export var action_state: LimboState
+@export var primary_action_state: LimboState
+@export var secondary_action_state: LimboState
+@export var equip_state: LimboState
+@export var unequip_state: LimboState
+@export var reload_state: LimboState
+@export var primary_reload_state: LimboState
+@export var secondary_reload_state: LimboState
+
+
+
+
+
+
+
+
 var data: WeaponResource
 
 # Volatile State (Unique to this specific gun in the world)
@@ -41,11 +61,16 @@ func _ready() -> void:
 	if not data:
 		push_warning("Weapon spawned without data injection!")
 		return
-		
+	
 	# Initialize our unique pool from the blueprint limits
 	current_mag_ammo     = data.max_mag_ammo
 	current_reserve_ammo = data.max_reserve_ammo
 	set_process(false) # The gun does not process time while holstered or on the ground.
+	
+	# Initialize State Machine
+	hsm.initialize(self)
+	hsm.set_active(true)
+
 
 func _process(delta: float) -> void:
 	if current_fire_cooldown > 0.0: current_fire_cooldown -= delta
@@ -72,6 +97,6 @@ func reload() -> void:
 func equip() -> void:
 	# Emitting this here ensures the UI always updates the exact frame a new gun is drawn! 
 	ammo_updated.emit(current_mag_ammo, current_reserve_ammo)
-	
+
 func unequip() -> void:
 	pass # Optional to override
