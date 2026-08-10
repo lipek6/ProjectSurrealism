@@ -23,6 +23,5 @@ func physics_update(delta: float) -> void:
 	var final_speed : float = base_speed * stats.noclip_speed_multiplier
 	
 	# Apply flying velocity directly
-	if input.camera_aligned_wished_direction != Vector3.ZERO:
-		actor.velocity = input.camera_aligned_wished_direction * final_speed
+	actor.velocity = input.camera_aligned_wished_direction * final_speed
 	actor.move_and_slide()

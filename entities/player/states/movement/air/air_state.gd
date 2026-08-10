@@ -24,6 +24,12 @@ func physics_update(delta: float) -> void:
 	if actor.is_on_wall() and is_surface_too_steep(actor.get_wall_normal()):
 		state_machine.transition_to(&"SurfState")
 		return
+		
+	# Little HACK, because when leaving the NoClipState, we were easily getting stuck into the air state, even when hitting the ground.
+	# Although this was added as a HACK, it doesn't seem to be so wrong to be here.
+	if actor.velocity.y <= 0:
+		state_machine.transition_to(&"FallState")
+		return
 	
 
 func _handle_air_physics(delta: float) -> void:
