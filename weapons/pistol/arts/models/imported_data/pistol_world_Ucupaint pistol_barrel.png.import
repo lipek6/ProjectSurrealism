@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d0vpb2pg5o0jb"
-path="res://.godot/imported/pistol_world_Ucupaint pistol_barrel.png-1936768adcc95164f2e9d66d85e7aaa8.ctex"
+path.s3tc="res://.godot/imported/pistol_world_Ucupaint pistol_barrel.png-1936768adcc95164f2e9d66d85e7aaa8.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "97101a504cf4dacaad2d00f993cca10e"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://weapons/pistol/arts/models/imported_data/pistol_world_Ucupaint pistol_barrel.png"
-dest_files=["res://.godot/imported/pistol_world_Ucupaint pistol_barrel.png-1936768adcc95164f2e9d66d85e7aaa8.ctex"]
+dest_files=["res://.godot/imported/pistol_world_Ucupaint pistol_barrel.png-1936768adcc95164f2e9d66d85e7aaa8.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -40,4 +41,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

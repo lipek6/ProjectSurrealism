@@ -12,8 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dtke2htvs0sch" path="res://props/scenes/crate.tscn" id="9_77ybh"]
 [ext_resource type="PackedScene" uid="uid://csq2wl75k2gbo" path="res://props/scenes/cylinder.tscn" id="10_yv1ad"]
 [ext_resource type="Script" uid="uid://bgud8g3aoktt2" path="res://weapons/weapon_spawner.gd" id="12_2dpsm"]
-[ext_resource type="Resource" uid="uid://ccnmwr0r41eki" path="res://weapons/pistol/pistol.tres" id="13_ct7oj"]
-[ext_resource type="Resource" uid="uid://y1qrn8e8i54r" path="res://weapons/mock/cube/mock_cube.tres" id="14_6y15s"]
+[ext_resource type="Resource" uid="uid://ccnmwr0r41eki" path="res://weapons/pistol/pistol.tres" id="13_6y15s"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_u3c1g"]
 panorama = ExtResource("3_suphq")
@@ -623,7 +622,7 @@ hit_sounds = Array[AudioStream]([])
 metadata/_edit_group_ = true
 
 [node name="Crate4" parent="Props" unique_id=1713720740 instance=ExtResource("9_77ybh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.771336, 0.25051832, -33.14086)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.06766, 0.7243495, -29.288465)
 mass = 33.75
 prop_scale = Vector3(1.5, 1.5, 1.5)
 is_fragile = false
@@ -645,60 +644,11 @@ is_fragile = false
 kinetic_break_threshold = 15.0
 hit_sounds = Array[AudioStream]([])
 
-[node name="Weapons" type="Node3D" parent="." unique_id=208993335]
+[node name="Weapons" type="Node3D" parent="." unique_id=726776896]
 
-[node name="WeaponSpawner" type="Marker3D" parent="Weapons" unique_id=1484988814]
-transform = Transform3D(0, -1.0000001, 0, 1.0000001, 0, 0, 0, 0, 1, -57.73291, 2.1676219, -30.609978)
-gizmo_extents = 1.0
+[node name="WeaponSpawner" type="Marker3D" parent="Weapons" unique_id=90059816]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.137287, 3.1785634, -33.653625)
+gizmo_extents = 2.5
 script = ExtResource("12_2dpsm")
-weapon_data = ExtResource("13_ct7oj")
-metadata/_custom_type_script = "uid://bgud8g3aoktt2"
-
-[node name="WeaponSpawner6" type="Marker3D" parent="Weapons" unique_id=1302217618]
-transform = Transform3D(0, -1.0000001, 0, 1.0000001, 0, 0, 0, 0, 1, -63.410572, 2.1676219, -30.609978)
-gizmo_extents = 1.0
-script = ExtResource("12_2dpsm")
-weapon_data = ExtResource("13_ct7oj")
-metadata/_custom_type_script = "uid://bgud8g3aoktt2"
-
-[node name="WeaponSpawner7" type="Marker3D" parent="Weapons" unique_id=745559246]
-transform = Transform3D(0, -1.0000001, 0, 1.0000001, 0, 0, 0, 0, 1, -67.67006, 2.1676219, -30.609978)
-gizmo_extents = 1.0
-script = ExtResource("12_2dpsm")
-weapon_data = ExtResource("13_ct7oj")
-metadata/_custom_type_script = "uid://bgud8g3aoktt2"
-
-[node name="WeaponSpawner8" type="Marker3D" parent="Weapons" unique_id=1815878564]
-transform = Transform3D(0, -1.0000001, 0, 1.0000001, 0, 0, 0, 0, 1, -67.67006, 2.1676219, -33.806053)
-gizmo_extents = 1.0
-script = ExtResource("12_2dpsm")
-weapon_data = ExtResource("13_ct7oj")
-metadata/_custom_type_script = "uid://bgud8g3aoktt2"
-
-[node name="WeaponSpawner2" type="Marker3D" parent="Weapons" unique_id=755254570]
-transform = Transform3D(0, -1.0000001, 0, 1.0000001, 0, 0, 0, 0, 1, -53.78754, 2.1676219, -30.609978)
-gizmo_extents = 1.0
-script = ExtResource("12_2dpsm")
-weapon_data = ExtResource("14_6y15s")
-metadata/_custom_type_script = "uid://bgud8g3aoktt2"
-
-[node name="WeaponSpawner3" type="Marker3D" parent="Weapons" unique_id=403324565]
-transform = Transform3D(0, -1.0000001, 0, 1.0000001, 0, 0, 0, 0, 1, -48.50429, 2.1676219, -30.609978)
-gizmo_extents = 1.0
-script = ExtResource("12_2dpsm")
-weapon_data = ExtResource("14_6y15s")
-metadata/_custom_type_script = "uid://bgud8g3aoktt2"
-
-[node name="WeaponSpawner4" type="Marker3D" parent="Weapons" unique_id=1824383240]
-transform = Transform3D(0, -1.0000001, 0, 1.0000001, 0, 0, 0, 0, 1, -44.514984, 2.1676219, -30.609978)
-gizmo_extents = 1.0
-script = ExtResource("12_2dpsm")
-weapon_data = ExtResource("14_6y15s")
-metadata/_custom_type_script = "uid://bgud8g3aoktt2"
-
-[node name="WeaponSpawner5" type="Marker3D" parent="Weapons" unique_id=1689832774]
-transform = Transform3D(0, -1.0000001, 0, 1.0000001, 0, 0, 0, 0, 1, -40.635696, 2.1676219, -30.609978)
-gizmo_extents = 1.0
-script = ExtResource("12_2dpsm")
-weapon_data = ExtResource("14_6y15s")
+weapon_data = ExtResource("13_6y15s")
 metadata/_custom_type_script = "uid://bgud8g3aoktt2"

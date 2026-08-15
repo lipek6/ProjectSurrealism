@@ -27,20 +27,12 @@ var wants_secondary_shoot : bool = false
 var wants_reload          : bool = false
 var wants_interact        : bool = false
 var wants_dual_wield      : bool = false
+var wants_drop_weapon     : bool = false
 
 # ==============================================================================
 # INVENTORY INTENTS
 # ==============================================================================
-var wants_slot_1    : bool = false
-var wants_slot_2    : bool = false
-var wants_slot_3    : bool = false
-var wants_slot_4    : bool = false
-var wants_slot_5    : bool = false
-var wants_slot_6    : bool = false
-var wants_slot_7    : bool = false
-var wants_slot_8    : bool = false
-var wants_slot_9    : bool = false
-var wants_slot_0    : bool = false
+var wanted_slot     : int  = -1
 var wants_next_slot : bool = false
 var wants_prev_slot : bool = false
 

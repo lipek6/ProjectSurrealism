@@ -70,8 +70,6 @@ func _physics_process(delta: float) -> void:
 	
 	if camera_state_machine: camera_state_machine.process_physics(delta)
 	
-	if is_active and weapon_manager: weapon_manager.process_weapons()
-	
 	if footstep_controller: footstep_controller.process_footsteps(delta)
 	
 	if interaction_manager: interaction_manager.process_interaction()

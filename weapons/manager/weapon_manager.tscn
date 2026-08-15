@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://cf63k8h03nhqq"]
+
+[ext_resource type="Script" uid="uid://ctt1owa5l531u" path="res://weapons/manager/weapon_manager.gd" id="1_ol6mq"]
+[ext_resource type="Script" uid="uid://dmpe47rxj4buo" path="res://weapons/manager/states/armed/armed_state.gd" id="2_65d0n"]
+[ext_resource type="Script" uid="uid://dl53oiw3slyhs" path="res://weapons/manager/weapon_manager_hsm.gd" id="2_wjsw8"]
+[ext_resource type="Script" uid="uid://dwvb4dxw421l" path="res://weapons/manager/states/unarmed/unarmed_state.gd" id="3_has35"]
+[ext_resource type="Script" uid="uid://dnkujq27fag5l" path="res://weapons/manager/states/armed/single_wield_state.gd" id="3_wjsw8"]
+[ext_resource type="Script" uid="uid://dx8ogc4waf6wq" path="res://weapons/manager/states/armed/armed_router_state.gd" id="4_4pp4d"]
+[ext_resource type="Script" uid="uid://cd1sgu6wglpxr" path="res://weapons/manager/states/armed/dual_wield_state.gd" id="4_yqaod"]
+[ext_resource type="Script" uid="uid://dmtyohmi1672a" path="res://weapons/manager/states/swap/swap_state.gd" id="5_4pp4d"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_wjsw8"]
+var/pending_swap_slot/name = &"pending_swap_slot"
+var/pending_swap_slot/type = 2
+var/pending_swap_slot/value = -1
+var/pending_swap_slot/hint = 0
+var/pending_swap_slot/hint_string = ""
+
+[node name="WeaponManager" type="Node" unique_id=1522764357 node_paths=PackedStringArray("hsm")]
+script = ExtResource("1_ol6mq")
+hsm = NodePath("WeaponManagerHSM")
+
+[node name="WeaponManagerHSM" type="LimboHSM" parent="." unique_id=498585083]
+blackboard_plan = SubResource("BlackboardPlan_wjsw8")
+unique_name_in_owner = true
+script = ExtResource("2_wjsw8")
+
+[node name="ArmedHSM" type="LimboHSM" parent="WeaponManagerHSM" unique_id=716872539]
+unique_name_in_owner = true
+script = ExtResource("2_65d0n")
+
+[node name="ArmedRouterState" type="LimboState" parent="WeaponManagerHSM/ArmedHSM" unique_id=827910278]
+unique_name_in_owner = true
+script = ExtResource("4_4pp4d")
+
+[node name="SingleWieldState" type="LimboState" parent="WeaponManagerHSM/ArmedHSM" unique_id=742360658]
+unique_name_in_owner = true
+script = ExtResource("3_wjsw8")
+
+[node name="DualWieldState" type="LimboState" parent="WeaponManagerHSM/ArmedHSM" unique_id=428111149]
+unique_name_in_owner = true
+script = ExtResource("4_yqaod")
+
+[node name="SwapState" type="LimboState" parent="WeaponManagerHSM" unique_id=766544071]
+unique_name_in_owner = true
+script = ExtResource("5_4pp4d")
+
+[node name="UnarmedState" type="LimboState" parent="WeaponManagerHSM" unique_id=1668195487]
+unique_name_in_owner = true
+script = ExtResource("3_has35")
+
+[node name="Label" type="Label" parent="." unique_id=314438340]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0

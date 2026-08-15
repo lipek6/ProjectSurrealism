@@ -14,14 +14,15 @@ func _ready() -> void:
 
 func on_auto_pickup_area_body_entered(body: Node3D) -> void:
 	if body is WeaponWorldInstance and actor.weapon_manager:
-		actor.weapon_manager.try_auto_pickup(body)
+		actor.weapon_manager.add_weapon(body)
 
 
 func process_interaction() -> void:
 	if not interaction_ray or not interaction_ray.is_colliding(): return
 	
 	if interaction_ray.get_collider() is WeaponWorldInstance:
-		var world_weapon: WeaponWorldInstance = interaction_ray.get_collider() as WeaponWorldInstance
+		var weapon: WeaponWorldInstance = interaction_ray.get_collider() as WeaponWorldInstance
+		promt_pickup.emit(weapon.data.id_name)
 	
-		if actor.input.wants_interact:   actor.weapon_manager.interact_pickup_weapon(world_weapon, false)
-		if actor.input.wants_dual_wield: actor.weapon_manager.interact_pickup_weapon(world_weapon, true)
+		if actor.input.wants_interact:     actor.weapon_manager.add_weapon(weapon)
+		elif actor.input.wants_dual_wield: actor.weapon_manager.add_weapon(weapon) # NO DUAL WIELD HANDLING

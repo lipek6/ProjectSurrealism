@@ -1,29 +1,65 @@
 [gd_scene format=3 uid="uid://boiy4gquykvbk"]
 
-[ext_resource type="Script" uid="uid://dfdh5k7rjua3x" path="res://weapons/states/IdleWeaponState.gd" id="1_g24u7"]
+[ext_resource type="Script" uid="uid://cjd53med5hsja" path="res://weapons/weapon_hsm.gd" id="1_g24u7"]
+[ext_resource type="Script" uid="uid://dfdh5k7rjua3x" path="res://weapons/states/idle_wstate.gd" id="2_fxeul"]
+[ext_resource type="Script" uid="uid://cfv34aq35ds6s" path="res://weapons/states/equip_wstate.gd" id="3_5tqt4"]
+[ext_resource type="Script" uid="uid://cn3i8tqctb0fw" path="res://weapons/states/unequip_wstate.gd" id="4_xosep"]
+[ext_resource type="Script" uid="uid://bf1ygbnrr20r7" path="res://weapons/states/action_hsm.gd" id="5_5tqt4"]
+[ext_resource type="Script" uid="uid://vod7qbcm4gck" path="res://weapons/states/action_router_wstate.gd" id="6_erce0"]
+[ext_resource type="Script" uid="uid://cdg0y0ccrut58" path="res://weapons/states/primary_action_wstate.gd" id="7_0y7bl"]
+[ext_resource type="Script" uid="uid://cxdu5tb445a2f" path="res://weapons/states/primary_action_recovery_wstate.gd" id="8_6p7q4"]
+[ext_resource type="Script" uid="uid://8f3t6qcvmtsc" path="res://weapons/states/reload_router_wstate.gd" id="8_fxeul"]
+[ext_resource type="Script" uid="uid://vgj1b7rwc2kp" path="res://weapons/states/secondary_reload_wstate.gd" id="10_5tqt4"]
+[ext_resource type="Script" uid="uid://cx3hk3lxnnf60" path="res://weapons/states/primary_reload_wstate.gd" id="10_ds0fj"]
 
 [node name="WeaponHSM" type="LimboHSM" unique_id=1246521167]
-
-[node name="IdleState" type="LimboState" parent="." unique_id=1788124331]
 script = ExtResource("1_g24u7")
-metadata/_custom_type_script = "uid://dfdh5k7rjua3x"
 
-[node name="ReloadState" type="LimboState" parent="." unique_id=1098971860]
-
-[node name="PrimaryReloadState" type="LimboState" parent="ReloadState" unique_id=8083907]
-
-[node name="SecondaryReloadState" type="LimboState" parent="ReloadState" unique_id=2133533953]
-
-[node name="ActionState" type="LimboState" parent="." unique_id=625858436]
-
-[node name="PrimaryActionState" type="LimboState" parent="ActionState" unique_id=1335557498]
-
-[node name="PrimaryRecoveryState" type="LimboState" parent="ActionState" unique_id=2105774339]
-
-[node name="SecondaryRecoveryState" type="LimboState" parent="ActionState" unique_id=1421701121]
-
-[node name="SecondaryActionState" type="LimboState" parent="ActionState" unique_id=574024831]
+[node name="IdleState" type="LimboState" parent="." unique_id=380052265]
+unique_name_in_owner = true
+script = ExtResource("2_fxeul")
 
 [node name="EquipState" type="LimboState" parent="." unique_id=2137954220]
+unique_name_in_owner = true
+script = ExtResource("3_5tqt4")
 
 [node name="UnequipState" type="LimboState" parent="." unique_id=994584275]
+unique_name_in_owner = true
+script = ExtResource("4_xosep")
+
+[node name="ActionHSM" type="LimboHSM" parent="." unique_id=614764247]
+unique_name_in_owner = true
+script = ExtResource("5_5tqt4")
+
+[node name="ActionRouterState" type="LimboState" parent="ActionHSM" unique_id=1266233097]
+unique_name_in_owner = true
+script = ExtResource("6_erce0")
+
+[node name="PrimaryActionState" type="LimboState" parent="ActionHSM" unique_id=1335557498]
+unique_name_in_owner = true
+script = ExtResource("7_0y7bl")
+
+[node name="PrimaryRecoveryState" type="LimboState" parent="ActionHSM" unique_id=2105774339]
+unique_name_in_owner = true
+script = ExtResource("8_6p7q4")
+
+[node name="SecondaryActionState" type="LimboState" parent="ActionHSM" unique_id=574024831]
+unique_name_in_owner = true
+
+[node name="SecondaryRecoveryState" type="LimboState" parent="ActionHSM" unique_id=1421701121]
+unique_name_in_owner = true
+
+[node name="ReloadHSM" type="LimboHSM" parent="." unique_id=503662527]
+unique_name_in_owner = true
+
+[node name="ReloadRouterState" type="LimboState" parent="ReloadHSM" unique_id=816602852]
+unique_name_in_owner = true
+script = ExtResource("8_fxeul")
+
+[node name="PrimaryReloadState" type="LimboState" parent="ReloadHSM" unique_id=8083907]
+unique_name_in_owner = true
+script = ExtResource("10_ds0fj")
+
+[node name="SecondaryReloadState" type="LimboState" parent="ReloadHSM" unique_id=2133533953]
+unique_name_in_owner = true
+script = ExtResource("10_5tqt4")

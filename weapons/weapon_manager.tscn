@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://cf63k8h03nhqq"]
-
-[ext_resource type="Script" uid="uid://ctt1owa5l531u" path="res://weapons/weapon_manager.gd" id="1_ol6mq"]
-
-[node name="WeaponManager" type="Node" unique_id=1522764357]
-script = ExtResource("1_ol6mq")

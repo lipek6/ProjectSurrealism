@@ -9,6 +9,7 @@ class_name ActorWeaponAnimationController extends Node
 var primary_playback   : AnimationNodeStateMachinePlayback
 var secondary_playback : AnimationNodeStateMachinePlayback
 
+
 func _ready() -> void:
 	if not weapon_manager:
 		push_error("Motherfucker, why did you put a WEAPON ANIMATION CONTROLLER into something that doesn't have a weapon manager?")
@@ -16,11 +17,15 @@ func _ready() -> void:
 		
 	weapon_manager.weapon_equipped.connect(_on_weapon_equipped)
 	weapon_manager.weapon_holstered.connect(_on_weapon_holstered)
-	weapon_manager.actor_animation_requested.connect(_on_animation_requested)
+	weapon_manager.request_conextual_actor_animation.connect(_on_animation_requested)
 	
 	if anim_tree and anim_tree.tree_root:
 		primary_playback   = anim_tree.get("parameters/PrimaryFSM/playback")
 		secondary_playback = anim_tree.get("parameters/SecondaryFSM/playback")
+
+
+
+
 
 
 func _on_weapon_equipped(weapon_data: WeaponResource, is_primary_weapon: bool, is_dual_wielding: bool) -> void:
@@ -29,9 +34,11 @@ func _on_weapon_equipped(weapon_data: WeaponResource, is_primary_weapon: bool, i
 	
 	# Only travel to the Equip state for the hand that just drew a weapon
 	var playback: AnimationNodeStateMachinePlayback = primary_playback if is_primary_weapon else secondary_playback
-	if playback:
-		playback.travel(&"Equip")
-
+	
+	if is_primary_weapon:
+		weapon_manager.active_primary_weapon.request_actor_animation.connect(_on_animation_requested)
+	
+	
 
 func _on_weapon_holstered(is_primary_weapon: bool) -> void:
 	# Refreshing here is what automatically removes the "_r" from the primary 
@@ -92,8 +99,8 @@ func _inject(fsm: AnimationNodeStateMachine, state_name: StringName, base_anim_n
 		anim_node.animation = StringName(anim_prefix + String(base_anim_name) + suffix)
 
 
-func _on_animation_requested(state_name: StringName, is_primary_weapon: bool, force_restart: bool) -> void:
-	var playback: AnimationNodeStateMachinePlayback = primary_playback if is_primary_weapon else secondary_playback
+func _on_animation_requested(state_name: StringName, force_restart: bool, duration: float, is_secondary: bool) -> void:
+	var playback: AnimationNodeStateMachinePlayback = primary_playback if not is_secondary else secondary_playback
 	if playback:
 		if force_restart:
 			playback.start(state_name)

@@ -1,4 +1,6 @@
-class_name IdleDefaultWeaponState extends LimboState
+## RELOAD HSM
+
+extends LimboHSM
 
 ## Called once, when state is initialized.
 func _setup() -> void:

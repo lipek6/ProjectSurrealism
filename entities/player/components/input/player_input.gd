@@ -62,19 +62,21 @@ func gather_inputs(actor_basis: Basis, camera_basis: Basis) -> void:
 	wants_dual_wield      = Input.is_action_pressed("dual_wield") # Equips weapon on secondary hand of the player 
 	
 	# INVENTORY
-	wants_slot_1 = Input.is_action_just_pressed("slot_1")
-	wants_slot_2 = Input.is_action_just_pressed("slot_2")
-	wants_slot_3 = Input.is_action_just_pressed("slot_3")
-	wants_slot_4 = Input.is_action_just_pressed("slot_4")
-	wants_slot_5 = Input.is_action_just_pressed("slot_5")
-	wants_slot_6 = Input.is_action_just_pressed("slot_6")
-	wants_slot_7 = Input.is_action_just_pressed("slot_7")
-	wants_slot_8 = Input.is_action_just_pressed("slot_8")
-	wants_slot_9 = Input.is_action_just_pressed("slot_9")
-	wants_slot_0 = Input.is_action_just_pressed("slot_0")
+	if Input.is_action_just_pressed("slot_1"): wanted_slot   = 1
+	elif Input.is_action_just_pressed("slot_2"): wanted_slot = 2
+	elif Input.is_action_just_pressed("slot_3"): wanted_slot = 3
+	elif Input.is_action_just_pressed("slot_4"): wanted_slot = 4
+	elif Input.is_action_just_pressed("slot_5"): wanted_slot = 5
+	elif Input.is_action_just_pressed("slot_6"): wanted_slot = 6
+	elif Input.is_action_just_pressed("slot_7"): wanted_slot = 7
+	elif Input.is_action_just_pressed("slot_8"): wanted_slot = 8
+	elif Input.is_action_just_pressed("slot_9"): wanted_slot = 9
+	elif Input.is_action_just_pressed("slot_0"): wanted_slot = 10
+	else: wanted_slot = -1
+	
 	wants_next_slot = Input.is_action_just_pressed("next_slot")
 	wants_prev_slot = Input.is_action_just_pressed("prev_slot")
-	
+	wants_drop_weapon = Input.is_action_just_pressed("drop_weapon")
 	
 	# RESOLVE DEBUG INTENTS
 	wants_camera_swap           = Input.is_action_just_pressed("next_camera")
