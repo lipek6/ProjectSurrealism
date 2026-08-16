@@ -5,7 +5,7 @@ class_name WeaponManager extends Node
 
 
 #region signals
-signal weapon_equipped(weapon_data: WeaponResource, is_primary_weapon: bool, is_dual_wielding: bool)
+signal weapon_equipped(weapon_data: WeaponResource, is_primary_weapon: bool, is_dual_wielding: bool) # Makes the Actor inject the correct animations based on weapon_data
 signal weapon_holstered(is_primary_weapon: bool)
 signal request_conextual_actor_animation(state_name: StringName, force_restart: bool, duration: float, is_secondary: bool)
 
@@ -103,7 +103,6 @@ func _setup_new_weapon(world_weapon: WeaponWorldInstance, slot_idx: int) -> void
 	
 	# Auto-Equip logic
 	hsm.blackboard.set_var(&"pending_swap_slot", slot_idx)
-	weapon_equipped.emit(new_weapon, true, false)
 	hsm.dispatch(WeaponManagerHSM.EVENT_SWAP_REQ)
 
 
@@ -118,11 +117,11 @@ func _scav_ammo(world_weapon: WeaponWorldInstance, inventory_weapon: WeaponInsta
 ## Works as a Middle-man for the Actor animations. Necessary to distinguish which weapon equipped is requesting animation.
 func _on_weapon_to_actor_animation_request(state_name: StringName, force_restart: bool, duration: float, requester: WeaponInstance) -> void:
 	
-	print("REQUEST: ")
-	print("- Requester: " + str(requester.data.id_name))
-	print("- State    : " + str(state_name))
-	print("- Duration : " + str(duration))
-	print("- Restart  : " + str(force_restart))
+	#print("REQUEST: ")
+	#print("- Requester: " + str(requester.data.id_name))
+	#print("- State    : " + str(state_name))
+	#print("- Duration : " + str(duration))
+	#print("- Restart  : " + str(force_restart))
 	
 	if requester == active_primary_weapon:
 		request_conextual_actor_animation.emit(state_name, force_restart, duration, false)

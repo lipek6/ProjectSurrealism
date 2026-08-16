@@ -13,7 +13,6 @@ signal request_actor_animation(state_name: StringName, force_restart: bool, dura
 
 
 
-
 # --- WEAPON ANIMATIONS ---
 @export_group("Mechanical Animations")
 @export var anim_idle                 : StringName = &""

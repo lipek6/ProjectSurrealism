@@ -18,4 +18,6 @@ func _update(delta: float) -> void:
 	manager.active_primary_weapon.wants_reload          = input.wants_reload
 	manager.active_primary_weapon.wants_shoot           = input.wants_primary_shoot or input.wants_secondary_shoot
 	
-	manager.active_primary_weapon.wants_unequip         = input.wanted_slot != -1 or input.wants_next_slot or input.wants_prev_slot
+	var intends_to_unequip: bool = input.wanted_slot != -1 or input.wants_next_slot or input.wants_prev_slot
+	
+	manager.active_primary_weapon.wants_unequip = intends_to_unequip

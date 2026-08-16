@@ -14,6 +14,8 @@ func _update(delta: float) -> void:
 	if weapon.current_primary_mag_ammo > 0:
 		weapon.current_primary_mag_ammo -= weapon.data.primary_ammo_cost
 		
+		execute_ballistics()
+		
 		if animation:
 			if weapon.current_primary_mag_ammo <= 0:
 				animation.stop()
@@ -30,3 +32,7 @@ func _update(delta: float) -> void:
 	else:
 		
 		dispatch(EVENT_FINISHED)
+
+
+func execute_ballistics() -> void:
+	pass

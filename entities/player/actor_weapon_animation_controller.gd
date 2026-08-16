@@ -24,26 +24,17 @@ func _ready() -> void:
 		secondary_playback = anim_tree.get("parameters/SecondaryFSM/playback")
 
 
-
-
-
-
 func _on_weapon_equipped(weapon_data: WeaponResource, is_primary_weapon: bool, is_dual_wielding: bool) -> void:
-	# Refresh the string states for BOTH hands
-	_refresh_all_injections()
-	
-	# Only travel to the Equip state for the hand that just drew a weapon
-	var playback: AnimationNodeStateMachinePlayback = primary_playback if is_primary_weapon else secondary_playback
-	
-	if is_primary_weapon:
-		weapon_manager.active_primary_weapon.request_actor_animation.connect(_on_animation_requested)
-	
-	
+	_inject_weapon_data(weapon_data, is_primary_weapon, is_dual_wielding)
+
+
+
 
 func _on_weapon_holstered(is_primary_weapon: bool) -> void:
 	# Refreshing here is what automatically removes the "_r" from the primary 
 	# weapon when the secondary is thrown away!
 	_refresh_all_injections()
+
 
 
 func _refresh_all_injections() -> void:
@@ -67,7 +58,7 @@ func _inject_weapon_data(weapon_data: WeaponResource, is_primary_weapon: bool, i
 	var fsm: AnimationNodeStateMachine = anim_tree.tree_root.get_node(fsm_name)
 	
 	var suffix: String = ""
-	if not weapon_data.two_handed and is_dual_wielding:
+	if weapon_data.is_dual_wieldable and is_dual_wielding:
 		suffix = "_r" if is_primary_weapon else "_l"
 		
 	_inject(fsm, &"Equip", weapon_data.equip_animation, suffix)

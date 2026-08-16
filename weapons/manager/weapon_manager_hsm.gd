@@ -46,3 +46,10 @@ func init_machine(manager_agent: WeaponManager) -> void:
 	armed_hsm.initialize(manager_agent)
 	self.initialize(manager_agent)
 	self.set_active(true)
+
+var old_name: StringName = &""
+func _update(delta: float) -> void:
+	if self.get_active_state().name != old_name:
+		print("WeaponManagerHSM -> " + self.get_active_state().name)
+		old_name = self.get_active_state().name
+		

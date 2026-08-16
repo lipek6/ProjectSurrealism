@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1sfwr7xcjxp1"
-path.s3tc="res://.godot/imported/pistol_muzzle_flash_front.png-cdd2f45236662bfac4a1d6ef0d5747d5.s3tc.ctex"
+uid="uid://dfucte8s73ws1"
+path.s3tc="res://.godot/imported/rifle_famas_f1_DefaultMaterial_BaseColor.png-646acd02f1bafdc4b30b0bf37be3095c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "16992c8bc05f91535e1de6c664e12d11"
+}
 
 [deps]
 
-source_file="res://weapons/pistol/arts/effects/visual/pistol_muzzle_flash_front.png"
-dest_files=["res://.godot/imported/pistol_muzzle_flash_front.png-cdd2f45236662bfac4a1d6ef0d5747d5.s3tc.ctex"]
+source_file="res://weapons/rifle_famas_f1_DefaultMaterial_BaseColor.png"
+dest_files=["res://.godot/imported/rifle_famas_f1_DefaultMaterial_BaseColor.png-646acd02f1bafdc4b30b0bf37be3095c.s3tc.ctex"]
 
 [params]
 

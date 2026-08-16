@@ -372,6 +372,59 @@ tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = PackedFloat32Array(0, 1, -5.6410876e-10, 0.016616879, 0.020477766, 0.033333335, 1, -5.640974e-10, 0.005209471, 0.02047782, 0.06666667, 1, -5.6411165e-10, -0.013531278, 0.020477904, 0.1, 1, -5.6411736e-10, -0.029827572, 0.020477979, 0.13333334, 1, -5.641088e-10, -0.038383123, 0.02047802, 0.625, 1, -5.641088e-10, -0.038383123, 0.02047802)
 
+[sub_resource type="Animation" id="Animation_wvwr5"]
+resource_name = "unequip"
+length = 1.25
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("pistol_armature_001/Skeleton3D:root")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.007971367, 0.02233027, -0.046827994)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("pistol_armature_001/Skeleton3D:root")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 1.3170894e-09, -0.7071068, -0.7071068, 1.3170894e-09)
+tracks/2/type = "position_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("pistol_armature_001/Skeleton3D:mag")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 1.15115135e-08, -0.014799291, -0.07496456)
+tracks/3/type = "scale_3d"
+tracks/3/imported = true
+tracks/3/enabled = true
+tracks/3/path = NodePath("pistol_armature_001/Skeleton3D:mag")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/4/type = "position_3d"
+tracks/4/imported = true
+tracks/4/enabled = true
+tracks/4/path = NodePath("pistol_armature_001/Skeleton3D:bullet")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 2.3840753e-08, -0.08452133, -0.036667224)
+tracks/5/type = "scale_3d"
+tracks/5/imported = true
+tracks/5/enabled = true
+tracks/5/path = NodePath("pistol_armature_001/Skeleton3D:bullet")
+tracks/5/interp = 0
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 1, 0.99999994, 1)
+tracks/6/type = "position_3d"
+tracks/6/imported = true
+tracks/6/enabled = true
+tracks/6/path = NodePath("pistol_armature_001/Skeleton3D:slide")
+tracks/6/interp = 0
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, -5.6410876e-10, 0.016616879, 0.020477766)
+
 [resource]
 _data = {
 &"equip": SubResource("Animation_iqtn1"),
@@ -380,5 +433,6 @@ _data = {
 &"reload": SubResource("Animation_8q18w"),
 &"reload_empty": SubResource("Animation_hwy87"),
 &"shoot": SubResource("Animation_v0sba"),
-&"shoot_last": SubResource("Animation_bppfc")
+&"shoot_last": SubResource("Animation_bppfc"),
+&"unequip": SubResource("Animation_wvwr5")
 }
